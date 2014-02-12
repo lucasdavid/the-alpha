@@ -3,34 +3,34 @@ using System.Collections;
 
 public abstract class Thing {
     // Attributes
-    string _name = null;
-    string _displayName = null;
-    int _health = 0;
-    bool _destructable = false;
-    int _value = 0;
+	string _name;                   // Thing name
+	string _displayName;            // Displayed name (in GUI)
+	int _health;                    // Health
+	bool _destructable;             // Can it be destroyed?
+	int _value;                     // Thing value
     
-    // Get/Set Methods
-    string Name {
+    // Mutator Methods
+    public string Name {
         get { return _name; }
         set { _name = value; }
     }
     
-    string DisplayName {
+	public string DisplayName {
         get { return _displayName; }
-        set { _name = value; }
+        set { _displayName = value; }
     }
     
-    int Health {
+	public int Health {
         get { return _health; }
         set { _health = value; }
     }
     
-    bool Destructable {
+	public bool Destructable {
         get { return _destructable; }
         set { _destructable = value; }
     }
     
-    int Value {
+	public int Value {
         get { return _value; }
         set { _value = value; }
     }
