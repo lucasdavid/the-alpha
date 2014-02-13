@@ -8,12 +8,14 @@ public class UnitSelect : MonoBehaviour {
 	private void OnSelected()
 	{
 		selected = true;
-		renderer.material.color = Color.red;
+		gameObject.GetComponentInChildren<Light>().enabled = true;
+		//renderer.material.color = Color.red;
 	}
 	
 	private void OnUnselected()
 	{
 		selected = false;
-		renderer.material.color = Color.white;
+		//renderer.material.color = Color.white;
+		gameObject.GetComponentInChildren<Light>().enabled = false;
 	}
 }

@@ -49,9 +49,8 @@
      <Compile Include="Assets\Scripts\CameraContainer\CameraMarquee.cs" />
      <Compile Include="Assets\Scripts\CameraContainer\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Base\Thing.cs" />
-     <Compile Include="Assets\Scripts\GameObjects\Mob\CharClass\CharClass.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\Mob\CharClass.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Mob\Mob.cs" />
-     <Compile Include="Assets\Scripts\GameObjects\Mob\Race\Race.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Obj\Obj.cs" />
      <Compile Include="Assets\Scripts\UnitContainer\UnitMovement.cs" />
      <Compile Include="Assets\Scripts\UnitContainer\UnitSelect.cs" />
