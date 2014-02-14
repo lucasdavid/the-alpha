@@ -3,27 +3,25 @@ using System.Collections;
 
 public class UnitMovement : MonoBehaviour {
 
-	public float speed;
-
 	Vector3 target;
 	bool aiming;
-	CharacterController controller;
+	NavMeshAgent agent;
 
 	void Start()
 	{
-		controller = GetComponent<CharacterController>();
+		agent = GetComponent<NavMeshAgent>();
 	}
 	
 	void Update ()
 	{
 		if (aiming) 
 		{
-			controller.Move(
-				Vector3.Normalize(target - transform.position) * speed * Time.deltaTime
-			);
+			if ( aiming ) {
+				agent.destination = target;
 
-			// keep aiming until distance less than .1f
-			aiming = Vector3.Distance(target, transform.position) > 1.0f;
+				// keep aiming until distance less than .1f
+				aiming = Vector3.Distance(target, transform.position) > 1.0f;
+			}
 		}
 	}
 
