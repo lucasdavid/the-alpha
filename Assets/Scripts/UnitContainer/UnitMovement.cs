@@ -23,7 +23,7 @@ public class UnitMovement : MonoBehaviour {
 			);
 
 			// keep aiming until distance less than .1f
-			aiming = Vector3.Distance(target, transform.position) > .1f;
+			aiming = Vector3.Distance(target, transform.position) > 1.0f;
 		}
 	}
 
