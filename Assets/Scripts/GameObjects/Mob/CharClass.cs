@@ -34,4 +34,8 @@ public class CharClass : MonoBehaviour {
         get { return _aSpeedMultiplier; }
         set { _aSpeedMultiplier = value; }
     }
+
+	void Start() {
+		this.gameObject.GetComponent<NavMeshAgent>().speed *= MovementMultiplier;
+	}
 }
