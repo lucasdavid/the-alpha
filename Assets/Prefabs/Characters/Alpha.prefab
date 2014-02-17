@@ -31,6 +31,7 @@ GameObject:
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
   - 195: {fileID: 19500000}
+  - 114: {fileID: 11400008}
   m_Layer: 0
   m_Name: Alpha
   m_TagString: selectable
@@ -179,6 +180,17 @@ MonoBehaviour:
   _health: 100
   _destructable: 0
   _value: 0
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29aeacb1e42c640f8ac96842d19d9bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -188,7 +200,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_Radius: .5
   m_Speed: 5
-  m_Acceleration: 100
+  m_Acceleration: 1000
   avoidancePriority: 50
   m_AngularSpeed: 1
   m_StoppingDistance: 1

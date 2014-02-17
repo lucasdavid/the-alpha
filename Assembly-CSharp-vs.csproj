@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraContainer\CameraMarquee.cs" />
      <Compile Include="Assets\Scripts\CameraContainer\CameraMovement.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\BP.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Base\Thing.cs" />
      <Compile Include="Assets\Scripts\GameObjects\CharacterSpawn.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Mob\CharClass.cs" />
@@ -56,6 +57,7 @@
      <Compile Include="Assets\Scripts\GameObjects\tMobPath.cs" />
      <Compile Include="Assets\Scripts\UnitContainer\UnitMovement.cs" />
      <Compile Include="Assets\Scripts\UnitContainer\UnitSelect.cs" />
+     <Compile Include="Assets\TerrainToolkit\TerrainToolkit.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

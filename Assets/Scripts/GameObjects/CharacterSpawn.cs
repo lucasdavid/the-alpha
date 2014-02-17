@@ -1,37 +1,62 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CharacterSpawn : MonoBehaviour {
+public class CharacterSpawn : MonoBehaviour
+{
+    public enum type {
+        generic,
+        scout,
+        tank
+    };
 
-	public enum type {
-		generic, scout, tank
-	};
+    public GameObject spawnPoint;           // Where units spawn
+    public GameObject[] characters;         // Spawn array
 
-	public GameObject spawnPoint;
-	public GameObject[] characters;
+    public int maxValue = 50;               // Character limit, based on unit's value
+    public static int currentValue;         // How much value is currently on the field
 
-	float cooldown = 2.0f;
+    float cooldown = 2.0f;
 
-	void Update ()
-	{
-		cooldown -= Time.deltaTime;
+    void Start () {
+        currentValue = 0;
+    }
 
-		// Figure out a cleaner way of doing this
-		if ( Input.GetKeyDown(KeyCode.Q) && cooldown <= 0 )
-			Spawn(characters[ ( int ) type.generic] );
-		
-		if ( Input.GetKeyDown(KeyCode.W) && cooldown <= 0 )
-			Spawn(characters[ ( int ) type.scout] );
+    void Update ()
+    {
+        cooldown -= Time.deltaTime;
 
-		if ( Input.GetKeyDown(KeyCode.E) && cooldown <= 0 )
-			Spawn(characters[ ( int ) type.tank]);
-	}
+        if (cooldown <= 0) {
+            // Figure out a cleaner way of doing this
+            if (Input.GetKeyDown (KeyCode.Q))
+                Spawn (characters [(int)type.generic]);
+        
+            if (Input.GetKeyDown (KeyCode.W))
+                Spawn (characters [(int)type.scout]);
 
-	void Spawn(GameObject mob)
-	{
-		Debug.Log ("CharacterSpawn@Spawn");
+            if (Input.GetKeyDown (KeyCode.E))
+                Spawn (characters [(int)type.tank]);
+        }
 
-		Instantiate(mob, spawnPoint.transform.position, Quaternion.identity);
-		cooldown = 2.0f;
-	}
+        if (Input.GetKeyDown (KeyCode.T)) { // FOR TESTING
+            BP.BrainPoints++;
+            Debug.Log ("BP: " + BP.BrainPoints);
+        }
+    }
+
+    void Spawn (GameObject mob)
+    {
+        int cost = mob.GetComponent<Mob>().Value;
+
+        if (BP.BrainPoints >= cost && (currentValue + cost) <= maxValue) {
+            BP.BrainPoints -= cost;
+            Debug.Log ("BP: " + BP.BrainPoints + ", Cost: " + cost + ", Value:" + currentValue + "/" + maxValue);
+
+            Debug.Log ("CharacterSpawn@Spawn");
+            Instantiate (mob, spawnPoint.transform.position, Quaternion.identity);
+            currentValue += cost;
+            cooldown = 2.0f;
+        } else {
+            Debug.Log ("BP: " + BP.BrainPoints + ", Cost: " + cost + ", Value:" + currentValue + "/" + maxValue);
+        }
+    }
 }

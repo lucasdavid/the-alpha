@@ -182,6 +182,7 @@ MonoBehaviour:
   - {fileID: 100000, guid: be5a05cde7f602343acc4c9ed33e8ae1, type: 2}
   - {fileID: 100002, guid: 36f9bf7b067696f44a433092dcf687b3, type: 2}
   - {fileID: 100002, guid: e5592b0d149b0944f93f1057dc962ec7, type: 2}
+  maxValue: 50
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

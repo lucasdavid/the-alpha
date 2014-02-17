@@ -102,10 +102,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6e16f57ba71f4c44a1d260ccd7dbb05, type: 3}
+  m_Script: {fileID: 11500000, guid: 1680025c195eb0c4f8be3add8c0bd992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 47656e65726963
+  _name: Generic
   _healthMultiplier: 1
   _movementMultiplier: 1
   _aDamageMultiplier: 1
@@ -118,11 +118,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76125b61d0e8e4c129947c358fdb125d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cdd35687c1d244c7b7f43d26fc12779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 47656e657269634d6f62
-  _displayName: 47656e657269634d6f62
+  _name: GenericMob
+  _displayName: Generic Mob
   _health: 100
   _destructable: 1
   _value: 1
@@ -149,7 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 691f971de4626e84a896585381bc6725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
 --- !u!143 &14300000
 CharacterController:
   m_ObjectHideFlags: 1
