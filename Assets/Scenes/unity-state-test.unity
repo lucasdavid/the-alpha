@@ -788,7 +788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 691f971de4626e84a896585381bc6725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackCooldown: 0
+  AttackCooldown: 1
   hold: 0
 --- !u!114 &1306033050
 MonoBehaviour:
@@ -882,6 +882,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
       propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
+      propertyPath: AttackCooldown
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

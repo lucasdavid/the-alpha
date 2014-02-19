@@ -6,13 +6,9 @@ public class UnitMovement : MonoBehaviour {
     public float AttackCooldown;
     public bool hold;
 
-	Vector3 target;
-	bool aiming;
 	NavMeshAgent agent;
-
-    UnitState state;
-
     float lastAttack;
+    UnitState state;
 
 	void Start()
 	{
@@ -41,7 +37,7 @@ public class UnitMovement : MonoBehaviour {
     void Moving ()
     {
         // keep aiming until distance less than .1f
-        if ( Vector3.Distance(target, transform.position) > 1.0f )
+        if ( Vector3.Distance(agent.destination, transform.position) < .1f )
             state = UnitState.idle;
     }
 
@@ -56,12 +52,12 @@ public class UnitMovement : MonoBehaviour {
 
 	public void Move(Vector3 _target)
 	{
-        if ( hold != false )
+        if ( hold == false )
         {
-            transform.rotation = Quaternion.LookRotation(target - transform.position);
+            transform.rotation = Quaternion.LookRotation(_target - transform.position);
 
+            agent.destination = _target;
             state = UnitState.moving;
-            agent.destination = target;
         }
 	}
 }
