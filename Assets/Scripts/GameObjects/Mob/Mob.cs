@@ -3,11 +3,15 @@ using System.Collections;
 
 public class Mob : MonoBehaviour {
     // Attributes
-    public string _name;                   // Thing name
-    public string _displayName;            // Displayed name (in GUI)
-    public int _health;                    // Health
-    public bool _destructable;             // Can it be destroyed?
-    public int _value;                     // Thing value
+    public string _name;                    // Thing name
+    public string _displayName;             // Displayed name (in GUI)
+    public int _health;                     // Health
+    public bool _destructable;              // Can it be destroyed?
+    public int _value;                      // Thing value
+    public GameObject _target;              // Target to attack/goto
+    public int _sightRange;                 // Sight range
+    public int _attackRange;                // Attack range
+    public int _alliance;                   // Unit's allegiance, 0 = Zombie, 1 = Human
 
     // Mutator Methods
     public string Name {
@@ -33,5 +37,25 @@ public class Mob : MonoBehaviour {
     public int Value {
         get { return _value; }
         set { _value = value; }
+    }
+
+    public GameObject Target {
+        get { return _target; }
+        set { _target = value; }
+    }
+
+    public int SightRange {
+        get { return _sightRange; }
+        set { _sightRange = value; }
+    }
+
+    public int AttackRange {
+        get { return _attackRange; }
+        set { _attackRange = value; }
+    }
+
+    public int Alliance {
+        get { return _alliance; }
+        set { _alliance = value; }
     }
 }
