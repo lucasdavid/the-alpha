@@ -33,7 +33,7 @@ GameObject:
   - 195: {fileID: 19500000}
   - 135: {fileID: 13500000}
   m_Layer: 8
-  m_Name: TankCharacter
+  m_Name: GenericEnemy
   m_TagString: selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: -13.6769485, y: 1, z: 23.0559025}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
@@ -74,7 +74,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 13a579645eba74a42a10483758b3ec0f, type: 2}
+  - {fileID: 2100000, guid: 2e3590a3f922c469e867d717d740a29c, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -136,9 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1680025c195eb0c4f8be3add8c0bd992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Tank
-  _healthMultiplier: 1.5
-  _movementMultiplier: .5
+  _name: Generic
+  _healthMultiplier: 1
+  _movementMultiplier: 1
   _aDamageMultiplier: 1
   _aSpeedMultiplier: 1
 --- !u!114 &11400002
@@ -152,15 +152,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cdd35687c1d244c7b7f43d26fc12779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: TankCharacter
-  _displayName: Tank Character
+  _name: GenericEnemy
+  _displayName: Generic Enemy
   _health: 100
   _destructable: 0
-  _value: 2
+  _value: 0
   _target: {fileID: 0}
   _sightRange: 7
   _attackRange: 2
-  _alliance: 0
+  _alliance: 1
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

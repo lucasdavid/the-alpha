@@ -177,11 +177,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6ced03c2d732b448c42096d2724244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 0}
+  zombieSpawn: {fileID: 0}
+  humanSpawn: {fileID: 0}
   characters:
   - {fileID: 100000, guid: be5a05cde7f602343acc4c9ed33e8ae1, type: 2}
   - {fileID: 100002, guid: 36f9bf7b067696f44a433092dcf687b3, type: 2}
   - {fileID: 100002, guid: e5592b0d149b0944f93f1057dc962ec7, type: 2}
+  - {fileID: 100002, guid: 53a965586e8804927a4b28fa411c2aaf, type: 2}
   maxValue: 50
 --- !u!124 &12400000
 Behaviour:

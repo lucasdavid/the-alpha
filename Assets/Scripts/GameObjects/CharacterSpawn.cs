@@ -6,10 +6,12 @@ public class CharacterSpawn : MonoBehaviour
     public enum type {
         generic,
         scout,
-        tank
+        tank,
+        enemy
     };
 
-    public GameObject spawnPoint;           // Where units spawn
+    public GameObject zombieSpawn;          // Where zombies spawn
+    public GameObject humanSpawn;           // Where humans spawn
     public GameObject[] characters;         // Spawn array
 
     public int maxValue = 50;               // Character limit, based on unit's value
@@ -35,6 +37,9 @@ public class CharacterSpawn : MonoBehaviour
 
             if (Input.GetKeyDown (KeyCode.E))
                 Spawn (characters [(int)type.tank]);
+
+            if (Input.GetKeyDown (KeyCode.R))
+                Spawn (characters [(int)type.enemy]);
         }
 
         if (Input.GetKeyDown (KeyCode.T)) { // FOR TESTING
@@ -52,9 +57,14 @@ public class CharacterSpawn : MonoBehaviour
             Debug.Log ("BP: " + BP.BrainPoints + ", Cost: " + cost + ", Value:" + currentValue + "/" + maxValue);
 
             Debug.Log ("CharacterSpawn@Spawn");
-            Instantiate (mob, spawnPoint.transform.position, Quaternion.identity);
+
+            if (mob.GetComponent<Mob>().Alliance == 0)
+                Instantiate (mob, zombieSpawn.transform.position, Quaternion.identity);
+            else
+                Instantiate (mob, humanSpawn.transform.position, Quaternion.identity);
+
             currentValue += cost;
-            cooldown = 2.0f;
+            // cooldown = 2.0f;
         } else {
             Debug.Log ("BP: " + BP.BrainPoints + ", Cost: " + cost + ", Value:" + currentValue + "/" + maxValue);
         }

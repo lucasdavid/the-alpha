@@ -23,7 +23,7 @@ public class UnitMovement : MonoBehaviour {
         lastAttack = 0;
 
         // Should put these two together
-        sightRange = GetComponent<Mob>().SightRange + 4;
+        sightRange = GetComponent<Mob>().SightRange;
         attackRange = GetComponent<Mob>().AttackRange;
 	}
 
@@ -37,9 +37,6 @@ public class UnitMovement : MonoBehaviour {
             Attacking();
 	}
 
-    // Victor Khou, 2-19-14, 12:35 AM:
-    // Unit will not target automatically, must manually assign target in Inspector View.
-    // "Unit" Layermask isn't working for some reason. Fix this!
     void Idle()
     {
         if (GetComponent<Mob>().Target != null) {
@@ -47,18 +44,13 @@ public class UnitMovement : MonoBehaviour {
                 Move (GetComponent<Mob>().Target.transform.position);
             else
                 Attacking();
-
-        // THIS IS NOT WORKING!
         } else {
             // Detect all nearby objects within the Unit layermask
-            var nearbyUnits = Physics.OverlapSphere(transform.position, sightRange + 20, unitLayer);
-
-            //if (nearbyUnits.Length > 0)
-            //    Debug.Log ("Hi");
+            var nearbyUnits = Physics.OverlapSphere(transform.position, sightRange, unitLayer);
 
             for (int i = 0; i < nearbyUnits.Length; i++) {
                 if (GetComponent<Mob>().Alliance != nearbyUnits[i].GetComponent<Mob>().Alliance) {
-                    Debug.Log ("THIS SHOULD EVALUATE!");
+                    GetComponent<Mob>().Target = nearbyUnits[i].gameObject;
                     Move (nearbyUnits[i].transform.position);
                 }
             }

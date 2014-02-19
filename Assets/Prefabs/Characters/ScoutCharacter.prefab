@@ -31,6 +31,7 @@ GameObject:
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
   - 195: {fileID: 19500000}
+  - 135: {fileID: 13500000}
   m_Layer: 8
   m_Name: ScoutCharacter
   m_TagString: selectable
@@ -157,8 +158,8 @@ MonoBehaviour:
   _destructable: 0
   _value: 1
   _target: {fileID: 0}
-  _sightRange: 0
-  _attackRange: 0
+  _sightRange: 7
+  _attackRange: 2
   _alliance: 0
 --- !u!114 &11400004
 MonoBehaviour:
@@ -171,8 +172,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 691f971de4626e84a896585381bc6725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackCooldown: 0
+  AttackCooldown: 1
+  AttackDamage: 20
   hold: 0
+  unitLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -185,6 +190,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+--- !u!135 &13500000
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .500000119
+  m_Center: {x: 5.96046448e-08, y: 0, z: -8.94069672e-08}
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1
