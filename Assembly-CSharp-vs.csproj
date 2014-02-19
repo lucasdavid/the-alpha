@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\CameraContainer\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\GameObjects\BP.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Base\Thing.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\Base\UnitState.cs" />
      <Compile Include="Assets\Scripts\GameObjects\CharacterSpawn.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Mob\CharClass.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Mob\Mob.cs" />
