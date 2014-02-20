@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+
 public class CameraMarquee : MonoBehaviour
 {
 	public Rect marqueeRect;
@@ -36,20 +37,42 @@ public class CameraMarquee : MonoBehaviour
 			float _invertedY = Screen.height - Input.mousePosition.y;
 			marqueeOrigin = new Vector2(Input.mousePosition.x, _invertedY);
 
-			//Check if the player just wants to select a single unit opposed to drawing a marquee and selecting a range of units
+			//Check if the player just wants to add one unit
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 			if (Physics.Raycast(ray, out hit))
 			{
-				SelectableUnits.Remove(hit.transform.gameObject);
 				hit.transform.gameObject.SendMessage("OnSelected",SendMessageOptions.DontRequireReceiver);
+                SelectedUnits.Add(hit.collider.gameObject);
 			}
-
-			SelectedUnits.AddRange(SelectableUnits);
 		}
 
 		if ( Input.GetMouseButtonUp(0) )
 		{
+            foreach (GameObject unit in SelectableUnits)
+            {
+                // ignore caracter selected as a first click
+
+                    if ( SelectedUnits.Count > 0 && unit.GetInstanceID() == SelectedUnits[0].GetInstanceID() ) {
+                        continue;
+                    }
+
+                //Convert the world position of the unit to a screen position and then to a GUI point
+                Vector3 _screenPos = Camera.main.WorldToScreenPoint(unit.transform.position);
+                Vector2 _screenPoint = new Vector2(_screenPos.x, Screen.height - _screenPos.y);
+                
+                //Ensure that any units not within the marquee are currently unselected
+                if (!marqueeRect.Contains(_screenPoint) || !backupRect.Contains(_screenPoint))
+                {
+                    unit.SendMessage("OnUnselected", SendMessageOptions.DontRequireReceiver);
+                }
+                if (marqueeRect.Contains(_screenPoint) || backupRect.Contains(_screenPoint))
+                {
+                    unit.SendMessage("OnSelected", SendMessageOptions.DontRequireReceiver);
+                    SelectedUnits.Add (unit);
+                }
+            }
+
 			//Reset the marquee so it no longer appears on the screen.
 			marqueeRect.width = 0;
 			marqueeRect.height = 0;
@@ -60,40 +83,21 @@ public class CameraMarquee : MonoBehaviour
 
 		if ( Input.GetMouseButton(0) )
 		{
-			SelectedUnits.Clear ();
-
-			float _invertedY = Screen.height - Input.mousePosition.y;
-			marqueeSize = new Vector2(Input.mousePosition.x - marqueeOrigin.x, (marqueeOrigin.y - _invertedY) * -1);
-			//FIX FOR RECT.CONTAINS NOT ACCEPTING NEGATIVE VALUES
-			if (marqueeRect.width < 0)
-			{
-				backupRect = new Rect(marqueeRect.x - Mathf.Abs(marqueeRect.width), marqueeRect.y, Mathf.Abs(marqueeRect.width), marqueeRect.height);
-			}
-			else if (marqueeRect.height < 0)
-			{
-				backupRect = new Rect(marqueeRect.x, marqueeRect.y - Mathf.Abs(marqueeRect.height), marqueeRect.width, Mathf.Abs(marqueeRect.height));
-			}
-			if (marqueeRect.width < 0 && marqueeRect.height < 0)
-			{
-				backupRect = new Rect(marqueeRect.x - Mathf.Abs(marqueeRect.width), marqueeRect.y - Mathf.Abs(marqueeRect.height), Mathf.Abs(marqueeRect.width), Mathf.Abs(marqueeRect.height));
-			}
-			foreach (GameObject unit in SelectableUnits)
-			{
-				//Convert the world position of the unit to a screen position and then to a GUI point
-				Vector3 _screenPos = Camera.main.WorldToScreenPoint(unit.transform.position);
-				Vector2 _screenPoint = new Vector2(_screenPos.x, Screen.height - _screenPos.y);
-
-				//Ensure that any units not within the marquee are currently unselected
-				if (!marqueeRect.Contains(_screenPoint) || !backupRect.Contains(_screenPoint))
-				{
-					unit.SendMessage("OnUnselected", SendMessageOptions.DontRequireReceiver);
-				}
-				if (marqueeRect.Contains(_screenPoint) || backupRect.Contains(_screenPoint))
-				{
-					unit.SendMessage("OnSelected", SendMessageOptions.DontRequireReceiver);
-					SelectedUnits.Add (unit);
-				}
-			}
+            float _invertedY = Screen.height - Input.mousePosition.y;
+            marqueeSize = new Vector2(Input.mousePosition.x - marqueeOrigin.x, (marqueeOrigin.y - _invertedY) * -1);
+            //FIX FOR RECT.CONTAINS NOT ACCEPTING NEGATIVE VALUES
+            if (marqueeRect.width < 0)
+            {
+                backupRect = new Rect(marqueeRect.x - Mathf.Abs(marqueeRect.width), marqueeRect.y, Mathf.Abs(marqueeRect.width), marqueeRect.height);
+            }
+            else if (marqueeRect.height < 0)
+            {
+                backupRect = new Rect(marqueeRect.x, marqueeRect.y - Mathf.Abs(marqueeRect.height), marqueeRect.width, Mathf.Abs(marqueeRect.height));
+            }
+            if (marqueeRect.width < 0 && marqueeRect.height < 0)
+            {
+                backupRect = new Rect(marqueeRect.x - Mathf.Abs(marqueeRect.width), marqueeRect.y - Mathf.Abs(marqueeRect.height), Mathf.Abs(marqueeRect.width), Mathf.Abs(marqueeRect.height));
+            }
 		}
 
 		if ( Input.GetMouseButtonDown(1) )
@@ -109,7 +113,7 @@ public class CameraMarquee : MonoBehaviour
 
 			if (playerPlane.Raycast (ray, out hitdist)) {
 				Vector3 target = ray.GetPoint(hitdist);
-				
+
 				foreach ( GameObject unit in SelectedUnits )
 				{
 					unit.GetComponent<UnitMovement>().Move( target );
