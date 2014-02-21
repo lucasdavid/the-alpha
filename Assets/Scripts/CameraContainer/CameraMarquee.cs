@@ -18,7 +18,7 @@ public class CameraMarquee : MonoBehaviour
 		SelectedUnits = new List<GameObject>();
 	}
 
-	private void OnGUI()
+    private void OnGUI()
 	{
 		marqueeRect = new Rect(marqueeOrigin.x, marqueeOrigin.y, marqueeSize.x, marqueeSize.y);
 		GUI.color = new Color(0, 0, 0, .3f);
@@ -40,9 +40,9 @@ public class CameraMarquee : MonoBehaviour
 			//Check if the player just wants to add one unit
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
-			if (Physics.Raycast(ray, out hit))
+            if ( Physics.Raycast(ray, out hit) && hit.collider.CompareTag("selectable") )
 			{
-				hit.transform.gameObject.SendMessage("OnSelected",SendMessageOptions.DontRequireReceiver);
+                hit.transform.gameObject.SendMessage("OnSelected",SendMessageOptions.DontRequireReceiver);
                 SelectedUnits.Add(hit.collider.gameObject);
 			}
 		}
@@ -53,9 +53,9 @@ public class CameraMarquee : MonoBehaviour
             {
                 // ignore caracter selected as a first click
 
-                    if ( SelectedUnits.Count > 0 && unit.GetInstanceID() == SelectedUnits[0].GetInstanceID() ) {
-                        continue;
-                    }
+                if ( SelectedUnits.Count > 0 && unit.GetInstanceID() == SelectedUnits[0].GetInstanceID() ) {
+                    continue;
+                }
 
                 //Convert the world position of the unit to a screen position and then to a GUI point
                 Vector3 _screenPos = Camera.main.WorldToScreenPoint(unit.transform.position);
@@ -116,6 +116,7 @@ public class CameraMarquee : MonoBehaviour
 
 				foreach ( GameObject unit in SelectedUnits )
 				{
+                    Debug.Log (unit);
 					unit.GetComponent<UnitMovement>().Move( target );
 				}	
 			}
