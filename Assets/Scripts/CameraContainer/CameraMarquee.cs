@@ -117,7 +117,8 @@ public class CameraMarquee : MonoBehaviour
 				foreach ( GameObject unit in SelectedUnits )
 				{
                     Debug.Log (unit);
-					unit.GetComponent<UnitMovement>().Move( target );
+                    // Force movement to override attacking
+					unit.GetComponent<UnitMovement>().Move( target, true );
 				}	
 			}
 		}

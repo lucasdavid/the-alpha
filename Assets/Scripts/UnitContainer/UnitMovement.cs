@@ -14,11 +14,15 @@ public class UnitMovement : MonoBehaviour {
     UnitState state;            // Unit FSM, can be either idle, attacking, or moving
     int sightRange;             // Unit's sight range that will make it engage
     int attackRange;            // Range that the unit will actually hit
+    bool forceMove;             // Force character to move
+    Animator anim;              // Unit's animator
 
 	void Start()
 	{
         state = UnitState.idle;
-		agent = GetComponent<NavMeshAgent>();
+		
+        agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
 
         lastAttack = 0;
 
@@ -35,11 +39,11 @@ public class UnitMovement : MonoBehaviour {
             Moving();
         else if ( state == UnitState.attacking )
             Attacking();
-	}
+    }
 
     void Idle()
     {
-        if (GetComponent<Mob>().Target != null) {
+        if (GetComponent<Mob>().Target != null && GetComponent<Mob>().Target.GetComponent<Mob>().Destructable) {
             if (Vector3.Distance(transform.position, GetComponent<Mob>().Target.transform.position) > attackRange)
                 Move (GetComponent<Mob>().Target.transform.position);
             else
@@ -61,13 +65,18 @@ public class UnitMovement : MonoBehaviour {
     {
         // keep aiming until distance less than .1f
         // .1 f might be too close, temp changing to 1.0f
-        if ( Vector3.Distance(agent.destination, transform.position) < 1.0f )
+        if ( Vector3.Distance(agent.destination, transform.position) < 1.0f ) {
+            anim.SetFloat("Speed", 0);
+            anim.SetBool("Attacking", false);
             state = UnitState.idle;
+        }
 
         // If you have a target
-        if (GetComponent<Mob>().Target != null) {
+        if (GetComponent<Mob>().Target != null && !forceMove) {
             // Stop moving if the target is out of sight range
             if (Vector3.Distance(transform.position, GetComponent<Mob>().Target.transform.position) > sightRange) {
+                anim.SetFloat("Speed", 0);
+                anim.SetBool("Attacking", false);
                 GetComponent<Mob>().Target = null;
                 state = UnitState.idle;
             // If you're in attack range, attack!
@@ -83,6 +92,14 @@ public class UnitMovement : MonoBehaviour {
     void Attacking()
     {
         Debug.Log ("Attacking!");
+
+        // For animation
+        anim.SetFloat("Speed", 0);
+        anim.SetBool("Attacking", true);
+
+        // Look at enemy
+        transform.rotation = Quaternion.LookRotation(GetComponent<Mob>().Target.transform.position - transform.position);
+
         state = UnitState.attacking;
 
         if ( ( lastAttack -= Time.deltaTime ) <= 0 ) {
@@ -94,19 +111,35 @@ public class UnitMovement : MonoBehaviour {
                 (int)(AttackDamage * GetComponent<CharClass>().ADamageMultiplier);
         }
 
-        // We only leave attacking state if target moves out of position/dies
-        if (Vector3.Distance(transform.position, GetComponent<Mob>().Target.transform.position) > attackRange)
+        // We only leave attacking state if target moves out of position/dies 
+        if (Vector3.Distance(transform.position, GetComponent<Mob>().Target.transform.position) > attackRange) {
+            anim.SetBool("Attacking", false);
             Move (GetComponent<Mob>().Target.transform.position);
+        } else if (GetComponent<Mob>().Target == null) {
+            anim.SetBool("Attacking", false);
+            state = UnitState.idle;
+        } else if ( GetComponent<Mob>().Target.GetComponent<Mob>().Destructable == false) {
+            anim.SetBool("Attacking", false);
+            state = UnitState.idle;
+            return;
+        }
     }
 
-	public void Move(Vector3 _target)
+    public void Move(Vector3 _target, bool force = false)
 	{
+        // Force character to move, so you don't get sent back to attacking state
+        forceMove = force;
+
+        if (force)
+            anim.SetBool("Attacking", false);
+
         // Manually moving should override hold -- unit will look at target, but not move (if hold == true)
         transform.rotation = Quaternion.LookRotation(_target - transform.position);
 
         if ( hold == false )
         {
             agent.destination = _target;
+            anim.SetFloat("Speed", 5.0f);
             state = UnitState.moving;
         }
 	}
