@@ -130,12 +130,11 @@ public class UnitMovement : MonoBehaviour {
         }
     }
 
-    public void Move ( Vector3 _target )
-    {
+    public void Move( Vector3 _target ) {
         Move (_target, false);
     }
 
-    public void Move ( Vector3 _target, bool force )
+    public void Move(Vector3 _target, bool force)
 	{
         // Force character to move, so you don't get sent back to attacking state
         forceMove = force;
