@@ -59,16 +59,19 @@ public class Mob : MonoBehaviour {
         set { _alliance = value; }
     }
 
-    // IMPLEMENT OBJECT POOLS!
     void Update() {
         if (Health <= 0) {
             //Animator anim = GetComponent<Animator>();
             //anim.SetBool("Dead", true);
             //gameObject.transform.position = new Vector3(20.0f, 0f, 0);
-            Health = 100;
             Destructable = false;
-            gameObject.SetActive(false);
+            this.Recycle();
         }
+    }
 
+    void OnEnable() {
+        Health = 100;
+        Destructable = true;
+        Target = null;
     }
 }

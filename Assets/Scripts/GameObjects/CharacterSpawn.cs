@@ -12,7 +12,8 @@ public class CharacterSpawn : MonoBehaviour
 
     public GameObject zombieSpawn;          // Where zombies spawn
     public GameObject humanSpawn;           // Where humans spawn
-    public GameObject[] characters;         // Spawn array
+
+    public Mob[] characters;
 
     public int maxValue = 50;               // Character limit, based on unit's value
     public static int currentValue;         // How much value is currently on the field
@@ -21,6 +22,9 @@ public class CharacterSpawn : MonoBehaviour
 
     void Start () {
         currentValue = 0;
+
+        for (int i = 0; i < characters.Length; i++)
+            characters[i].CreatePool();
     }
 
     void Update ()
@@ -30,16 +34,16 @@ public class CharacterSpawn : MonoBehaviour
         if (cooldown <= 0) {
             // Figure out a cleaner way of doing this
             if (Input.GetKeyDown (KeyCode.Q))
-                Spawn (characters [(int)type.generic]);
+                Spawn ((int)type.generic);
         
             if (Input.GetKeyDown (KeyCode.W))
-                Spawn (characters [(int)type.scout]);
+                Spawn ((int)type.scout);
 
             if (Input.GetKeyDown (KeyCode.E))
-                Spawn (characters [(int)type.tank]);
+                Spawn ((int)type.tank);
 
             if (Input.GetKeyDown (KeyCode.R))
-                Spawn (characters [(int)type.enemy]);
+                Spawn ((int)type.enemy);
         }
 
         if (Input.GetKeyDown (KeyCode.T)) { // FOR TESTING
@@ -48,9 +52,9 @@ public class CharacterSpawn : MonoBehaviour
         }
     }
 
-    void Spawn (GameObject mob)
+    void Spawn (int index)
     {
-        int cost = mob.GetComponent<Mob>().Value;
+        int cost = characters[index].GetComponent<Mob>().Value;
 
         if (BP.BrainPoints >= cost && (currentValue + cost) <= maxValue) {
             BP.BrainPoints -= cost;
@@ -58,10 +62,13 @@ public class CharacterSpawn : MonoBehaviour
 
             Debug.Log ("CharacterSpawn@Spawn");
 
-            if (mob.GetComponent<Mob>().Alliance == 0)
-                Instantiate (mob, zombieSpawn.transform.position, Quaternion.identity);
-            else
-                Instantiate (mob, humanSpawn.transform.position, Quaternion.identity);
+            if (characters[index].GetComponent<Mob>().Alliance == 0) {
+                ObjectPool.Spawn(characters[index], zombieSpawn.transform.position);
+                //Instantiate (mob, zombieSpawn.transform.position, Quaternion.identity);
+            } else {
+                //Instantiate (mob, humanSpawn.transform.position, Quaternion.identity);
+                ObjectPool.Spawn(characters[index], humanSpawn.transform.position);
+            }
 
             currentValue += cost;
             // cooldown = 2.0f;

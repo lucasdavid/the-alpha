@@ -41,6 +41,10 @@ public class UnitMovement : MonoBehaviour {
             Attacking();
     }
 
+    void OnEnable() {
+        state = UnitState.idle;
+    }
+
     void Idle()
     {
         if (GetComponent<Mob>().Target != null && GetComponent<Mob>().Target.GetComponent<Mob>().Destructable) {
@@ -120,6 +124,7 @@ public class UnitMovement : MonoBehaviour {
             state = UnitState.idle;
         } else if ( GetComponent<Mob>().Target.GetComponent<Mob>().Destructable == false) {
             anim.SetBool("Attacking", false);
+            GetComponent<Mob>().Target = null;
             state = UnitState.idle;
             return;
         }

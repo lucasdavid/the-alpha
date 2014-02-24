@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\GameObjects\Mob\CharClass.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Mob\Mob.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Obj\Obj.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\UnitContainer\UnitMovement.cs" />
      <Compile Include="Assets\Scripts\UnitContainer\UnitSelect.cs" />
      <Compile Include="Assets\TerrainToolkit\TerrainToolkit.cs" />
