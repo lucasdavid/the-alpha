@@ -71,7 +71,6 @@ public class UnitMovement : MonoBehaviour {
         // keep aiming until distance less than .1f
         // .1 f might be too close, temp changing to 1.0f
         if ( Vector3.Distance(agent.destination, transform.position) < 1.0f ) {
-            anim.SetFloat("Speed", 0);
             anim.SetBool("Attacking", false);
             Stop ();
         }
@@ -130,11 +129,12 @@ public class UnitMovement : MonoBehaviour {
         }
     }
 
-    public void Stop ()
+    public void Stop ( )
     {
         // stop current movement
         if ( state == UnitState.moving ) {
             agent.Stop();
+            anim.SetFloat("Speed", 0);
             state = UnitState.idle;
         }
     }

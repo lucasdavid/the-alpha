@@ -37,17 +37,17 @@ public class DebugWindow : MonoBehaviour {
             bp = BP.BrainPoints;
 
             GUI.Box(new Rect(left, top, boxWidth, boxHeight), "Debug Menu");
-            GUI.Label (new Rect (left + offset, top + offset, boxWidth - offset, boxHeight - offset), "BP:");
-            text = GUI.TextField(new Rect(left + offset * 7, top + offset, 50, 20), bp.ToString(), 6);
+            GUI.Label (new Rect (left + offset, top + offset + 20, boxWidth - offset, boxHeight - offset), "BP:");
+            text = GUI.TextField(new Rect(left + offset * 7, top + offset + 20, 50, 20), bp.ToString(), 6);
             text = Regex.Replace(text, @"[^0-9]", "");
 
             if (int.TryParse(text, out bp)) {
                 BP.BrainPoints = bp;
             }
 
-            if (GUI.Button(new Rect(left + offset * 4, top + offset, 20, 20), "+"))
+            if (GUI.Button(new Rect(left + offset * 4, top + offset + 20, 20, 20), "+"))
                 BP.BrainPoints++;
-            if (GUI.Button(new Rect(left + offset * 13, top + offset, 20, 20), "-"))
+            if (GUI.Button(new Rect(left + offset * 13, top + offset + 20, 20, 20), "-"))
                 BP.BrainPoints--;
 
             // OTHER STUFF ?

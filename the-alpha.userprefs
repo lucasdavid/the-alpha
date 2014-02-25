@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CameraContainer\CameraMarquee.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\HudContainer\HudUnitAction.cs">
     <Files>
-      <File FileName="Assets\Scripts\CameraContainer\CameraMarquee.cs" Line="135" Column="6" />
+      <File FileName="Assets\Scripts\HudContainer\HudUnitAction.cs" Line="37" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
