@@ -1195,7 +1195,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .653878868, y: 1, z: 25.2872791}
+  m_LocalPosition: {x: -12.5007753, y: 1, z: 94.3720245}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 400102}
@@ -2202,10 +2202,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Generic
-  _healthMultiplier: 1
-  _movementMultiplier: 1
-  _aDamageMultiplier: 1
-  _aSpeedMultiplier: 1
+  _healthMultiplier: 2
+  _movementMultiplier: 2
+  _aDamageMultiplier: 2
+  _aSpeedMultiplier: 2
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

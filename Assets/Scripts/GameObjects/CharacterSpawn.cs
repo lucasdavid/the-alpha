@@ -64,9 +64,7 @@ public class CharacterSpawn : MonoBehaviour
 
             if (characters[index].GetComponent<Mob>().Alliance == 0) {
                 ObjectPool.Spawn(characters[index], zombieSpawn.transform.position);
-                //Instantiate (mob, zombieSpawn.transform.position, Quaternion.identity);
             } else {
-                //Instantiate (mob, humanSpawn.transform.position, Quaternion.identity);
                 ObjectPool.Spawn(characters[index], humanSpawn.transform.position);
             }
 

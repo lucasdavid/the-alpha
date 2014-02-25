@@ -141,7 +141,7 @@ MonoBehaviour:
   m_LightmapIndex: -1
   m_LightmapSize: 1024
   m_DrawTreesAndFoliage: 1
-  m_MaterialTemplate: {fileID: 0}
+  m_MaterialTemplate: {fileID: 2100000, guid: 2e3590a3f922c469e867d717d740a29c, type: 2}
 --- !u!154 &15400000
 TerrainCollider:
   m_ObjectHideFlags: 1
