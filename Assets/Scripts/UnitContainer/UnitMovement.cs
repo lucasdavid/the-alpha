@@ -5,7 +5,7 @@ public class UnitMovement : MonoBehaviour {
 
     public float AttackCooldown;
     public float AttackDamage;
-    public bool hold;
+    public bool  hold;
 
     public LayerMask unitLayer = 1 << 8;    // Unit layer
 

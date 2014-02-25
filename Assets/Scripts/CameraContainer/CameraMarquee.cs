@@ -6,12 +6,11 @@ public class CameraMarquee : MonoBehaviour
     public Rect marqueeRect;
     public Texture marqueeGraphics;
     
-    public List<GameObject> SelectableUnits;
-    private List<GameObject> SelectedUnits;
+    public List<GameObject> SelectedUnits;
     
-    private Vector2 marqueeOrigin;
-    private Vector2 marqueeSize;
-    private Rect backupRect;
+    Vector2 marqueeOrigin;
+    Vector2 marqueeSize;
+    Rect backupRect;
     
     void Start()
     {
@@ -24,16 +23,15 @@ public class CameraMarquee : MonoBehaviour
         GUI.color = new Color(0, 0, 0, .3f);
         GUI.DrawTexture(marqueeRect, marqueeGraphics);
     }
-    
+
     void Update()
     {
         if ( Input.GetMouseButtonDown(0) )
         {
-            SelectedUnits.Clear();
-            
-            //Poppulate the selectableUnits array with all the selectable units that exist
-            SelectableUnits = FindSelectableUnits();
-            
+            // clear previous selection
+            UnselectUnits();
+
+            // initiate selection marquee
             float _invertedY = Screen.height - Input.mousePosition.y;
             marqueeOrigin = new Vector2(Input.mousePosition.x, _invertedY);
             
@@ -49,13 +47,12 @@ public class CameraMarquee : MonoBehaviour
         
         if ( Input.GetMouseButtonUp(0) )
         {
-            foreach (GameObject unit in SelectableUnits)
+            //Poppulate the selectableUnits array with all the selectable units that exist
+            foreach (GameObject unit in FindSelectableUnits())
             {
-                // ignore caracter selected as a first click
-                
-                if ( SelectedUnits.Count > 0 && unit.GetInstanceID() == SelectedUnits[0].GetInstanceID() ) {
+                // ignore caracter if he was selected in the first click
+                if ( SelectedUnits.Count > 0 && unit.GetInstanceID() == SelectedUnits[0].GetInstanceID() )
                     continue;
-                }
                 
                 //Convert the world position of the unit to a screen position and then to a GUI point
                 Vector3 _screenPos = Camera.main.WorldToScreenPoint(unit.transform.position);
@@ -118,32 +115,32 @@ public class CameraMarquee : MonoBehaviour
                 {
                     // Force movement to override attacking
                     unit.GetComponent<UnitMovement>().Move( target, true );
-                }   
+                }
             }
         }
     }
     
-    List<GameObject> FindSelectableUnits()
+    GameObject[] FindSelectableUnits()
     {
-        return new List<GameObject>(GameObject.FindGameObjectsWithTag("selectable"));
+        return GameObject.FindGameObjectsWithTag("selectable");
+    }
+
+    public void UnselectUnits ()
+    {
+        // remove previous selection
+        foreach ( GameObject unit in SelectedUnits )
+            unit.SendMessage("OnUnselected", SendMessageOptions.DontRequireReceiver);
+        
+        SelectedUnits.Clear();
     }
     
     public void SelectUnits ( GameObject[] units )
     {
-        SelectableUnits = FindSelectableUnits();
-        
-        SelectedUnits.Clear();
+        UnselectUnits();
         SelectedUnits.AddRange(units);
-        
-        foreach ( GameObject unit in units )
-        {
+
+        // add new selection
+        foreach ( GameObject unit in SelectedUnits )
             unit.SendMessage("OnSelected", SendMessageOptions.DontRequireReceiver);
-            SelectableUnits.Remove ( unit );
-        }
-        
-        foreach ( GameObject unit in SelectableUnits )
-        {
-            unit.SendMessage("OnUnselected", SendMessageOptions.DontRequireReceiver);
-        }
     }
 }
