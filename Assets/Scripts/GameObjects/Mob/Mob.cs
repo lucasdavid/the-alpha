@@ -59,6 +59,11 @@ public class Mob : MonoBehaviour {
         set { _alliance = value; }
     }
 
+    void Start() {
+        Health = (int)(100 * GetComponent<CharClass>().HealthMultiplier);
+    }
+
+
     void Update() {
         if (Health <= 0) {
             //Animator anim = GetComponent<Animator>();
@@ -70,7 +75,7 @@ public class Mob : MonoBehaviour {
     }
 
     void OnEnable() {
-        Health = 100;
+        Health = (int)(100 * GetComponent<CharClass>().HealthMultiplier);
         Destructable = true;
         Target = null;
     }

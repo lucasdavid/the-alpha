@@ -107,8 +107,7 @@ public class UnitMovement : MonoBehaviour {
         state = UnitState.attacking;
 
         if ( ( lastAttack -= Time.deltaTime ) <= 0 ) {
-            // TODO: Take into account ASpeedMultiplier;
-            lastAttack = AttackCooldown;
+            lastAttack = (AttackCooldown / GetComponent<CharClass>().ASpeedMultiplier);
 
             // Get UNIT->TARGET->HEALTH -- Redo this, very ugly
             GetComponent<Mob>().Target.GetComponent<Mob>().Health -= 
