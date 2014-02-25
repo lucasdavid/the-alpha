@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ActionUnitController : MonoBehaviour {
+public class HudUnitAction : MonoBehaviour {
 
     CameraMarquee marquee;
     
@@ -17,6 +17,6 @@ public class ActionUnitController : MonoBehaviour {
         if ( gameObject.name == "sel_move" )
             ;
         if ( gameObject.name == "sel_stop" )
-            ;
+            marquee.StopUnits();
     }
 }

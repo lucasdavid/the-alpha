@@ -73,7 +73,7 @@ public class UnitMovement : MonoBehaviour {
         if ( Vector3.Distance(agent.destination, transform.position) < 1.0f ) {
             anim.SetFloat("Speed", 0);
             anim.SetBool("Attacking", false);
-            state = UnitState.idle;
+            Stop ();
         }
 
         // If you have a target
@@ -130,6 +130,22 @@ public class UnitMovement : MonoBehaviour {
         }
     }
 
+    public void Stop ()
+    {
+        // stop current movement
+        if ( state == UnitState.moving ) {
+            agent.Stop();
+            state = UnitState.idle;
+        }
+    }
+
+    public void Resume()
+    {
+        if ( state == UnitState.idle && agent.destination != null )
+            Move ( agent.destination );
+
+    }
+
     public void Move ( Vector3 _target )
     {
         Move (_target, false);
@@ -138,9 +154,7 @@ public class UnitMovement : MonoBehaviour {
     public void Move ( Vector3 _target, bool force )
 	{
         // Force character to move, so you don't get sent back to attacking state
-        forceMove = force;
-
-        if (force)
+        if ( forceMove = force )
             anim.SetBool("Attacking", false);
 
         // Manually moving should override hold -- unit will look at target, but not move (if hold == true)

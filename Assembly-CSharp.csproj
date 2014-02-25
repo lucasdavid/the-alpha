@@ -59,10 +59,10 @@
      <Compile Include="Assets\Scripts\GameObjects\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\GameObjects\UnitContainer\UnitMovement.cs" />
      <Compile Include="Assets\Scripts\GameObjects\UnitContainer\UnitSelect.cs" />
-     <Compile Include="Assets\Scripts\HudContainer\ActionUnitController.cs" />
      <Compile Include="Assets\Scripts\HudContainer\DebugWindow.cs" />
+     <Compile Include="Assets\Scripts\HudContainer\HudUnitAction.cs" />
+     <Compile Include="Assets\Scripts\HudContainer\HudUnitSelection.cs" />
      <Compile Include="Assets\Scripts\HudContainer\PointPlate.cs" />
-     <Compile Include="Assets\Scripts\HudContainer\SelectionUnitController.cs" />
      <Compile Include="Assets\TerrainToolkit\TerrainToolkit.cs" />
      <None Include="Assets\Models\Source\Shaders\Virtualware_BumpSpec.shader" />
   </ItemGroup>

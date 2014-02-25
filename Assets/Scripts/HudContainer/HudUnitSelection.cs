@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SelectionUnitController : MonoBehaviour {
+public class HudUnitSelection : MonoBehaviour {
     
     CameraMarquee marquee;
     
@@ -13,8 +13,8 @@ public class SelectionUnitController : MonoBehaviour {
 
     void OnMouseDown()
     {
-        StopCoroutine("SignalMouseClick");
-        StartCoroutine("SignalMouseClick");
+        StopCoroutine("SignalMouseOverHUD");
+        StartCoroutine("SignalMouseOverHUD");
  
         List<GameObject> selection = new List<GameObject>();
         
@@ -68,7 +68,7 @@ public class SelectionUnitController : MonoBehaviour {
         marquee.SelectUnits( selection.ToArray() );
     }
 
-    IEnumerator SignalMouseClick()
+    IEnumerator SignalMouseOverHUD()
     {
         marquee.mouseIsBeingUsedByHUD = true;
         yield return new WaitForSeconds(.1f);

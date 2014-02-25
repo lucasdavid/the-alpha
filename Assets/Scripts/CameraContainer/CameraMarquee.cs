@@ -150,8 +150,6 @@ public class CameraMarquee : MonoBehaviour
 
     public void SelectUnits ( GameObject[] units )
     {
-        Debug.Log ( "CameraMarquee@SelectUnits" );
-
         UnselectUnits();
         SelectedUnits.AddRange(units);
 
@@ -174,5 +172,27 @@ public class CameraMarquee : MonoBehaviour
             // Force movement to override attacking
             unit.GetComponent<UnitMovement>().Move( _target, _overrideAttack );
         }
+    }
+
+    public void StopUnits ()
+    {
+        StopUnits(SelectedUnits.ToArray());
+    }
+
+    public void StopUnits ( GameObject[] units )
+    {
+        foreach ( GameObject unit in units )
+            unit.GetComponent<UnitMovement>().Stop();
+    }
+
+    public void ResumeUnits ()
+    {
+        ResumeUnits(SelectedUnits.ToArray());
+    }
+
+    public void ResumeUnits ( GameObject[] units )
+    {
+        foreach ( GameObject unit in units )
+            unit.GetComponent<UnitMovement>().Resume();
     }
 }
