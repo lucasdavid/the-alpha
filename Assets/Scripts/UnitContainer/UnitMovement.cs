@@ -48,10 +48,11 @@ public class UnitMovement : MonoBehaviour {
     void Idle()
     {
         if (GetComponent<Mob>().Target != null && GetComponent<Mob>().Target.GetComponent<Mob>().Destructable) {
-            if (Vector3.Distance(transform.position, GetComponent<Mob>().Target.transform.position) > attackRange)
-                Move (GetComponent<Mob>().Target.transform.position);
-            else
+            if (Vector3.Distance(transform.position, GetComponent<Mob>().Target.transform.position) > attackRange) {
+                    Move (GetComponent<Mob>().Target.transform.position);
+            } else {
                 Attacking();
+            }
         } else {
             // Detect all nearby objects within the Unit layermask
             var nearbyUnits = Physics.OverlapSphere(transform.position, sightRange, unitLayer);

@@ -594,6 +594,8 @@ GameObject:
   - 114: {fileID: 290666641}
   - 114: {fileID: 290666648}
   - 114: {fileID: 290666650}
+  - 114: {fileID: 290666651}
+  - 114: {fileID: 290666649}
   m_Layer: 0
   m_Name: _camera
   m_TagString: MainCamera
@@ -757,7 +759,20 @@ MonoBehaviour:
     width: 0
     height: 0
   marqueeGraphics: {fileID: 2800000, guid: 5b8934e9948e02948a78ade4098545a3, type: 3}
+  mouseIsBeingUsedByHUD: 0
   SelectedUnits: []
+--- !u!114 &290666649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400008, guid: c58522cebb27cb34dae9fec710a984ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 882821304}
+  m_GameObject: {fileID: 290666640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c4ade34211a40998ae80df4c1c7118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &290666650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,14 +785,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee6ced03c2d732b448c42096d2724244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombieSpawn: {fileID: 100002, guid: 4c02fc5edb2904471bbbea4b4587f2e0, type: 2}
-  humanSpawn: {fileID: 100004, guid: 4c02fc5edb2904471bbbea4b4587f2e0, type: 2}
+  zombieSpawn: {fileID: 0}
+  humanSpawn: {fileID: 0}
   characters:
   - {fileID: 11400002, guid: 735431635812c294ab9a22a59236e112, type: 2}
   - {fileID: 11400002, guid: 735431635812c294ab9a22a59236e112, type: 2}
   - {fileID: 11400002, guid: 735431635812c294ab9a22a59236e112, type: 2}
   - {fileID: 11400002, guid: 01ae58b9eb0609e4ba7a57f4bbb2a00a, type: 2}
   maxValue: 50
+--- !u!114 &290666651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400006, guid: c58522cebb27cb34dae9fec710a984ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 882821304}
+  m_GameObject: {fileID: 290666640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a623db14c27c1409694106104c1b1a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &338589618
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,7 +1019,7 @@ Transform:
   m_PrefabInternal: {fileID: 648690173}
   m_GameObject: {fileID: 369142804}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .548908114, y: 1, z: -2.70700169}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.51999998, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 757754990}
@@ -1506,6 +1533,18 @@ Prefab:
     - target: {fileID: 400002, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400078, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400078, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400078, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
@@ -2954,7 +2993,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_Radius: .5
   m_Speed: 5
-  m_Acceleration: 100
+  m_Acceleration: 1000
   avoidancePriority: 50
   m_AngularSpeed: 1
   m_StoppingDistance: 1
@@ -2978,10 +3017,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Generic
-  _healthMultiplier: 1
+  _healthMultiplier: 2
   _movementMultiplier: 2
-  _aDamageMultiplier: 1
-  _aSpeedMultiplier: 1
+  _aDamageMultiplier: 2
+  _aSpeedMultiplier: 2
 --- !u!114 &1306033050
 MonoBehaviour:
   m_ObjectHideFlags: 0
