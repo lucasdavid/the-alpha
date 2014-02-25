@@ -68,6 +68,9 @@ public class HudUnitSelection : MonoBehaviour {
         marquee.SelectUnits( selection.ToArray() );
     }
 
+    /**
+     * Signal marquee that the mouse is being used by the HUD and must be ignored.
+     */
     IEnumerator SignalMouseOverHUD()
     {
         marquee.mouseIsBeingUsedByHUD = true;

@@ -160,7 +160,6 @@ public class CameraMarquee : MonoBehaviour
     {
         // add new selection
         foreach ( GameObject unit in SelectedUnits ) {
-            Debug.Log (unit.name);
             unit.SendMessage("OnSelected", SendMessageOptions.DontRequireReceiver);
         }
     }
@@ -174,25 +173,28 @@ public class CameraMarquee : MonoBehaviour
         }
     }
 
-    public void StopUnits ()
+    public void HoldUnits ()
     {
-        StopUnits(SelectedUnits.ToArray());
+
+        foreach ( GameObject unit in SelectedUnits )
+            unit.GetComponent<UnitMovement>().hold = true;
     }
 
-    public void StopUnits ( GameObject[] units )
+    public void UnholdUnits ()
     {
-        foreach ( GameObject unit in units )
+        foreach ( GameObject unit in SelectedUnits )
+            unit.GetComponent<UnitMovement>().hold = false;
+    }
+
+    public void StopUnits ()
+    {
+        foreach ( GameObject unit in SelectedUnits )
             unit.GetComponent<UnitMovement>().Stop();
     }
 
-    public void ResumeUnits ()
+    public void ResumeUnits ( )
     {
-        ResumeUnits(SelectedUnits.ToArray());
-    }
-
-    public void ResumeUnits ( GameObject[] units )
-    {
-        foreach ( GameObject unit in units )
+        foreach ( GameObject unit in SelectedUnits )
             unit.GetComponent<UnitMovement>().Resume();
     }
 }
