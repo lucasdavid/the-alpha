@@ -11,13 +11,13 @@ public class HudUnitAction : MonoBehaviour {
 
     void Update()
     {
-        if ( Input.GetKeyDown(Keymap.Action.Unhold) )
+        if ( Input.GetKeyDown(Keymap.kmAction.Unhold) )
             marquee.UnholdUnits();
-        if ( Input.GetKeyDown(Keymap.Action.Hold) )
+        if ( Input.GetKeyDown(Keymap.kmAction.Hold) )
             marquee.HoldUnits();
-        if ( Input.GetKeyDown(Keymap.Action.Resume) )
+        if ( Input.GetKeyDown(Keymap.kmAction.Resume) )
             marquee.ResumeUnits();
-        if ( Input.GetKeyDown(Keymap.Action.Stop) )
+        if ( Input.GetKeyDown(Keymap.kmAction.Stop) )
             marquee.StopUnits();
     }
     

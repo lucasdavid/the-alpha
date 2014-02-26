@@ -33,34 +33,27 @@ public class CharacterSpawn : MonoBehaviour
 
         if (cooldown <= 0) {
             // Figure out a cleaner way of doing this
-            if (Input.GetKeyDown (KeyCode.Q))
+            if (Input.GetKeyDown (Keymap.kmSpawn.Generic))
                 Spawn ((int)type.generic);
         
-            if (Input.GetKeyDown (KeyCode.W))
+            if (Input.GetKeyDown (Keymap.kmSpawn.Scould))
                 Spawn ((int)type.scout);
 
-            if (Input.GetKeyDown (KeyCode.E))
+            if (Input.GetKeyDown (Keymap.kmSpawn.Tank))
                 Spawn ((int)type.tank);
 
-            if (Input.GetKeyDown (KeyCode.R))
+            if (Input.GetKeyDown (Keymap.kmSpawn.Enemy))
                 Spawn ((int)type.enemy);
-        }
-
-        if (Input.GetKeyDown (KeyCode.T)) { // FOR TESTING
-            BP.BrainPoints++;
-            Debug.Log ("BP: " + BP.BrainPoints);
         }
     }
 
     void Spawn (int index)
     {
-        int cost = characters[index].GetComponent<Mob>().Value;
+        int cost = characters[index].Value;
 
         if (BP.BrainPoints >= cost && (currentValue + cost) <= maxValue) {
             BP.BrainPoints -= cost;
             Debug.Log ("BP: " + BP.BrainPoints + ", Cost: " + cost + ", Value:" + currentValue + "/" + maxValue);
-
-            Debug.Log ("CharacterSpawn@Spawn");
 
             if (characters[index].GetComponent<Mob>().Alliance == 0) {
                 ObjectPool.Spawn(characters[index], zombieSpawn.transform.position);
@@ -71,7 +64,7 @@ public class CharacterSpawn : MonoBehaviour
             currentValue += cost;
             // cooldown = 2.0f;
         } else {
-            Debug.Log ("BP: " + BP.BrainPoints + ", Cost: " + cost + ", Value:" + currentValue + "/" + maxValue);
+            Debug.Log ("Cannot spawn character. BP: " + BP.BrainPoints + ", Cost: " + cost + ", Value:" + currentValue + "/" + maxValue);
         }
     }
 }
