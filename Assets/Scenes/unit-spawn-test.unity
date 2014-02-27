@@ -727,12 +727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0214297db6a0e98468e890e49cca16fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  marqueeRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
+  ClickMarquee: {fileID: 0}
   marqueeGraphics: {fileID: 2800000, guid: 5b8934e9948e02948a78ade4098545a3, type: 3}
   mouseIsBeingUsedByHUD: 0
   SelectedUnits: []
@@ -1042,7 +1037,7 @@ Transform:
   m_PrefabInternal: {fileID: 648690173}
   m_GameObject: {fileID: 369142804}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: .69496727, z: 0}
   m_LocalScale: {x: 1.51999998, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 757754990}
@@ -1530,41 +1525,13 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 400002, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 3.70898533
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 400078, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400078, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: .69496727
       objectReference: {fileID: 0}
     - target: {fileID: 400078, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2930,8 +2897,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 22c5aa58dd9221c40ba174bab47a4962, type: 2}
   m_PrefabInternal: {fileID: 648690173}
   m_GameObject: {fileID: 1306033044}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 3.70898533}
+  m_LocalRotation: {x: .29758516, y: -.108423673, z: .404739052, w: .857830822}
+  m_LocalPosition: {x: -.0707258508, y: -.0380306318, z: -.0599704199}
   m_LocalScale: {x: .999999225, y: .99999994, z: .999999881}
   m_Children:
   - {fileID: 1934111548}
@@ -3035,7 +3002,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 369142804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 691f971de4626e84a896585381bc6725, type: 3}
+  m_Script: {fileID: 11500000, guid: 5423850d20e2c9949bd57310e97f9b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AttackCooldown: 1

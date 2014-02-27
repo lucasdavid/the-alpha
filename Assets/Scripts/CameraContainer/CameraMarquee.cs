@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class CameraMarquee : MonoBehaviour
 {
-    public Rect marqueeRect;
+    public GameObject ClickMarquee;
     public Texture marqueeGraphics;
 
     public bool mouseIsBeingUsedByHUD;
     
     public List<GameObject> SelectedUnits;
-    
+
+    Rect marqueeRect;
     Vector2 marqueeOrigin;
     Vector2 marqueeSize;
     Rect backupRect;
@@ -48,20 +50,7 @@ public class CameraMarquee : MonoBehaviour
             
             if ( Input.GetMouseButtonDown(1) )
             {
-                Plane playerPlane = new Plane(Vector3.up, new Vector3(
-                    transform.position.x,
-                    1,
-                    transform.position.z
-                    ));
-                
-                Ray   ray     = Camera.main.ScreenPointToRay (Input.mousePosition);
-                float hitdist = 0f;
-                
-                if (playerPlane.Raycast (ray, out hitdist)) {
-                    Vector3 target = ray.GetPoint(hitdist);
-                    
-                    MoveUnits( target, true );
-                }
+                StartCoroutine("RightMouseClick");
             }
         }
     }
@@ -132,6 +121,21 @@ public class CameraMarquee : MonoBehaviour
         backupRect.width = 0;
         backupRect.height = 0;
         marqueeSize = Vector2.zero;
+    }
+
+    void RightMouseClick()
+    {
+        RaycastHit hit;
+        Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if ( Physics.Raycast(r, out hit) ) {
+//            ClickMarquee.transform.position = hit.point + Vector3.up * .1f;
+//            ClickMarquee.SetActive(true);
+//            yield return new WaitForSeconds(2f);
+//            ClickMarquee.SetActive(false);
+
+            MoveUnits( hit.point, true );
+        }
     }
 
     GameObject[] FindSelectableUnits()
