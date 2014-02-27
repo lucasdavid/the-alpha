@@ -51,14 +51,15 @@
      <Compile Include="Assets\Scripts\CameraContainer\CameraSlider.cs" />
      <Compile Include="Assets\Scripts\GameObjects\BP.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Base\Thing.cs" />
-     <Compile Include="Assets\Scripts\GameObjects\Base\UnitState.cs" />
      <Compile Include="Assets\Scripts\GameObjects\CharacterSpawn.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Mob\CharClass.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Mob\Mob.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Obj\Obj.cs" />
      <Compile Include="Assets\Scripts\GameObjects\ObjectPool.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\UnitContainer\UnitController.cs" />
      <Compile Include="Assets\Scripts\GameObjects\UnitContainer\UnitMovement.cs" />
      <Compile Include="Assets\Scripts\GameObjects\UnitContainer\UnitSelect.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\UnitContainer\UnitState.cs" />
      <Compile Include="Assets\Scripts\HudContainer\DebugWindow.cs" />
      <Compile Include="Assets\Scripts\HudContainer\HudUnitAction.cs" />
      <Compile Include="Assets\Scripts\HudContainer\HudUnitSelection.cs" />
