@@ -26,7 +26,18 @@ public class Mob : MonoBehaviour {
     
     public int Health {
         get { return _health; }
-        set { _health = value; }
+        set {
+            _health = value; 
+
+            if (Health <= 0)
+            {
+                //Animator anim = GetComponent<Animator>();
+                //anim.SetBool("Dead", true);
+                //gameObject.transform.position = new Vector3(20.0f, 0f, 0);
+                Destructable = false;
+                this.Recycle();
+            }
+        }
     }
     
     public bool Destructable {
@@ -60,18 +71,7 @@ public class Mob : MonoBehaviour {
     }
 
     void Start() {
-        Health = (int)(100 * GetComponent<CharClass>().HealthMultiplier);
-    }
-
-
-    void Update() {
-        if (Health <= 0) {
-            //Animator anim = GetComponent<Animator>();
-            //anim.SetBool("Dead", true);
-            //gameObject.transform.position = new Vector3(20.0f, 0f, 0);
-            Destructable = false;
-            this.Recycle();
-        }
+        OnEnable();
     }
 
     void OnEnable() {

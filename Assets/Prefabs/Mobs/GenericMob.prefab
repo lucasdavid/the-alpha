@@ -126,6 +126,10 @@ MonoBehaviour:
   _health: 100
   _destructable: 1
   _value: 1
+  _target: {fileID: 0}
+  _sightRange: 0
+  _attackRange: 0
+  _alliance: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,9 +150,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 691f971de4626e84a896585381bc6725, type: 3}
+  m_Script: {fileID: 11500000, guid: 5423850d20e2c9949bd57310e97f9b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackCooldown: 1
+  AttackDamage: 20
+  hold: 0
+  unitLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!143 &14300000
 CharacterController:
   m_ObjectHideFlags: 1
