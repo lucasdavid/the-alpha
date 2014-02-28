@@ -16,10 +16,10 @@ public class CameraMovement : MonoBehaviour {
         rectangles  = new Rect[4];
         
         // rectangles used to verify if mouse is over one of the edges of the screen
-        rectangles[0] = new Rect(0, 0, Screen.width, 50);
-        rectangles[1] = new Rect(0, Screen.height - 50, Screen.width, 50);
-        rectangles[2] = new Rect(0, 0, 50, Screen.height);
-        rectangles[3] = new Rect(Screen.width - 50, 0, 50, Screen.height);
+        rectangles[0] = new Rect(0, 0, Screen.width, 20);
+        rectangles[1] = new Rect(0, Screen.height - 20, Screen.width, 20);
+        rectangles[2] = new Rect(0, 0, 20, Screen.height);
+        rectangles[3] = new Rect(Screen.width - 20, 0, 20, Screen.height);
     }
     
     void Update ()

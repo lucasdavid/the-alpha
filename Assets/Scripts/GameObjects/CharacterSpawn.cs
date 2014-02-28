@@ -4,8 +4,9 @@ using System.Collections;
 public class CharacterSpawn : MonoBehaviour
 {
     public enum type {
-        generic,
+        basic,
         scout,
+        soldier,
         tank,
         enemy
     };
@@ -33,11 +34,14 @@ public class CharacterSpawn : MonoBehaviour
 
         if (cooldown <= 0) {
             // Figure out a cleaner way of doing this
-            if (Input.GetKeyDown (Keymap.kmSpawn.Generic))
-                Spawn ((int)type.generic);
+            if (Input.GetKeyDown (Keymap.kmSpawn.Basic))
+                Spawn ((int)type.basic);
         
-            if (Input.GetKeyDown (Keymap.kmSpawn.Scould))
+            if (Input.GetKeyDown (Keymap.kmSpawn.Scout))
                 Spawn ((int)type.scout);
+
+            if (Input.GetKeyDown (Keymap.kmSpawn.Soldier))
+                Spawn ((int)type.soldier);
 
             if (Input.GetKeyDown (Keymap.kmSpawn.Tank))
                 Spawn ((int)type.tank);

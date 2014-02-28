@@ -13,6 +13,10 @@ public class Mob : MonoBehaviour {
     public int _attackRange;                // Attack range
     public int _alliance;                   // Unit's allegiance, 0 = Zombie, 1 = Human
 
+    Animator anim;
+    NavMeshAgent navAgent;
+    public bool big;
+
     // Mutator Methods
     public string Name {
         get { return _name; }
@@ -23,7 +27,7 @@ public class Mob : MonoBehaviour {
         get { return _displayName; }
         set { _displayName = value; }
     }
-    
+
     public int Health {
         get { return _health; }
         set {
@@ -31,11 +35,8 @@ public class Mob : MonoBehaviour {
 
             if (Health <= 0)
             {
-                //Animator anim = GetComponent<Animator>();
-                //anim.SetBool("Dead", true);
-                //gameObject.transform.position = new Vector3(20.0f, 0f, 0);
-                Destructable = false;
-                this.Recycle();
+                Debug.Log ("READY...");
+                StartCoroutine(Die());
             }
         }
     }
@@ -71,12 +72,26 @@ public class Mob : MonoBehaviour {
     }
 
     void Start() {
+        anim = GetComponent<Animator>();
+        navAgent = GetComponent<NavMeshAgent>();
+        anim.SetBool("Big", big);   
         OnEnable();
     }
 
     void OnEnable() {
         Health = (int)(100 * GetComponent<CharClass>().HealthMultiplier);
-        Destructable = true;
         Target = null;
+        collider.enabled = true;
+        GetComponent<UnitController>().enabled = true;
+        Destructable = true;
+    }
+
+    IEnumerator Die() {
+        anim.SetBool("Dead", true);                     // Trigger death animation
+        collider.enabled = false;                       // Stop enemies from moving towards it
+        GetComponent<UnitController>().enabled = false; // Disable attacking
+        Destructable = false;                           // Set invincible
+        yield return new WaitForSeconds(5.0F);
+        this.Recycle();
     }
 }

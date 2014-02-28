@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class CameraMarquee : MonoBehaviour
 {
-    public GameObject ClickMarquee;
+    //public GameObject ClickMarquee;
     public Texture marqueeGraphics;
 
     public bool mouseIsBeingUsedByHUD;

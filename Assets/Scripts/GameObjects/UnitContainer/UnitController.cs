@@ -98,7 +98,7 @@ public class UnitController : MonoBehaviour {
 
     void Attacking()
     {
-        Debug.Log ("Attacking!");
+        //Debug.Log ("Attacking!");
 
         // For animation
         anim.SetFloat("Speed", 0);

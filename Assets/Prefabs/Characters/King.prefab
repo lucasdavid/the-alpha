@@ -2226,6 +2226,7 @@ MonoBehaviour:
   _sightRange: 5
   _attackRange: 2
   _alliance: 1
+  big: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

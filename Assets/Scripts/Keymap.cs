@@ -20,10 +20,11 @@ public abstract class Keymap {
     }
 
     public abstract class kmSpawn {
-        public static KeyCode Generic = KeyCode.Q;
-        public static KeyCode Scould = KeyCode.W;
-        public static KeyCode Tank = KeyCode.E;
-        public static KeyCode Enemy = KeyCode.R;
+        public static KeyCode Basic = KeyCode.Q;
+        public static KeyCode Scout = KeyCode.W;
+        public static KeyCode Soldier = KeyCode.E;
+        public static KeyCode Tank = KeyCode.R;
+        public static KeyCode Enemy = KeyCode.T;
     }
 
 }
