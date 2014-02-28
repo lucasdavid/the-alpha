@@ -1,13 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class CameraMarquee : MonoBehaviour
 {
-    //public GameObject ClickMarquee;
     public Texture marqueeGraphics;
-
-    public bool mouseIsBeingUsedByHUD;
+    public bool    mouseIsBeingUsedByHUD;
     
     public List<GameObject> SelectedUnits;
 
@@ -24,7 +22,7 @@ public class CameraMarquee : MonoBehaviour
     private void OnGUI()
     {
         marqueeRect = new Rect(marqueeOrigin.x, marqueeOrigin.y, marqueeSize.x, marqueeSize.y);
-        GUI.color = new Color(0, 0, 0, .3f);
+        GUI.color   = new Color(0, 0, 0, .3f);
         GUI.DrawTexture(marqueeRect, marqueeGraphics);
     }
 
@@ -34,24 +32,16 @@ public class CameraMarquee : MonoBehaviour
         if ( ! mouseIsBeingUsedByHUD )
         {
             if ( Input.GetMouseButtonDown(0) )
-            {
                 MarqueeStart();
-            }
-            
+
             if ( Input.GetMouseButtonUp(0) )
-            {
                 MarqueeFinish();
-            }
-            
+
             if ( Input.GetMouseButton(0) )
-            {
                 MarqueeUpdate();
-            }
-            
+
             if ( Input.GetMouseButtonDown(1) )
-            {
                 StartCoroutine("RightMouseClick");
-            }
         }
     }
 
@@ -78,19 +68,14 @@ public class CameraMarquee : MonoBehaviour
     {
         float _invertedY = Screen.height - Input.mousePosition.y;
         marqueeSize = new Vector2(Input.mousePosition.x - marqueeOrigin.x, (marqueeOrigin.y - _invertedY) * -1);
-        //FIX FOR RECT.CONTAINS NOT ACCEPTING NEGATIVE VALUES
+
         if (marqueeRect.width < 0)
-        {
             backupRect = new Rect(marqueeRect.x - Mathf.Abs(marqueeRect.width), marqueeRect.y, Mathf.Abs(marqueeRect.width), marqueeRect.height);
-        }
         else if (marqueeRect.height < 0)
-        {
             backupRect = new Rect(marqueeRect.x, marqueeRect.y - Mathf.Abs(marqueeRect.height), marqueeRect.width, Mathf.Abs(marqueeRect.height));
-        }
+
         if (marqueeRect.width < 0 && marqueeRect.height < 0)
-        {
             backupRect = new Rect(marqueeRect.x - Mathf.Abs(marqueeRect.width), marqueeRect.y - Mathf.Abs(marqueeRect.height), Mathf.Abs(marqueeRect.width), Mathf.Abs(marqueeRect.height));
-        }
     }
 
     void MarqueeFinish()
@@ -108,9 +93,7 @@ public class CameraMarquee : MonoBehaviour
             
             //Ensure that any units not within the marquee are currently unselected
             if (marqueeRect.Contains(_screenPoint) || backupRect.Contains(_screenPoint))
-            {
                 SelectedUnits.Add (unit);
-            }
         }
 
         SelectUnits();
