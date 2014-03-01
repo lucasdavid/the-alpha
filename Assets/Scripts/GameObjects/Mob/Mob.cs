@@ -15,7 +15,8 @@ public class Mob : MonoBehaviour {
 
     Animator anim;
     //NavMeshAgent navAgent;
-    public bool big;
+    public bool _big;
+    private int _lockUnit;                  // Once a unit dies, lock it
 
     // Mutator Methods
     public string Name {
@@ -35,7 +36,11 @@ public class Mob : MonoBehaviour {
 
             if (Health <= 0)
             {
-                StartCoroutine(Die());
+                _lockUnit++;
+
+                // This ensures it only fires once
+                if (_lockUnit == 1)
+                    StartCoroutine(Die());
             }
         }
     }
@@ -73,16 +78,24 @@ public class Mob : MonoBehaviour {
     void Start() {
         anim = GetComponent<Animator>();
         //navAgent = GetComponent<NavMeshAgent>();
-        anim.SetBool("Big", big);   
+        anim.SetBool("Big", _big);   
         OnEnable();
     }
 
     void OnEnable() {
         Health = (int)(100 * GetComponent<CharClass>().HealthMultiplier);
-        Target = null;
+
+        if (Alliance != 0 && (string.Compare(Name, "King") != 0)) { // To be changed so only if in tier 3+
+            UnitController.SetTarget(true); // Force unit to target the Alpha
+            Target = GameObject.Find ("Alpha");
+        } else
+            Target = null;
+
         collider.enabled = true;
         GetComponent<UnitController>().enabled = true;
         Destructable = true;
+        
+        _lockUnit = 0;
     }
 
     IEnumerator Die() {
@@ -90,12 +103,13 @@ public class Mob : MonoBehaviour {
         collider.enabled = false;                       // Stop enemies from moving towards it
         GetComponent<UnitController>().enabled = false; // Disable attacking
         Destructable = false;                           // Set invincible
+        Horde.ResetThreatTimer();                       // Reset ThreatLevel decrement timer
 
         // Very bad place to put this, but it works
         if (Alliance != 0) {                // If a human dies
             Horde.BrainPoints += Value;
             Horde.ThreatLevel += Value;
-            Horde.ResetThreatTimer();       // Reset ThreatLevel decrement timer
+            Humans.CurrentValue -= Value;
         } else {                            // If a zombie dies
             Horde.CurrentValue -= Value;
             Horde.ThreatLevel -= Value;

@@ -69,6 +69,8 @@ public class DebugWindow : MonoBehaviour {
             // CURRENT VALUE
             GUI.Label (new Rect (left + offset, top + offset + 60, boxWidth - offset, boxHeight - offset), "CV: " + Horde.CurrentValue);
 
+            // ENEMY VALUE
+            GUI.Label (new Rect (left + offset, top + offset + 80, boxWidth - offset, boxHeight - offset), "EV: " + Humans.CurrentValue);
             // OTHER STUFF ?
         }
     }

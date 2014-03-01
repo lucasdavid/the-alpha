@@ -2222,7 +2222,7 @@ MonoBehaviour:
   _displayName: Generic Human
   _health: 100
   _destructable: 1
-  _value: 2
+  _value: 1
   _target: {fileID: 0}
   _sightRange: 5
   _attackRange: 2

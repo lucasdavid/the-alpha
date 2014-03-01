@@ -54,9 +54,9 @@ public class CameraMovement : MonoBehaviour {
         // if the mouse scrollwheel is moved
         if ( ! Input.GetKey(Keymap.kmCamera.SecondFunction) )
         {
-            if ( Input.GetAxis("Mouse ScrollWheel") > 0 )
-                movement.y = 5;
             if ( Input.GetAxis("Mouse ScrollWheel") < 0 )
+                movement.y = 5;
+            if ( Input.GetAxis("Mouse ScrollWheel") > 0 )
                 movement.y = -5;
         }
         // if ctrl is pressed and the mouse scrollwheel is moved

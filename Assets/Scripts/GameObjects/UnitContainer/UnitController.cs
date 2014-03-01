@@ -6,6 +6,7 @@ public class UnitController : MonoBehaviour {
     public float AttackCooldown;
     public float AttackDamage;
     public bool  hold;
+    public static bool target;  // Force unit to keep target
 
     public LayerMask unitLayer = 1 << 8;    // Unit layer
 
@@ -28,6 +29,7 @@ public class UnitController : MonoBehaviour {
         mob   = GetComponent<Mob>();
 
         lastAttack = 0;
+        target = false;
 
         // Should put these two together
         sightRange = mob.SightRange;
@@ -80,18 +82,19 @@ public class UnitController : MonoBehaviour {
 
         // If you have a target
         if ( mob.Target != null && !forceMove) {
-            // Stop moving if the target is out of sight range
-            if (Vector3.Distance(transform.position, mob.Target.transform.position) > sightRange) {
+            // Stop moving if the target is out of sight range, UNLESS being forced to target
+            if ((Vector3.Distance(transform.position, mob.Target.transform.position) > sightRange) && !target) {
                 anim.SetFloat("Speed", 0);
                 anim.SetBool("Attacking", false);
                 mob.Target = null;
                 state = UnitState.idle;
+                Debug.Log ("This shouldn't be evaluating...");
             // If you're in attack range, attack!
             } else if (Vector3.Distance(transform.position, mob.Target.transform.position) <= attackRange) {
                 Attacking();
             // Keep following that target if it's in sight range
             } else {
-                Move ( mob.Target.transform.position);
+                Move (mob.Target.transform.position);
             }
         }
     }
@@ -168,5 +171,9 @@ public class UnitController : MonoBehaviour {
             state = UnitState.moving;
         }
 	}
+
+    public static void SetTarget(bool _target) {
+        target = _target;
+    }
 }
 

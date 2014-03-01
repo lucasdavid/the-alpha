@@ -51,22 +51,21 @@ public class CharacterSpawn : MonoBehaviour
 
     void Spawn (int index)
     {
-        int cost = characters[index].Value;
+        int cost = characters [index].Value;
 
-        if (Horde.BrainPoints >= cost && (Horde.CurrentValue + cost) <= maxValue) {
+        if (characters[index].Alliance == 0 && Horde.BrainPoints >= cost && (Horde.CurrentValue + cost) <= maxValue) {
             Horde.BrainPoints -= cost;
             Debug.Log ("BP: " + Horde.BrainPoints + ", Cost: " + cost + ", Value:" + Horde.CurrentValue + "/" + maxValue);
 
-            if (characters[index].GetComponent<Mob>().Alliance == 0) {
-                ObjectPool.Spawn(characters[index], zombieSpawn.transform.position);
-            } else {
-                ObjectPool.Spawn(characters[index], humanSpawn.transform.position);
-            }
+            ObjectPool.Spawn (characters [index], zombieSpawn.transform.position);
 
-            if (characters[index].Alliance == 0)
-                Horde.CurrentValue += cost;
-
-            // cooldown = 2.0f;
+            Horde.CurrentValue += cost;
+            Horde.ThreatLevel += cost;
+            //cooldown = 2.0f;
+        // Might move this elsewhere -- Victor
+        } else if (characters[index].Alliance != 0) {
+            ObjectPool.Spawn (characters [index], humanSpawn.transform.position);
+            Humans.CurrentValue += cost;
         } else {
             Debug.Log ("Cannot spawn character. BP: " + Horde.BrainPoints + ", Cost: " + cost + ", Value:" + Horde.CurrentValue + "/" + maxValue);
         }

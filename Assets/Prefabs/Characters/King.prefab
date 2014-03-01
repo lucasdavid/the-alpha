@@ -2201,7 +2201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1680025c195eb0c4f8be3add8c0bd992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Generic
+  _name: King
   _healthMultiplier: 2
   _movementMultiplier: 2
   _aDamageMultiplier: 2
@@ -2217,16 +2217,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cdd35687c1d244c7b7f43d26fc12779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: GenericEnemy
-  _displayName: Generic Enemy
+  _name: King
+  _displayName: King
   _health: 100
   _destructable: 1
-  _value: 0
+  _value: 5
   _target: {fileID: 0}
   _sightRange: 5
   _attackRange: 2
   _alliance: 1
-  big: 0
+  _big: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
