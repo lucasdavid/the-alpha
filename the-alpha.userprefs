@@ -1,19 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameObjects/Mob/Mob.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CameraContainer\CameraMovement.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameObjects/Mob/Mob.cs" Line="77" Column="26" />
-      <File FileName="Assets/Scripts/GameObjects/UnitContainer/UnitController.cs" Line="101" Column="11" />
-      <File FileName="Assets/Scripts/GameObjects/UnitContainer/UnitState.cs" Line="3" Column="2" />
-      <File FileName="Assets/Scripts/GameObjects/CharacterSpawn.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Keymap.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GameObjects/UnitContainer/UnitSelect.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CameraContainer/CameraMarquee.cs" Line="7" Column="7" />
-      <File FileName="Assets/Scripts/GameObjects/ObjectPool.cs" Line="57" Column="6" />
-      <File FileName="Assets/Scripts/GameObjects/BP.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CameraContainer/CameraMovement.cs" Line="21" Column="41" />
-      <File FileName="Assets/Scripts/GameObjects/Mob/Mob.cs" Line="98" Column="1" />
+      <File FileName="Assets\Scripts\CameraContainer\CameraMovement.cs" Line="34" Column="10" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Scripts" expanded="True">
+              <Node name="CameraContainer" expanded="True">
+                <Node name="CameraMovement.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

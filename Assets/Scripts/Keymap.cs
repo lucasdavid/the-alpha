@@ -26,4 +26,8 @@ public abstract class Keymap {
         public static KeyCode Enemy = KeyCode.T;
     }
 
+    public abstract class kmCamera {
+        public static KeyCode SecondFunction = KeyCode.LeftControl;
+    }
+
 }
