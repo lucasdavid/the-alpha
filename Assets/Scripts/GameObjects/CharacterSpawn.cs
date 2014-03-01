@@ -17,12 +17,10 @@ public class CharacterSpawn : MonoBehaviour
     public Mob[] characters;
 
     public int maxValue = 50;               // Character limit, based on unit's value
-    public static int currentValue;         // How much value is currently on the field
 
     float cooldown = 2.0f;
 
     void Start () {
-        currentValue = 0;
 
         for (int i = 0; i < characters.Length; i++)
             characters[i].CreatePool();
@@ -55,9 +53,9 @@ public class CharacterSpawn : MonoBehaviour
     {
         int cost = characters[index].Value;
 
-        if (BP.BrainPoints >= cost && (currentValue + cost) <= maxValue) {
-            BP.BrainPoints -= cost;
-            Debug.Log ("BP: " + BP.BrainPoints + ", Cost: " + cost + ", Value:" + currentValue + "/" + maxValue);
+        if (Horde.BrainPoints >= cost && (Horde.CurrentValue + cost) <= maxValue) {
+            Horde.BrainPoints -= cost;
+            Debug.Log ("BP: " + Horde.BrainPoints + ", Cost: " + cost + ", Value:" + Horde.CurrentValue + "/" + maxValue);
 
             if (characters[index].GetComponent<Mob>().Alliance == 0) {
                 ObjectPool.Spawn(characters[index], zombieSpawn.transform.position);
@@ -65,10 +63,12 @@ public class CharacterSpawn : MonoBehaviour
                 ObjectPool.Spawn(characters[index], humanSpawn.transform.position);
             }
 
-            currentValue += cost;
+            if (characters[index].Alliance == 0)
+                Horde.CurrentValue += cost;
+
             // cooldown = 2.0f;
         } else {
-            Debug.Log ("Cannot spawn character. BP: " + BP.BrainPoints + ", Cost: " + cost + ", Value:" + currentValue + "/" + maxValue);
+            Debug.Log ("Cannot spawn character. BP: " + Horde.BrainPoints + ", Cost: " + cost + ", Value:" + Horde.CurrentValue + "/" + maxValue);
         }
     }
 }

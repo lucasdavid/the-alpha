@@ -29,7 +29,7 @@ public class CameraMovement : MonoBehaviour {
         int layerMask = 1 << 11;
         Ray ray = new Ray(transform.position, Vector3.down);
 
-        if ( Physics.Raycast(ray, out hit, 100f, layerMask) && transform.position.y - hit.point.y != distance ) {
+        if ( Physics.Raycast(ray, out hit, 10f, layerMask) && transform.position.y - hit.point.y != distance ) {
             transform.position += ( transform.position.y - hit.point.y ) * Vector3.up;
         }
 

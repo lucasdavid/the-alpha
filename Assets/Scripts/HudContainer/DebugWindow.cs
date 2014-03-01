@@ -4,8 +4,9 @@ using System.Text.RegularExpressions;
 
 public class DebugWindow : MonoBehaviour {
     bool open;
-    string text = "0";
-    int bp;
+    string bpText = "0";
+    string tlText = "0";
+    int bp, tl, cv; // Brain Points, Threat Level, CurrentValue
 
 	// Use this for initialization
 	void Start () {
@@ -34,21 +35,39 @@ public class DebugWindow : MonoBehaviour {
 
         if (open) {
             // BRAINPOINT STUFF
-            bp = BP.BrainPoints;
+            bp = Horde.BrainPoints;
 
             GUI.Box(new Rect(left, top, boxWidth, boxHeight), "Debug Menu");
             GUI.Label (new Rect (left + offset, top + offset + 20, boxWidth - offset, boxHeight - offset), "BP:");
-            text = GUI.TextField(new Rect(left + offset * 7, top + offset + 20, 50, 20), bp.ToString(), 6);
-            text = Regex.Replace(text, @"[^0-9]", "");
+            bpText = GUI.TextField(new Rect(left + offset * 7, top + offset + 20, 50, 20), bp.ToString(), 6);
+            bpText = Regex.Replace(bpText, @"[^0-9]", "");
 
-            if (int.TryParse(text, out bp)) {
-                BP.BrainPoints = bp;
+            if (int.TryParse(bpText, out bp)) {
+                Horde.BrainPoints = bp;
             }
 
             if (GUI.Button(new Rect(left + offset * 4, top + offset + 20, 20, 20), "+"))
-                BP.BrainPoints++;
+                Horde.BrainPoints++;
             if (GUI.Button(new Rect(left + offset * 13, top + offset + 20, 20, 20), "-"))
-                BP.BrainPoints--;
+                Horde.BrainPoints--;
+
+            // THREAT LEVEL
+            tl = Horde.ThreatLevel;
+            GUI.Label (new Rect (left + offset, top + offset + 40, boxWidth - offset, boxHeight - offset), "TL:");
+            tlText = GUI.TextField(new Rect(left + offset * 7, top + offset + 40, 50, 20), tl.ToString(), 6);
+            tlText = Regex.Replace(tlText, @"[^0-9]", "");
+            
+            if (int.TryParse(tlText, out tl)) {
+                Horde.ThreatLevel = tl;
+            }
+            
+            if (GUI.Button(new Rect(left + offset * 4, top + offset + 40, 20, 20), "+"))
+                Horde.ThreatLevel++;
+            if (GUI.Button(new Rect(left + offset * 13, top + offset + 40, 20, 20), "-"))
+                Horde.ThreatLevel--;
+
+            // CURRENT VALUE
+            GUI.Label (new Rect (left + offset, top + offset + 60, boxWidth - offset, boxHeight - offset), "CV: " + Horde.CurrentValue);
 
             // OTHER STUFF ?
         }

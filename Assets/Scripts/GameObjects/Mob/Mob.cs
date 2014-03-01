@@ -14,7 +14,7 @@ public class Mob : MonoBehaviour {
     public int _alliance;                   // Unit's allegiance, 0 = Zombie, 1 = Human
 
     Animator anim;
-    NavMeshAgent navAgent;
+    //NavMeshAgent navAgent;
     public bool big;
 
     // Mutator Methods
@@ -35,7 +35,6 @@ public class Mob : MonoBehaviour {
 
             if (Health <= 0)
             {
-                Debug.Log ("READY...");
                 StartCoroutine(Die());
             }
         }
@@ -73,7 +72,7 @@ public class Mob : MonoBehaviour {
 
     void Start() {
         anim = GetComponent<Animator>();
-        navAgent = GetComponent<NavMeshAgent>();
+        //navAgent = GetComponent<NavMeshAgent>();
         anim.SetBool("Big", big);   
         OnEnable();
     }
@@ -91,6 +90,17 @@ public class Mob : MonoBehaviour {
         collider.enabled = false;                       // Stop enemies from moving towards it
         GetComponent<UnitController>().enabled = false; // Disable attacking
         Destructable = false;                           // Set invincible
+
+        // Very bad place to put this, but it works
+        if (Alliance != 0) {                // If a human dies
+            Horde.BrainPoints += Value;
+            Horde.ThreatLevel += Value;
+            Horde.ResetThreatTimer();       // Reset ThreatLevel decrement timer
+        } else {                            // If a zombie dies
+            Horde.CurrentValue -= Value;
+            Horde.ThreatLevel -= Value;
+        }
+ 
         yield return new WaitForSeconds(5.0F);
         this.Recycle();
     }
