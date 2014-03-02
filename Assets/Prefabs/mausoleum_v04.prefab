@@ -139,7 +139,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 400016}
   - 95: {fileID: 9500000}
-  - 64: {fileID: 6400000}
   m_Layer: 0
   m_Name: mausoleum_v04
   m_TagString: Untagged
@@ -353,8 +352,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100016}
-  m_LocalRotation: {x: 0, y: .707106888, z: 0, w: .707106769}
-  m_LocalPosition: {x: 21.1872635, y: 8, z: -81.119339}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 290.65155, y: 9.90247631, z: 104.693306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400006}
@@ -736,19 +735,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100028}
   m_Mesh: {fileID: 4300012, guid: 5f3ec27c96a334013af705c6be8a64b4, type: 3}
---- !u!64 &6400000
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100016}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 4300000, guid: 5f3ec27c96a334013af705c6be8a64b4, type: 3}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 2

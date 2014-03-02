@@ -66,6 +66,11 @@
      <Compile Include="Assets\Scripts\HudContainer\PointPlate.cs" />
      <Compile Include="Assets\Scripts\Keymap.cs" />
      <None Include="Assets\Models\Source\Shaders\Virtualware_BumpSpec.shader" />
+     <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
+      <Project>{2F0D862F-4C39-1B21-23D0-A746FB40CDE0}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
