@@ -20,10 +20,17 @@ public class CharacterSpawn : MonoBehaviour
 
     float cooldown = 2.0f;
 
-    void Start () {
+    private static Component _zombie;       // For Alpha turning -- see Mob.Die()
 
+    public static Component GetZombie() {
+        return _zombie;
+    }
+
+    void Start () {
         for (int i = 0; i < characters.Length; i++)
             characters[i].CreatePool();
+
+        _zombie = characters [1];
     }
 
     void Update ()

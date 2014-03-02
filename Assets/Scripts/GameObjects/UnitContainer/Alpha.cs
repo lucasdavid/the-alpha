@@ -3,13 +3,29 @@ using System.Collections;
 
 public class Alpha : MonoBehaviour {
     bool _lose;
+    float _healTimer;               // Heal timer
+    static GameObject theAlpha;
+
+    public static GameObject GetAlpha() {
+        return theAlpha;
+    }
+
 	// Use this for initialization
 	void Start () {
-	
+        _healTimer = 0;
+        theAlpha = gameObject;
 	}
 
 	// Update is called once per frame
 	void Update () {
+        _healTimer -= Time.deltaTime;
+
+        // Heal 1 HP every 5 seconds until back to 200 hp (change static number).
+        if (_healTimer <= 0) {
+            _healTimer = 5.0f;
+            if (GetComponent<Mob>().Health < 200)
+                GetComponent<Mob>().Health++;
+        }
 
         // If the Alpha dies, you lose!
 	    if (GetComponent<Mob> ().Health <= 0) {

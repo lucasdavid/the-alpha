@@ -12,11 +12,19 @@ public class Mob : MonoBehaviour {
     public int _sightRange;                 // Sight range
     public int _attackRange;                // Attack range
     public int _alliance;                   // Unit's allegiance, 0 = Zombie, 1 = Human
+    public GameObject _killer;              // Who killed this unit?
+
 
     Animator anim;
     //NavMeshAgent navAgent;
     public bool _big;
     private int _lockUnit;                  // Once a unit dies, lock it
+    private static int _threatMultiplier;   // ThreatLevel Multiplier
+
+    public static int ThreatMultiplier {
+        get { return _threatMultiplier; }
+        set { _threatMultiplier = value; }
+    }
 
     // Mutator Methods
     public string Name {
@@ -75,7 +83,14 @@ public class Mob : MonoBehaviour {
         set { _alliance = value; }
     }
 
+    public GameObject Killer {
+        get { return _killer; }
+        set { _killer = value; }
+    }
+
     void Start() {
+
+        ThreatMultiplier = 1;
         anim = GetComponent<Animator>();
         //navAgent = GetComponent<NavMeshAgent>();
         anim.SetBool("Big", _big);   
@@ -85,7 +100,7 @@ public class Mob : MonoBehaviour {
     void OnEnable() {
         Health = (int)(100 * GetComponent<CharClass>().HealthMultiplier);
 
-        if (Alliance != 0 && (string.Compare(Name, "King") != 0)) { // To be changed so only if in tier 3+
+        if (Alliance != 0 && (string.Compare(Name, "King") != 0 && Tier.Engage)) { // Only chase if set to "Engage"
             UnitController.SetTarget(true); // Force unit to target the Alpha
             Target = GameObject.Find ("Alpha");
         } else
@@ -104,18 +119,26 @@ public class Mob : MonoBehaviour {
         GetComponent<UnitController>().enabled = false; // Disable attacking
         Destructable = false;                           // Set invincible
         Horde.ResetThreatTimer();                       // Reset ThreatLevel decrement timer
-
+        Debug.Log (ThreatMultiplier);
         // Very bad place to put this, but it works
         if (Alliance != 0) {                // If a human dies
             Horde.BrainPoints += Value;
-            Horde.ThreatLevel += Value;
+            Horde.ThreatLevel += (Value * ThreatMultiplier);
             Humans.CurrentValue -= Value;
         } else {                            // If a zombie dies
             Horde.CurrentValue -= Value;
             Horde.ThreatLevel -= Value;
         }
- 
+
         yield return new WaitForSeconds(5.0F);
+
+        if (Killer == Alpha.GetAlpha ()) {
+            Debug.Log ("3");
+            ObjectPool.Spawn (CharacterSpawn.GetZombie(), transform.position);
+        }
+
         this.Recycle();
+
+
     }
 }

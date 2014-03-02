@@ -13,9 +13,12 @@ public class CameraMarquee : MonoBehaviour
     Vector2 marqueeOrigin;
     Vector2 marqueeSize;
     Rect backupRect;
+    LayerMask layer; 
+
     
     void Start()
     {
+        layer = 1 << 12; // Ignore Tier Layer
         SelectedUnits = new List<GameObject>();
     }
     
@@ -111,7 +114,7 @@ public class CameraMarquee : MonoBehaviour
         RaycastHit hit;
         Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if ( Physics.Raycast(r, out hit) ) {
+        if ( Physics.Raycast(r, out hit, Mathf.Infinity, ~layer) ) {
 //            ClickMarquee.transform.position = hit.point + Vector3.up * .1f;
 //            ClickMarquee.SetActive(true);
 //            yield return new WaitForSeconds(2f);

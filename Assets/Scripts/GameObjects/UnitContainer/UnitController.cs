@@ -88,7 +88,6 @@ public class UnitController : MonoBehaviour {
                 anim.SetBool("Attacking", false);
                 mob.Target = null;
                 state = UnitState.idle;
-                Debug.Log ("This shouldn't be evaluating...");
             // If you're in attack range, attack!
             } else if (Vector3.Distance(transform.position, mob.Target.transform.position) <= attackRange) {
                 Attacking();
@@ -118,6 +117,11 @@ public class UnitController : MonoBehaviour {
             // Get UNIT->TARGET->HEALTH -- Redo this, very ugly
             mob.Target.GetComponent<Mob>().Health -= 
                 (int)(AttackDamage * GetComponent<CharClass>().ADamageMultiplier);
+
+            if (mob.Target.GetComponent<Mob>().Health <= 0) {
+                Debug.Log ("2");
+                mob.Target.GetComponent<Mob>().Killer = gameObject;
+            }
         }
 
         // We only leave attacking state if target moves out of position/dies 

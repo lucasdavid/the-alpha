@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\GameObjects\Mob\Mob.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Obj\Obj.cs" />
      <Compile Include="Assets\Scripts\GameObjects\ObjectPool.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\Tier\Tier.cs" />
      <Compile Include="Assets\Scripts\GameObjects\UnitContainer\Alpha.cs" />
      <Compile Include="Assets\Scripts\GameObjects\UnitContainer\Horde.cs" />
      <Compile Include="Assets\Scripts\GameObjects\UnitContainer\Humans.cs" />
