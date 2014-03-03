@@ -14007,7 +14007,7 @@ GameObject:
   - 4: {fileID: 1242540564}
   - 108: {fileID: 1242540563}
   m_Layer: 0
-  m_Name: _light
+  m_Name: _light-main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
