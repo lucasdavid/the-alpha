@@ -10,15 +10,10 @@ public class Tier : MonoBehaviour {
         set {_engage = value; }
     }
 
-	// Use this for initialization
 	void Start () {
         Engage = false;	
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	}
-
     void OnTriggerEnter(Collider col) {
         if (string.Compare (gameObject.name, "Tier1") == 0 && col.CompareTag ("selectable")) {
             TierOne ();

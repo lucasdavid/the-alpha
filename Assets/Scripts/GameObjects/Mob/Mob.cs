@@ -103,13 +103,14 @@ public class Mob : MonoBehaviour {
         if (Alliance != 0 && (string.Compare(Name, "King") != 0 && Tier.Engage)) { // Only chase if set to "Engage"
             UnitController.SetTarget(true); // Force unit to target the Alpha
             Target = GameObject.Find ("Alpha");
-        } else
+        } else {
             Target = null;
+        }
 
         collider.enabled = true;
         GetComponent<UnitController>().enabled = true;
         Destructable = true;
-        
+
         _lockUnit = 0;
     }
 

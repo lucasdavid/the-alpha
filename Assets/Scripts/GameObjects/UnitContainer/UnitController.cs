@@ -30,7 +30,7 @@ public class UnitController : MonoBehaviour {
 
         lastAttack = 0;
         target = false;
-
+ 
         // Should put these two together
         sightRange = mob.SightRange;
         attackRange = mob.AttackRange;
@@ -179,5 +179,5 @@ public class UnitController : MonoBehaviour {
     public static void SetTarget(bool _target) {
         target = _target;
     }
-}
 
+}

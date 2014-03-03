@@ -13,9 +13,8 @@ public class CameraMarquee : MonoBehaviour
     Vector2 marqueeOrigin;
     Vector2 marqueeSize;
     Rect backupRect;
-    LayerMask layer; 
+    LayerMask layer;
 
-    
     void Start()
     {
         layer = 1 << 12; // Ignore Tier Layer
