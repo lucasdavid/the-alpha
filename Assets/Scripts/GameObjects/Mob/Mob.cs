@@ -5,7 +5,8 @@ public class Mob : MonoBehaviour {
     // Attributes
     public string _name;                    // Thing name
     public string _displayName;             // Displayed name (in GUI)
-    public int _health;                     // Health
+    public int _maxHealth;                  // Max Health
+    public int _health;                     // Current Health
     public bool _destructable;              // Can it be destroyed?
     public int _value;                      // Thing value
     public GameObject _target;              // Target to attack/goto
@@ -35,6 +36,11 @@ public class Mob : MonoBehaviour {
     public string DisplayName {
         get { return _displayName; }
         set { _displayName = value; }
+    }
+
+    public int MaxHealth {
+        get { return _maxHealth; }
+        set { _maxHealth = value; }
     }
 
     public int Health {
@@ -89,7 +95,7 @@ public class Mob : MonoBehaviour {
     }
 
     void Start() {
-
+        MaxHealth = Health;
         ThreatMultiplier = 1;
         anim = GetComponent<Animator>();
         //navAgent = GetComponent<NavMeshAgent>();

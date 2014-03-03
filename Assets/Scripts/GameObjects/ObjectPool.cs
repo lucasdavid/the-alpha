@@ -67,10 +67,8 @@ public sealed class ObjectPool : MonoBehaviour
             obj.gameObject.SetActive (false);
             
         } else {
-            // Should only be for Alpha
-            obj.GetComponent<Mob>().Destructable = false;
             obj.gameObject.SetActive(false);
-            // Object.Destroy (obj.gameObject);
+            Object.Destroy (obj.gameObject);
         }
     }
     

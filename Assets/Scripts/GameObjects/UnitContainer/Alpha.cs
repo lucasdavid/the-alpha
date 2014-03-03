@@ -20,10 +20,10 @@ public class Alpha : MonoBehaviour {
 	void Update () {
         _healTimer -= Time.deltaTime;
 
-        // Heal 1 HP every 5 seconds until back to 200 hp (change static number).
+        // Heal 1 HP every 2 seconds until back to max
         if (_healTimer <= 0) {
-            _healTimer = 5.0f;
-            if (GetComponent<Mob>().Health < 200)
+            _healTimer = 2.0f;
+            if (GetComponent<Mob>().Health < GetComponent<Mob>().MaxHealth)
                 GetComponent<Mob>().Health++;
         }
 
