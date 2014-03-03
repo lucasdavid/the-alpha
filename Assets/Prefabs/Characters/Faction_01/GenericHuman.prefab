@@ -1007,7 +1007,7 @@ GameObject:
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
-  - 64: {fileID: 6400000}
+  - 136: {fileID: 13600000}
   m_Layer: 8
   m_Name: GenericHuman
   m_TagString: enemy
@@ -1928,7 +1928,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 147.075989, y: 7.50137329, z: 125.028351}
+  m_LocalPosition: {x: 135.096329, y: 7.50137281, z: 63.912075}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400130}
@@ -2129,19 +2129,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100144}
   m_Mesh: {fileID: 4300000, guid: 917fdb3d5f419114a8d015aac93bc764, type: 3}
---- !u!64 &6400000
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100132}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 4300014, guid: 370b2cb38c066df4ba3ac60883864bf3, type: 3}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 2
@@ -2220,13 +2207,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: GenericHuman
   _displayName: Generic Human
+  _maxHealth: 0
   _health: 100
   _destructable: 1
   _value: 1
   _target: {fileID: 0}
   _sightRange: 5
   _attackRange: 2
-  _alliance: 7
+  _alliance: 1
   _killer: {fileID: 0}
   _big: 0
 --- !u!114 &11400004
@@ -2258,6 +2246,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+--- !u!136 &13600000
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100132}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

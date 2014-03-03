@@ -140,6 +140,7 @@ public class Mob : MonoBehaviour {
         yield return new WaitForSeconds(2.0F);
 
         if (Killer == Alpha.GetAlpha ()) {
+            Horde.CurrentValue += Value;
             ObjectPool.Spawn (CharacterSpawn.GetZombie(), transform.position);
         }
 
