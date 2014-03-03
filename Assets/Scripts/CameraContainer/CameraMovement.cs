@@ -4,16 +4,18 @@ using System.Collections;
 public class CameraMovement : MonoBehaviour {
     
     // speed in which the camera moves
-    public float speed;
     public float distance;
+    public float movementSpeed;
     public float rotationSpeed;
+
+    public LayerMask distanceMask;
 
     Vector3 movement;
     Rect[] rectangles;
     
     void Start ()
     {
-        movement    = transform.position;
+        movement    = Vector3.zero;
         rectangles  = new Rect[4];
         
         // rectangles used to verify if mouse is over one of the edges of the screen
@@ -25,18 +27,9 @@ public class CameraMovement : MonoBehaviour {
     
     void Update ()
     {
-        RaycastHit hit;
-        int layerMask = 1 << 11;
-        Ray ray = new Ray(transform.position, Vector3.down);
-
-        if ( Physics.Raycast(ray, out hit, 10f, layerMask) && transform.position.y - hit.point.y != distance ) {
-            transform.position += ( transform.position.y - hit.point.y ) * Vector3.up;
-        }
-
         // get input from axis
         movement.x = Input.GetAxis("Horizontal");
         movement.z = Input.GetAxis("Vertical");
-        movement.y = 0;
 
         // if mouse is over bottom edge
         if ( rectangles[0].Contains(Input.mousePosition) )
@@ -55,9 +48,9 @@ public class CameraMovement : MonoBehaviour {
         if ( ! Input.GetKey(Keymap.kmCamera.SecondFunction) )
         {
             if ( Input.GetAxis("Mouse ScrollWheel") < 0 )
-                movement.y = 5;
+                distance += movementSpeed * Time.deltaTime;
             if ( Input.GetAxis("Mouse ScrollWheel") > 0 )
-                movement.y = -5;
+                distance -= movementSpeed * Time.deltaTime;
         }
         // if ctrl is pressed and the mouse scrollwheel is moved
         else
@@ -73,7 +66,23 @@ public class CameraMovement : MonoBehaviour {
         }
         
         // if there is any significant movement
-        if ( Mathf.Abs(movement.x) > .1f || Mathf.Abs(movement.z) > .1f || Mathf.Abs(movement.y) > .1f )
-            transform.position += movement * speed * Time.deltaTime;
+        if ( Mathf.Abs(movement.x) > .1f || Mathf.Abs(movement.z) > .1f )
+            transform.position += movement * movementSpeed * Time.deltaTime;
+
+        // process vertical movement of camera
+        RaycastHit hit;
+        Ray ray = new Ray(transform.position, Vector3.down);
+        
+        if ( Physics.Raycast(ray, out hit, 100f, distanceMask) && transform.position.y - hit.point.y != distance ) {
+            transform.position = new Vector3(
+                transform.position.x,
+                (
+                hit.point.y > 0
+                ? hit.point.y
+                : 0
+                ) + distance,
+                transform.position.z
+                );
+        }
     }
 }
