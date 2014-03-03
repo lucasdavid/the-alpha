@@ -3,10 +3,12 @@ using System.Collections;
 
 public class HudUnitAction : MonoBehaviour {
 
-    CameraMarquee marquee;
-    
+    static CameraMarquee marquee;
+    static GameObject selectionLight;
+
     void Start () {
         marquee = Camera.main.GetComponent<CameraMarquee>();
+        selectionLight = GameObject.Find("HUD/button-action/light-selection");
     }
 
     void Update()
@@ -20,7 +22,7 @@ public class HudUnitAction : MonoBehaviour {
         if ( Input.GetKeyDown(Keymap.kmAction.Stop) )
             marquee.StopUnits();
     }
-    
+
     void OnMouseDown()
     {
         StopCoroutine("SignalMouseOverHUD");
@@ -34,6 +36,17 @@ public class HudUnitAction : MonoBehaviour {
             marquee.ResumeUnits();
         if ( gameObject.name == "sel_stop" )
             marquee.StopUnits();
+
+        StopCoroutine("ShowSelectionLight");
+        StartCoroutine("ShowSelectionLight");
+    }
+
+    IEnumerator ShowSelectionLight()
+    {
+        Debug.Log("HudUnitAction@ShowSelectionLight");
+        selectionLight.transform.position = gameObject.transform.position;
+        selectionLight.GetComponent<Light>().enabled = true;
+        yield return new WaitForSeconds(.5f);
     }
 
     /**
