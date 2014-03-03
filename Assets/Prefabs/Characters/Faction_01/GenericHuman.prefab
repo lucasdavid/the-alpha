@@ -1010,7 +1010,7 @@ GameObject:
   - 64: {fileID: 6400000}
   m_Layer: 8
   m_Name: GenericHuman
-  m_TagString: selectable
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -49,8 +49,10 @@ public class CameraMarquee : MonoBehaviour
 
     void MarqueeStart()
     {
-        // clear previous selection
-        UnselectUnits();
+        // clear previous selection if "shift" is not held down
+        if (!Input.GetKey (Keymap.kmSelect.Shift)) {
+            UnselectUnits();
+        }
         
         // initiate selection marquee
         float _invertedY = Screen.height - Input.mousePosition.y;
@@ -59,10 +61,17 @@ public class CameraMarquee : MonoBehaviour
         //Check if the player just wants to add one unit
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if ( Physics.Raycast(ray, out hit) && hit.collider.CompareTag("selectable") )
+        if ( Physics.Raycast(ray, out hit, Mathf.Infinity, ~layer) && hit.collider.CompareTag("selectable") )
         {
-            hit.transform.gameObject.SendMessage("OnSelected",SendMessageOptions.DontRequireReceiver);
-            SelectedUnits.Add(hit.collider.gameObject);
+            // If selected already, unselect
+            // If not selected, select
+            if (SelectedUnits.Contains(hit.collider.gameObject)) {
+                hit.collider.gameObject.SendMessage("OnUnselected", SendMessageOptions.DontRequireReceiver);
+                SelectedUnits.Remove(hit.collider.gameObject);
+            } else {
+                hit.transform.gameObject.SendMessage("OnSelected", SendMessageOptions.DontRequireReceiver);
+                SelectedUnits.Add(hit.collider.gameObject);
+            }
         }
     }
 
@@ -113,7 +122,12 @@ public class CameraMarquee : MonoBehaviour
         RaycastHit hit;
         Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if ( Physics.Raycast(r, out hit, Mathf.Infinity, ~layer) ) {
+        // Right click an enemy
+        if ( Physics.Raycast(r, out hit, Mathf.Infinity, ~layer) && hit.collider.CompareTag("enemy")) {
+            Debug.Log ("Attacking " + hit.collider.gameObject);
+            AttackUnit(hit.collider.gameObject);
+        } else if ( Physics.Raycast(r, out hit, Mathf.Infinity, ~layer) ) {
+
 //            ClickMarquee.transform.position = hit.point + Vector3.up * .1f;
 //            ClickMarquee.SetActive(true);
 //            yield return new WaitForSeconds(2f);
@@ -153,11 +167,22 @@ public class CameraMarquee : MonoBehaviour
         }
     }
 
+    public void AttackUnit( GameObject _target ) {
+        foreach ( GameObject unit in SelectedUnits )
+        {
+            // Force movement to override attacking
+            UnitController.SetTarget(true);
+            unit.GetComponent<Mob>().Target = _target;
+        }
+    }
+
     public void MoveUnits ( Vector3 _target, bool _overrideAttack )
     {
         foreach ( GameObject unit in SelectedUnits )
         {
             // Force movement to override attacking
+            UnitController.SetTarget(false);
+            unit.GetComponent<Mob>().Target = null;
             unit.GetComponent<UnitController>().Move( _target, _overrideAttack );
         }
     }
