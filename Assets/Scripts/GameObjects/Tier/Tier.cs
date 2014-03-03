@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class Tier : MonoBehaviour {
+    public GameObject[] spawn;
+
     private static bool _engage;
 
     public static bool Engage
@@ -30,12 +32,15 @@ public class Tier : MonoBehaviour {
     }
 
     void OnTriggerExit(Collider col) {
-        Debug.Log ("Entered Tier");
+        Debug.Log ("Exited Tier");
     }
 
     void TierOne() {
         Mob.ThreatMultiplier = 1;
         Debug.Log ("Entered Tier 1");
+        Engage = true;
+        Humans.SpawnPoint = spawn[0].transform.position;
+        //Humans.SpawnHuman(0);
     }
 
     void TierTwo() {

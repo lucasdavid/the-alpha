@@ -30,7 +30,7 @@ public class CharacterSpawn : MonoBehaviour
         for (int i = 0; i < characters.Length; i++)
             characters[i].CreatePool();
 
-        _zombie = characters [1];
+        _zombie = characters [0];
     }
 
     void Update ()
@@ -68,7 +68,7 @@ public class CharacterSpawn : MonoBehaviour
 
             Horde.CurrentValue += cost;
             Horde.ThreatLevel += cost;
-            //cooldown = 2.0f;
+            cooldown = 2.0f;
         // Might move this elsewhere -- Victor
         } else if (characters[index].Alliance != 0) {
             ObjectPool.Spawn (characters [index], humanSpawn.transform.position);

@@ -3,12 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Humans : MonoBehaviour {
+    public Mob[] characters;
     private static int _currentValue;          // How much value the player has on the field
+    private static Vector3 _spawnPoint;
 
     public static int CurrentValue
     {
         get { return _currentValue; }
         set { _currentValue = value; }
+    }
+
+    public static Vector3 SpawnPoint
+    {
+        get { return _spawnPoint; }
+        set { _spawnPoint = value; }
     }
 
     GameObject[] FindGameObjectsWithLayer (int layer) {
@@ -36,10 +44,12 @@ public class Humans : MonoBehaviour {
             if (g.GetComponent<Mob>().Alliance == 1)
                 CurrentValue += g.GetComponent<Mob>().Value;
         }
+
+        for (int i = 0; i < characters.Length; i++)
+            characters[i].CreatePool();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    public void SpawnHuman(int index) {
+        ObjectPool.Spawn (characters [index], SpawnPoint);
+    }
 }
