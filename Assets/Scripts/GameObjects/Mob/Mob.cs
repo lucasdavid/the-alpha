@@ -106,7 +106,7 @@ public class Mob : MonoBehaviour {
     void OnEnable() {
         Health = (int)(100 * GetComponent<CharClass>().HealthMultiplier);
 
-        if (Alliance != 0 && (string.Compare(Name, "King") != 0 && Tier.Engage)) { // Only chase if set to "Engage"
+        if (Alliance != 0 && (string.Compare(Name, "King") != 0 && (Tier.Engage || LocationTriggers.Engage))) { // Only chase if set to "Engage"
             GetComponent<UnitController>().SetTarget(true); // Force unit to target the Alpha
             Target = GameObject.Find ("Alpha");
         } else {
