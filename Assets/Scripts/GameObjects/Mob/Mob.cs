@@ -107,7 +107,7 @@ public class Mob : MonoBehaviour {
         Health = (int)(100 * GetComponent<CharClass>().HealthMultiplier);
 
         if (Alliance != 0 && (string.Compare(Name, "King") != 0 && Tier.Engage)) { // Only chase if set to "Engage"
-            UnitController.SetTarget(true); // Force unit to target the Alpha
+            GetComponent<UnitController>().SetTarget(true); // Force unit to target the Alpha
             Target = GameObject.Find ("Alpha");
         } else {
             Target = null;
@@ -126,7 +126,6 @@ public class Mob : MonoBehaviour {
         GetComponent<UnitController>().enabled = false; // Disable attacking
         Destructable = false;                           // Set invincible
         Horde.ResetThreatTimer();                       // Reset ThreatLevel decrement timer
-        Debug.Log (ThreatMultiplier);
         // Very bad place to put this, but it works
         if (Alliance != 0) {                // If a human dies
             Horde.BrainPoints += Value;

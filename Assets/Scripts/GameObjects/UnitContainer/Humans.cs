@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public class Humans : MonoBehaviour {
     public Mob[] characters;
-    private static int _currentValue;          // How much value the player has on the field
+    private static Mob[] staticCharacters;      // To instantiate
+    private static int _currentValue;           // How much value the player has on the field
     private static Vector3 _spawnPoint;
 
     public static int CurrentValue
@@ -45,11 +46,13 @@ public class Humans : MonoBehaviour {
                 CurrentValue += g.GetComponent<Mob>().Value;
         }
 
+        staticCharacters = characters;
+
         for (int i = 0; i < characters.Length; i++)
-            characters[i].CreatePool();
+            staticCharacters[i].CreatePool();
 	}
 
-    public void SpawnHuman(int index) {
-        ObjectPool.Spawn (characters [index], SpawnPoint);
+    public static void SpawnHuman(int index) {
+        ObjectPool.Spawn (staticCharacters[index], SpawnPoint);
     }
 }

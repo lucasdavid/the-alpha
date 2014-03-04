@@ -171,7 +171,7 @@ public class CameraMarquee : MonoBehaviour
         foreach ( GameObject unit in SelectedUnits )
         {
             // Force movement to override attacking
-            UnitController.SetTarget(true);
+            unit.GetComponent<UnitController>().SetTarget(true);
             unit.GetComponent<Mob>().Target = _target;
         }
     }
@@ -182,7 +182,7 @@ public class CameraMarquee : MonoBehaviour
         {
             unit.GetComponent<UnitController>().hold = false;
             // Force movement to override attacking
-            UnitController.SetTarget(false);
+            unit.GetComponent<UnitController>().SetTarget(false);
             unit.GetComponent<Mob>().Target = null;
             unit.GetComponent<UnitController>().Move( _target, _overrideAttack );
         }
