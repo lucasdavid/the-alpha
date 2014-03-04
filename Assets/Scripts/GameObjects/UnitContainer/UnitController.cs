@@ -84,7 +84,6 @@ public class UnitController : MonoBehaviour {
         if ( mob.Target != null && !forceMove) {
             // Stop moving if the target is out of sight range, UNLESS being forced to target
             if ((Vector3.Distance(transform.position, mob.Target.transform.position) > sightRange) && !target) {
-                Debug.Log ("Should not be evaluating..." + target);
                 anim.SetFloat("Speed", 0);
                 anim.SetBool("Attacking", false);
                 mob.Target = null;
@@ -120,7 +119,6 @@ public class UnitController : MonoBehaviour {
                 (int)(AttackDamage * GetComponent<CharClass>().ADamageMultiplier);
 
             if (mob.Target.GetComponent<Mob>().Health <= 0) {
-                Debug.Log ("2");
                 mob.Target.GetComponent<Mob>().Killer = gameObject;
             }
         }

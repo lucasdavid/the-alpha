@@ -20,6 +20,7 @@ public abstract class Keymap {
     }
 
     public abstract class kmSpawn {
+        public static KeyCode Shop = KeyCode.O;
         public static KeyCode Basic = KeyCode.Q;
         public static KeyCode Scout = KeyCode.W;
         public static KeyCode Soldier = KeyCode.E;
