@@ -34,7 +34,7 @@ public class Horde : MonoBehaviour {
             {
                 pointPlate.UpdateGraphics(_brainPoints);
             }
-            catch ( NullReferenceException e )
+            catch ( NullReferenceException )
             {
                 pointPlate = GameObject.Find ("point-plate").GetComponent<PointPlate>();
                 pointPlate.UpdateGraphics(_brainPoints);
