@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class CameraMovement : MonoBehaviour {
+
+    const int MIN_X = 24, MAX_X = 280, MIN_Y = 10, MAX_Y = 60, MIN_Z = -4, MAX_Z = 260;
     
     // speed in which the camera moves
     public float distance;
@@ -44,12 +46,20 @@ public class CameraMovement : MonoBehaviour {
         if ( rectangles[3].Contains(Input.mousePosition) )
             movement.x = 1;
 
+        // constrains the camera to the extremes of the field
+        if ( movement.x > 0 && transform.position.x >= MAX_X ||
+             movement.x < 0 && transform.position.x <= MIN_X )
+            movement.x = 0;
+        if ( movement.z > 0 && transform.position.z >= MAX_Z ||
+             movement.z < 0 && transform.position.z <= MIN_Z )
+            movement.z = 0;
+
         // if the mouse scrollwheel is moved
         if ( ! Input.GetKey(Keymap.kmCamera.SecondFunction) )
         {
-            if ( Input.GetAxis("Mouse ScrollWheel") < 0 )
+            if ( Input.GetAxis("Mouse ScrollWheel") < 0 && distance >= MAX_Y )
                 distance += movementSpeed * Time.deltaTime;
-            if ( Input.GetAxis("Mouse ScrollWheel") > 0 )
+            if ( Input.GetAxis("Mouse ScrollWheel") > 0 && distance <= MIN_Y )
                 distance -= movementSpeed * Time.deltaTime;
         }
         // if ctrl is pressed and the mouse scrollwheel is moved
@@ -73,7 +83,7 @@ public class CameraMovement : MonoBehaviour {
         RaycastHit hit;
         Ray ray = new Ray(transform.position, Vector3.down);
         
-        if ( Physics.Raycast(ray, out hit, 100f, distanceMask) && transform.position.y - hit.point.y != distance ) {
+        if ( Physics.Raycast (ray, out hit, 100f, distanceMask) && transform.position.y - hit.point.y != distance ) {
             transform.position = new Vector3(
                 transform.position.x,
                 (
