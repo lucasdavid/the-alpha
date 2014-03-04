@@ -37,16 +37,8 @@ public class HudUnitAction : MonoBehaviour {
         if ( gameObject.name == "sel_stop" )
             marquee.StopUnits();
 
-        StopCoroutine("ShowSelectionLight");
-        StartCoroutine("ShowSelectionLight");
-    }
-
-    IEnumerator ShowSelectionLight()
-    {
-        Debug.Log("HudUnitAction@ShowSelectionLight");
-        selectionLight.transform.position = gameObject.transform.position;
+        selectionLight.transform.position = gameObject.transform.position + Vector3.back;
         selectionLight.GetComponent<Light>().enabled = true;
-        yield return new WaitForSeconds(.5f);
     }
 
     /**

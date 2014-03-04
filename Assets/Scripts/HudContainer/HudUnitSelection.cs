@@ -69,7 +69,7 @@ public class HudUnitSelection : MonoBehaviour {
         
         marquee.SelectUnits( selection.ToArray() );
 
-        selectionLight.transform.position = gameObject.transform.position;
+        selectionLight.transform.position = gameObject.transform.position + Vector3.back;
         selectionLight.GetComponent<Light>().enabled = true;
     }
 
