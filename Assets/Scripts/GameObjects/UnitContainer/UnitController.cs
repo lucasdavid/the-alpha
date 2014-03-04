@@ -151,7 +151,7 @@ public class UnitController : MonoBehaviour {
 
     public void Resume()
     {
-        if ( state == UnitState.idle && agent.destination != null )
+        if ( state == UnitState.idle )
             Move ( agent.destination );
     }
 

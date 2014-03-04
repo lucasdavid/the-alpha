@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class PointPlate : MonoBehaviour {
 
-    GameObject pointPlate;
+    public GameObject [] number;
+    public Sprite     [] sprites;
 
-	void Start ()
+    public void UpdateGraphics( int _points )
     {
-        pointPlate = GameObject.Find("point-plate");
-	}
+        number[0].GetComponent<SpriteRenderer>().sprite = sprites[ _points / 10 ];
+        number[1].GetComponent<SpriteRenderer>().sprite = sprites[ _points % 10 ];
+
+        number[0].GetComponent<Animator>().SetTrigger("AnimateNumber");
+        number[1].GetComponent<Animator>().SetTrigger("AnimateNumber");
+    }
+
 }
