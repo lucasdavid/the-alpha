@@ -69,16 +69,8 @@ public class HudUnitSelection : MonoBehaviour {
         
         marquee.SelectUnits( selection.ToArray() );
 
-        StopCoroutine("ShowSelectionLight");
-        StartCoroutine("ShowSelectionLight");
-    }
-
-    IEnumerator ShowSelectionLight()
-    {
-        Debug.Log("HudUnitAction@ShowSelectionLight");
         selectionLight.transform.position = gameObject.transform.position;
         selectionLight.GetComponent<Light>().enabled = true;
-        yield return new WaitForSeconds(.5f);
     }
 
     /**
