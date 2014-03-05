@@ -21,7 +21,7 @@ public class LocationTriggers : MonoBehaviour {
         
         SendUnits();
         StartCoroutine(wait());
-        Engage = false;
+
     }
     
     // Leaving a tier = going to the previous tier
@@ -30,11 +30,11 @@ public class LocationTriggers : MonoBehaviour {
         
         SendBackup();
         StartCoroutine(wait());
-        Engage = false;
     }
 
     IEnumerator wait() {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(1.0f);
+        Engage = false;
     }
 
     void SendUnits() {

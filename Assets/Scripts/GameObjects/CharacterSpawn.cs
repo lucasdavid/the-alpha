@@ -59,7 +59,7 @@ public class CharacterSpawn : MonoBehaviour
         }
     }
 
-    void Spawn (int index)
+    public void Spawn (int index)
     {
         int cost = characters [index].Value;
 

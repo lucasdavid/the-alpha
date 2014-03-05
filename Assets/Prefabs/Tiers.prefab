@@ -182,7 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12393273924b5804097fef6a09dc3f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn: []
+  spawn:
+  - {fileID: 100010, guid: eb6414c7ff3d34e91b92196748f6de73, type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,7 +195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12393273924b5804097fef6a09dc3f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn: []
+  spawn:
+  - {fileID: 100010, guid: eb6414c7ff3d34e91b92196748f6de73, type: 2}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -207,7 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn:
-  - {fileID: 0}
+  - {fileID: 100020, guid: eb6414c7ff3d34e91b92196748f6de73, type: 2}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -219,7 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12393273924b5804097fef6a09dc3f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn: []
+  spawn:
+  - {fileID: 100020, guid: eb6414c7ff3d34e91b92196748f6de73, type: 2}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,7 +234,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12393273924b5804097fef6a09dc3f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn: []
+  spawn:
+  - {fileID: 100006, guid: eb6414c7ff3d34e91b92196748f6de73, type: 2}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -27,16 +27,16 @@ public class Shop : MonoBehaviour {
 
             // Clean up
             if (GUI.Button(new Rect(left + offset, top + 20.0f, boxWidth - 2 * offset, 20), "[Q] Basic Zombie - 1BP")) {
-                SendMessage("Spawn", 0);
+                GetComponent<CharacterSpawn>().Spawn(0);
             }
             if (GUI.Button(new Rect(left + offset, top + 50.0f, boxWidth - 2 * offset, 20), "[W] Scout Zombie - 1BP")) {
-                SendMessage("Spawn", 1);
+                GetComponent<CharacterSpawn>().Spawn(1);
             }
-            if (GUI.Button(new Rect(left + offset, top + 80.0f, boxWidth - 2 * offset, 20), "[E] Tank Zombie - 2BP")) {
-                SendMessage("Spawn", 2);
+            if (GUI.Button(new Rect(left + offset, top + 80.0f, boxWidth - 2 * offset, 20), "[E] Soldier Zombie - 2BP")) {
+                GetComponent<CharacterSpawn>().Spawn(2);
             }
-            if (GUI.Button(new Rect(left + offset, top + 110.0f, boxWidth - 2 * offset, 20), "[R] Soldier Zombie - 2BP")) {
-                SendMessage("Spawn", 3);
+            if (GUI.Button(new Rect(left + offset, top + 110.0f, boxWidth - 2 * offset, 20), "[R] Tank Zombie - 2BP")) {
+                GetComponent<CharacterSpawn>().Spawn(3);
             }
 
         }

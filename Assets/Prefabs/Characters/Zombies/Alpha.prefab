@@ -1391,7 +1391,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100100}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 125.09584, y: 8.49641418, z: 16.2109261}
+  m_LocalPosition: {x: 116.373444, y: 8.49641418, z: 6.67052555}
   m_LocalScale: {x: 2.25, y: 2.25, z: 2.25}
   m_Children:
   - {fileID: 400098}
@@ -1411,7 +1411,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100102}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 0, y: 10.7224655, z: 0}
+  m_LocalPosition: {x: 0, y: 15, z: 0}
   m_LocalScale: {x: 25, y: 25, z: 1}
   m_Children: []
   m_Father: {fileID: 400100}
@@ -1491,7 +1491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Alpha
-  _healthMultiplier: 2
+  _healthMultiplier: 3
   _movementMultiplier: 2
   _aDamageMultiplier: 2
   _aSpeedMultiplier: 2
@@ -1509,6 +1509,7 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
+  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -1537,6 +1538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Alpha
   _displayName: Alpha
+  _maxHealth: 0
   _health: 100
   _destructable: 1
   _value: 2
