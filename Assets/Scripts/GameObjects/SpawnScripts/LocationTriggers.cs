@@ -3,6 +3,7 @@ using System.Collections;
 
 public class LocationTriggers : MonoBehaviour {
     public GameObject[] spawn;
+    public int characterType;
     
     private static bool _engage;
     
@@ -42,7 +43,7 @@ public class LocationTriggers : MonoBehaviour {
         
         // Spawn humans upon entering
         for (int i = 0; i < (5 + Tier.currentTier); i++)
-            Humans.SpawnHuman(0);
+            Humans.SpawnHuman(characterType);
 
     }
 
@@ -51,7 +52,7 @@ public class LocationTriggers : MonoBehaviour {
         
         // Spawn humans upon leaving
         for (int i = 0; i < (2 + Tier.currentTier); i++)
-            Humans.SpawnHuman(0);
+            Humans.SpawnHuman(characterType);
 
     }
 }

@@ -1496,8 +1496,8 @@ MonoBehaviour:
   _destructable: 1
   _value: 1
   _target: {fileID: 0}
-  _sightRange: 5
-  _attackRange: 2
+  _sightRange: 10
+  _attackRange: 4
   _alliance: 0
   _killer: {fileID: 0}
   _big: 0
