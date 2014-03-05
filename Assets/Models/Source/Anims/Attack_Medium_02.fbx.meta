@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 3d1e3648340a44740bb54890d7b79089
 ModelImporter:
-  serializedVersion: 16
+  serializedVersion: 15
   fileIDToRecycleName:
     100000: //RootNode
     100002: CenterHead
@@ -160,7 +160,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -941,5 +941,4 @@ ModelImporter:
   lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: b3378991beabe134081bb1bd693cc32b,
     type: 3}
   animationType: 3
-  additionalBone: 0
   userData: 

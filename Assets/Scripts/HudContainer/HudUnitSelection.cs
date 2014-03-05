@@ -30,7 +30,7 @@ public class HudUnitSelection : MonoBehaviour {
             selection.AddRange( GameObject.FindGameObjectsWithTag("selectable") );
             
             for ( int i = 0; i < selection.Count; i++ ) {
-                if (selection[i].name != "GenericCharacter") {
+                if (selection[i].name != "BasicZombie(Clone)") {
                     selection.RemoveAt(i);
                     i--;
                 }
@@ -40,7 +40,7 @@ public class HudUnitSelection : MonoBehaviour {
             selection.AddRange( GameObject.FindGameObjectsWithTag("selectable") );
             
             for ( int i = 0; i < selection.Count; i++ ) {
-                if (selection[i].name != "GenericCharacter") {
+                if (selection[i].name != "ScoutZombie(Clone)") {
                     selection.RemoveAt(i);
                     i--;
                 }
@@ -50,7 +50,7 @@ public class HudUnitSelection : MonoBehaviour {
             selection.AddRange( GameObject.FindGameObjectsWithTag("selectable") );
             
             for ( int i = 0; i < selection.Count; i++ ) {
-                if (selection[i].name != "TankCharacter") {
+                if (selection[i].name != "SoldierZombie(Clone)") {
                     selection.RemoveAt(i);
                     i--;
                 }
@@ -60,7 +60,7 @@ public class HudUnitSelection : MonoBehaviour {
             selection.AddRange( GameObject.FindGameObjectsWithTag("selectable") );
             
             for ( int i = 0; i < selection.Count; i++ ) {
-                if (selection[i].name != "ScoutCharacter") {
+                if (selection[i].name != "TankZombie(Clone)") {
                     selection.RemoveAt(i);
                     i--;
                 }

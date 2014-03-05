@@ -40,7 +40,7 @@ public class CharacterSpawn : MonoBehaviour
         if (Input.GetKeyDown (Keymap.kmSpawn.Shop))
             Shop.open = !Shop.open;
 
-        if (cooldown <= 0 && Shop.open) {
+        if (Shop.open) {
             // Figure out a cleaner way of doing this
             if (Input.GetKeyDown (Keymap.kmSpawn.Basic))
                 Spawn ((int)type.basic);
@@ -61,6 +61,10 @@ public class CharacterSpawn : MonoBehaviour
 
     public void Spawn (int index)
     {
+        // Check cooldown
+        if (cooldown > 0)
+            return;
+
         int cost = characters [index].Value;
 
         if (characters[index].Alliance == 0 && Horde.BrainPoints >= cost && (Horde.CurrentValue + cost) <= maxValue) {
