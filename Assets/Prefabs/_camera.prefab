@@ -15,11 +15,11 @@ GameObject:
   - 82: {fileID: 8200000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
-  - 114: {fileID: 11400004}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400012}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: _camera
   m_TagString: MainCamera
@@ -66,7 +66,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_HDR: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
 --- !u!81 &8100000
 AudioListener:
   m_ObjectHideFlags: 1
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee6ced03c2d732b448c42096d2724244, type: 3}
+  m_Script: {fileID: 11500000, guid: 69da08ed7d7600c4fb077a4eae66c43f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   zombieSpawn: {fileID: 0}
@@ -188,7 +188,6 @@ MonoBehaviour:
   - {fileID: 11400002, guid: f9ed5d117a5ad47b0b2e4f56cbedb904, type: 2}
   - {fileID: 11400002, guid: ab279b5b7c5f547acb9238ccb5caac4a, type: 2}
   - {fileID: 11400002, guid: 8efe3b917a8c947c299585a4e5afb833, type: 2}
-  - {fileID: 11400002, guid: 735431635812c294ab9a22a59236e112, type: 2}
   maxValue: 50
 --- !u!114 &11400006
 MonoBehaviour:
@@ -224,11 +223,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characters:
-  - {fileID: 11400000, guid: 55f8641cab2464b20b1903defe05e983, type: 2}
-  - {fileID: 11400000, guid: 5d8f5fa9b9e31492996a3bb3d18e2d05, type: 2}
-  - {fileID: 11400004, guid: aae269bd2133b42669f675d99fd93e11, type: 2}
-  - {fileID: 11400000, guid: 12e81959281c9441cbd8056561d478b2, type: 2}
-  - {fileID: 11400000, guid: 1647aa56e3c3f42eb88a232afc5f03e0, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1

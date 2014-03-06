@@ -123,16 +123,13 @@ public class CameraMarquee : MonoBehaviour
         Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         // Right click an enemy
-        if ( Physics.Raycast(r, out hit, Mathf.Infinity, ~layer) && hit.collider.CompareTag("enemy")) {
+        if ( Physics.Raycast(r, out hit, Mathf.Infinity, ~layer) && hit.collider.CompareTag("enemy"))
+        {
             Debug.Log ("Attacking " + hit.collider.gameObject);
             AttackUnit(hit.collider.gameObject);
-        } else if ( Physics.Raycast(r, out hit, Mathf.Infinity, ~layer) ) {
-
-//            ClickMarquee.transform.position = hit.point + Vector3.up * .1f;
-//            ClickMarquee.SetActive(true);
-//            yield return new WaitForSeconds(2f);
-//            ClickMarquee.SetActive(false);
-
+        }
+        else if ( Physics.Raycast(r, out hit, Mathf.Infinity, ~layer) )
+        {
             MoveUnits( hit.point, true );
         }
     }
@@ -178,13 +175,24 @@ public class CameraMarquee : MonoBehaviour
 
     public void MoveUnits ( Vector3 _target, bool _overrideAttack )
     {
+        // offset from _target of units, when they move towards it
+        Vector3 relative = new Vector3(-8, 0, 0);
+
         foreach ( GameObject unit in SelectedUnits )
         {
             unit.GetComponent<UnitController>().hold = false;
             // Force movement to override attacking
             unit.GetComponent<UnitController>().SetTarget(false);
             unit.GetComponent<Mob>().Target = null;
-            unit.GetComponent<UnitController>().Move( _target, _overrideAttack );
+            unit.GetComponent<UnitController>().Move( _target + relative, _overrideAttack );
+
+            Debug.Log(_target + relative);
+
+            if ( (relative.x += 4) == 8 )
+            {
+                relative.x = -8;
+                relative.z -= 4;
+            }
         }
     }
 
