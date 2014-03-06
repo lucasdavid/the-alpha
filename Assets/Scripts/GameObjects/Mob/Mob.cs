@@ -136,14 +136,12 @@ public class Mob : MonoBehaviour {
             Horde.ThreatLevel -= Value;
         }
 
-        yield return new WaitForSeconds(2.0F);
+        yield return new WaitForSeconds(4.0F);
 
         if (Killer == Alpha.GetAlpha ()) {
             Horde.CurrentValue += Value;
             ObjectPool.Spawn (CharacterSpawn.GetZombie(), transform.position);
         }
-
-        yield return new WaitForSeconds(3.0F);
 
         this.Recycle();
 

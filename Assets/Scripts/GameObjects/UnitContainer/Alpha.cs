@@ -20,9 +20,9 @@ public class Alpha : MonoBehaviour {
 	void Update () {
         _healTimer -= Time.deltaTime;
 
-        // Heal 1 HP every 2 seconds until back to max
+        // Heal 1 HP every second until back to max
         if (_healTimer <= 0) {
-            _healTimer = 2.0f;
+            _healTimer = 1.0f;
             if (GetComponent<Mob>().Health < GetComponent<Mob>().MaxHealth)
                 GetComponent<Mob>().Health++;
         }
