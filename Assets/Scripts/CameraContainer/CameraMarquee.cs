@@ -175,24 +175,29 @@ public class CameraMarquee : MonoBehaviour
 
     public void MoveUnits ( Vector3 _target, bool _overrideAttack )
     {
-        // offset from _target of units, when they move towards it
-        Vector3 relative = new Vector3(-8, 0, 0);
+        int row    = 0;
+        int column = 0;
 
         foreach ( GameObject unit in SelectedUnits )
         {
+
+            // offset from _target of units, when they move towards it
+            Vector3 target = _target;
+
+            target.x += ( column % 2 == 0 ? 2 : -2 ) * column;
+            target.z += -2 * row;
+
+            if ( ++ column == 5 )
+            {
+                column = 0;
+                row ++;
+            }
+
             unit.GetComponent<UnitController>().hold = false;
             // Force movement to override attacking
             unit.GetComponent<UnitController>().SetTarget(false);
             unit.GetComponent<Mob>().Target = null;
-            unit.GetComponent<UnitController>().Move( _target + relative, _overrideAttack );
-
-            Debug.Log(_target + relative);
-
-            if ( (relative.x += 4) == 12 )
-            {
-                relative.x = -8;
-                relative.z -= 4;
-            }
+            unit.GetComponent<UnitController>().Move( target, _overrideAttack );
         }
     }
 

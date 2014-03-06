@@ -75,7 +75,7 @@ public class CharacterSpawn : MonoBehaviour
             if (!free)
                 Horde.BrainPoints -= cost;
 
-            Debug.Log ("BP: " + Horde.BrainPoints + ", Cost: " + cost + ", Value:" + Horde.CurrentValue + "/" + maxValue);
+//            Debug.Log ("BP: " + Horde.BrainPoints + ", Cost: " + cost + ", Value:" + Horde.CurrentValue + "/" + maxValue);
 
             ObjectPool.Spawn (characters [index], location);
 
