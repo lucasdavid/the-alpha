@@ -15,7 +15,6 @@ public class Mob : MonoBehaviour {
     public int _alliance;                   // Unit's allegiance, 0 = Zombie, 1 = Human
     public GameObject _killer;              // Who killed this unit?
 
-
     Animator anim;
     //NavMeshAgent navAgent;
     public bool _big;
@@ -115,17 +114,19 @@ public class Mob : MonoBehaviour {
 
         collider.enabled = true;
         GetComponent<UnitController>().enabled = true;
+        GetComponent<NavMeshAgent>().enabled = true;
         Destructable = true;
 
         _lockUnit = 0;
     }
 
     IEnumerator Die() {
-        anim.SetBool("Dead", true);                     // Trigger death animation
-        collider.enabled = false;                       // Stop enemies from moving towards it
-        GetComponent<UnitController>().enabled = false; // Disable attacking
-        Destructable = false;                           // Set invincible
-        Horde.ResetThreatTimer();                       // Reset ThreatLevel decrement timer
+        anim.SetBool("Dead", true);                      // Trigger death animation
+        collider.enabled = false;                        // Stop enemies from moving towards it
+        GetComponent<UnitController>().enabled = false;  // Disable attacking
+        GetComponent<NavMeshAgent>().enabled = false; // disable collision if living units
+        Destructable = false;                            // Set invincible
+        Horde.ResetThreatTimer();                        // Reset ThreatLevel decrement timer
         // Very bad place to put this, but it works
         if (Alliance != 0) {                // If a human dies
             Horde.BrainPoints += Value;
