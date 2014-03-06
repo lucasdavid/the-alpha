@@ -60,10 +60,10 @@ public class CharacterSpawn : MonoBehaviour
     }
 
     public void Spawn (int index) {
-        Spawn(index, zombieSpawn.transform.position);
+        Spawn(index, zombieSpawn.transform.position, false);
     }
 
-    public void Spawn (int index, Vector3 location, bool free = false)
+    public void Spawn (int index, Vector3 location, bool free)
     {
         // Check cooldown
         if (cooldown > 0)

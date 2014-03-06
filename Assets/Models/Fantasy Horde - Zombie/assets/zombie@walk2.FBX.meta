@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 0884f874228a3724c96590a72ca3abbb
 ModelImporter:
-  serializedVersion: 15
+  serializedVersion: 16
   fileIDToRecycleName:
     100000: Base HumanRPlatform
     100002: Base HumanRDigit21
@@ -751,4 +751,5 @@ ModelImporter:
   lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 40d830fee97c30c4890221054ad675b5,
     type: 3}
   animationType: 3
+  additionalBone: 0
   userData: 

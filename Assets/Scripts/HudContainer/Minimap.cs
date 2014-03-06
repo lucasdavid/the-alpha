@@ -2,30 +2,37 @@
 using System.Collections;
 
 public class Minimap : MonoBehaviour {
-    // Can migrate this code over the CameraMarquee when I figure out how to detect IF-INSIDE-HUD
-    // - Victor
+
+    public Camera mapCamera;
+
     LayerMask layer;
-    Camera thisCamera;
+    CameraMarquee marquee;
 
-	// Use this for initialization
-	void Start () {
-        thisCamera = this.camera;
+    void Start()
+    {
+        marquee = Camera.main.GetComponent<CameraMarquee>();
         layer = 1 << 12; // Ignore Tier Layer
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetMouseButton (0)) {
-            MoveMap();
-        }
-	}
+    }
 
-    void MoveMap() {
-        Ray ray = thisCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if ( Physics.Raycast(ray, out hit, Mathf.Infinity, ~layer)) {
-            Camera.main.GetComponent<CameraMovement>().Move ( hit.point );
+    void OnMouseEnter()
+    {
+        marquee.mouseIsBeingUsedByHUD = true;
+    }
+
+    void OnMouseDrag()
+    {
+        if ( marquee.mouseIsBeingUsedByHUD )
+        {
+            Ray ray = mapCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if ( Physics.Raycast(ray, out hit, Mathf.Infinity, ~layer))
+                Camera.main.GetComponent<CameraMovement>().Move ( hit.point );
         }
+    }
+    
+    void OnMouseExit()
+    {
+        marquee.mouseIsBeingUsedByHUD = false;
     }
 
 }

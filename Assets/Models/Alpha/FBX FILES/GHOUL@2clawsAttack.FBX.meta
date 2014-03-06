@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: c600d16163a7c6f49906687d24e76a36
 ModelImporter:
-  serializedVersion: 15
+  serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
     100002: GHOUL_
@@ -853,4 +853,5 @@ ModelImporter:
   lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 18add10720a21d24a8dfd03bbaa75784,
     type: 3}
   animationType: 3
+  additionalBone: 0
   userData: 

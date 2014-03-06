@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 40d830fee97c30c4890221054ad675b5
 ModelImporter:
-  serializedVersion: 15
+  serializedVersion: 16
   fileIDToRecycleName:
     100000: Base HumanPelvis
     100002: Base HumanLDigit22
@@ -1030,4 +1030,5 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 3
+  additionalBone: 0
   userData: 
