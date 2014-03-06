@@ -188,7 +188,7 @@ public class CameraMarquee : MonoBehaviour
 
             Debug.Log(_target + relative);
 
-            if ( (relative.x += 4) == 8 )
+            if ( (relative.x += 4) == 12 )
             {
                 relative.x = -8;
                 relative.z -= 4;

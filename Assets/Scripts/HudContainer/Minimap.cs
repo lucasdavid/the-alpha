@@ -24,13 +24,7 @@ public class Minimap : MonoBehaviour {
         Ray ray = thisCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if ( Physics.Raycast(ray, out hit, Mathf.Infinity, ~layer)) {
-            // Keep camera height fixed, move x, z
-
-            // Z Offset for camera angle
-            Vector3 moveCamera = new Vector3(hit.point.x, Camera.main.transform.position.y, hit.point.z - 25.0f);
-
-            if (hit.point.x > 0 && hit.point.z > 0)
-                Camera.main.transform.position = moveCamera;
+            Camera.main.GetComponent<CameraMovement>().Move ( hit.point );
         }
     }
 
