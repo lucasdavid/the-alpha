@@ -59,7 +59,11 @@ public class CharacterSpawn : MonoBehaviour
         }
     }
 
-    public void Spawn (int index)
+    public void Spawn (int index) {
+        Spawn(index, zombieSpawn.transform.position);
+    }
+
+    public void Spawn (int index, Vector3 location, bool free = false)
     {
         // Check cooldown
         if (cooldown > 0)
@@ -68,10 +72,12 @@ public class CharacterSpawn : MonoBehaviour
         int cost = characters [index].Value;
 
         if (characters[index].Alliance == 0 && Horde.BrainPoints >= cost && (Horde.CurrentValue + cost) <= maxValue) {
-            Horde.BrainPoints -= cost;
+            if (!free)
+                Horde.BrainPoints -= cost;
+
             Debug.Log ("BP: " + Horde.BrainPoints + ", Cost: " + cost + ", Value:" + Horde.CurrentValue + "/" + maxValue);
 
-            ObjectPool.Spawn (characters [index], zombieSpawn.transform.position);
+            ObjectPool.Spawn (characters [index], location);
 
             Horde.CurrentValue += cost;
             Horde.ThreatLevel += cost;

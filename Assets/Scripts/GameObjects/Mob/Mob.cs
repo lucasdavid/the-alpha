@@ -138,13 +138,28 @@ public class Mob : MonoBehaviour {
 
         yield return new WaitForSeconds(4.0F);
 
+        // Only spawn if Humans have more value than Zombies
         if (Killer == Alpha.GetAlpha ()) {
-            Horde.CurrentValue += Value;
-            ObjectPool.Spawn (CharacterSpawn.GetZombie(), transform.position);
+            switch(Name){
+                case "BasicHuman":
+                    Camera.main.GetComponent<CharacterSpawn>().Spawn (0, transform.position, true);
+                    break;
+                case "ScoutHuman":
+                    Camera.main.GetComponent<CharacterSpawn>().Spawn (1, transform.position, true);
+                    break;
+                case "SoldierHuman":
+                    Camera.main.GetComponent<CharacterSpawn>().Spawn (2, transform.position, true);
+                    break;
+                case "TankHuman":
+                    Camera.main.GetComponent<CharacterSpawn>().Spawn (3, transform.position, true);
+                    break;
+                default:
+                    Camera.main.GetComponent<CharacterSpawn>().Spawn (0, transform.position, true);
+                    break;
+            }
         }
 
         this.Recycle();
-
 
     }
 }
