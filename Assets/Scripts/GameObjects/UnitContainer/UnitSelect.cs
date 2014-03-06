@@ -3,11 +3,11 @@ using System.Collections;
 
 public class UnitSelect : MonoBehaviour {
     // Temporarily sticking health bar in selected units
-    private Rect OverlayRect = new Rect();
+    //private Rect OverlayRect = new Rect();
 
 	public bool selected;
 	
-    private float m_OverlayWidth = 100.0f;
+    //private float m_OverlayWidth = 100.0f;
     //public Texture healthTexture = HealthBar.GetHealthTexture();
 
     /*
@@ -21,7 +21,7 @@ public class UnitSelect : MonoBehaviour {
     }
 */
 
-    // Really sloppy, but it works for now
+    /* Really sloppy, but it works for now
     void OnGUI() {
         if (selected) {
             Vector3 centerPoint = Camera.main.WorldToScreenPoint (transform.position);
@@ -40,12 +40,13 @@ public class UnitSelect : MonoBehaviour {
             //GUI.Box(new Rect(10.0f, 10.0f, 100.0f, 20.0f), GetComponent<Mob>().Health + "/" + GetComponent<Mob>().MaxHealth);
         }
         //    GUI.DrawTexture(OverlayRect, healthTexture);
-    }
+    }*/
 
 	private void OnSelected()
 	{
 		selected = true;
-		gameObject.GetComponentInChildren<Light>().enabled = true;
+		//gameObject.GetComponentInChildren<Light>().enabled = true;
+        gameObject.GetComponentInChildren<HealthBar>().Enable();
 		//renderer.material.color = Color.red;
 	}
 	
@@ -53,6 +54,7 @@ public class UnitSelect : MonoBehaviour {
 	{
 		selected = false;
 		//renderer.material.color = Color.white;
-		gameObject.GetComponentInChildren<Light>().enabled = false;
+		//gameObject.GetComponentInChildren<Light>().enabled = false;
+        gameObject.GetComponentInChildren<HealthBar>().Disable();
 	}
 }
