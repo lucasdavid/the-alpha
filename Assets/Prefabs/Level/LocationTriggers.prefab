@@ -121,12 +121,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002ecac23df574ee49c724931a45470c, type: 3}
+  m_Script: {fileID: 11500000, guid: 16196ad2d600b48248bbc617eebfe73a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawn:
-  - {fileID: 100014, guid: eb6414c7ff3d34e91b92196748f6de73, type: 2}
-  - {fileID: 100014, guid: eb6414c7ff3d34e91b92196748f6de73, type: 2}
+  - {fileID: 100014, guid: aa36837d1afec4afeb5e744fcc1d27ea, type: 2}
+  - {fileID: 100014, guid: aa36837d1afec4afeb5e744fcc1d27ea, type: 2}
   characterType: 0
 --- !u!114 &11400002
 MonoBehaviour:
@@ -136,13 +136,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002ecac23df574ee49c724931a45470c, type: 3}
+  m_Script: {fileID: 11500000, guid: 16196ad2d600b48248bbc617eebfe73a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawn:
-  - {fileID: 100006, guid: eb6414c7ff3d34e91b92196748f6de73, type: 2}
-  - {fileID: 100006, guid: eb6414c7ff3d34e91b92196748f6de73, type: 2}
-  characterType: 2
+  - {fileID: 100000, guid: aa36837d1afec4afeb5e744fcc1d27ea, type: 2}
+  - {fileID: 100030, guid: aa36837d1afec4afeb5e744fcc1d27ea, type: 2}
+  characterType: 3
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -151,13 +151,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002ecac23df574ee49c724931a45470c, type: 3}
+  m_Script: {fileID: 11500000, guid: 16196ad2d600b48248bbc617eebfe73a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawn:
-  - {fileID: 100010, guid: eb6414c7ff3d34e91b92196748f6de73, type: 2}
-  - {fileID: 100028, guid: eb6414c7ff3d34e91b92196748f6de73, type: 2}
-  characterType: 2
+  - {fileID: 100010, guid: aa36837d1afec4afeb5e744fcc1d27ea, type: 2}
+  - {fileID: 100028, guid: aa36837d1afec4afeb5e744fcc1d27ea, type: 2}
+  characterType: 0
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

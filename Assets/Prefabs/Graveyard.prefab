@@ -30,7 +30,7 @@ GameObject:
   - 33: {fileID: 3300002}
   - 64: {fileID: 6400000}
   - 23: {fileID: 2300002}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Graveyard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e30db3a9a67646d8847218e285428b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b3cc437343c6408e84a7a4169fb854b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &100100000

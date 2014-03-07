@@ -5,10 +5,6 @@ public class HealthBar : MonoBehaviour {
     Renderer render;
     Mob mob;
 
-    public Color[] colors;
-
-
-
     void Start() {
         mob = transform.parent.GetComponent<Mob>();
         render = GetComponent<Renderer>();
