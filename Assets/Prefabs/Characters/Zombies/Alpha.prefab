@@ -894,6 +894,7 @@ GameObject:
   - 4: {fileID: 400116}
   - 212: {fileID: 21200002}
   - 114: {fileID: 11400010}
+  - 95: {fileID: 9500002}
   m_Layer: 0
   m_Name: Selection
   m_TagString: Untagged
@@ -1582,7 +1583,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 196.325806, y: 7.71712494, z: 13.56357}
+  m_LocalPosition: {x: 196.325806, y: 10.271637, z: 22.1070061}
   m_LocalScale: {x: 3.5, y: 3, z: 3.5}
   m_Children:
   - {fileID: 400108}
@@ -1689,6 +1690,20 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 18add10720a21d24a8dfd03bbaa75784, type: 3}
   m_Controller: {fileID: 9100000, guid: af7de448956dc4667a57b5f20fa48d73, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
+--- !u!95 &9500002
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100116}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
