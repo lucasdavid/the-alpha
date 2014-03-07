@@ -1,22 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Graveyard : MonoBehaviour {
-    float timer;
 
-	// Full HP for Alpha in 2 minutes
-	void Start () {
-        timer = 0;	
+    public float healInterval;
+
+    List<Mob> units;
+    ParticleSystem effect;
+
+    void Start ()
+    {
+        units = new List<Mob>();
+        effect = GetComponentInChildren<ParticleSystem>();
 	}
 
-    void OnTriggerStay(Collider col) {
-        timer -= Time.deltaTime;
+    void OnTriggerEnter(Collider _collider)
+    {
+        units.Add( _collider.GetComponent<Mob>() );
+        effect.enableEmission = true;
+    }
 
-        var mob = col.GetComponent<Mob>();
+    void OnTriggerExit(Collider _collider)
+    {
+        units.Remove( _collider.GetComponent<Mob>() );
+        effect.enableEmission = units.Count > 0;
+    }
 
-        if ((mob.gameObject.tag == "selectable") && (mob.Health < mob.MaxHealth) && timer <= 0) {
-            mob.Health++;
-            timer = 0.12f;
-        }
+    IEnumerator Heal()
+    {
+        yield return new WaitForSeconds(healInterval);
+
+        foreach ( Mob unit in units )
+            unit.Health++;
     }
 }

@@ -45,9 +45,12 @@ public class Mob : MonoBehaviour {
     public int Health {
         get { return _health; }
         set {
-            _health = value; 
+            _health = value;
 
-            if (Health <= 0)
+            if ( _maxHealth != 0 && _health > _maxHealth )
+                _health = _maxHealth;
+
+            if (_health <= 0)
             {
                 _lockUnit++;
 
