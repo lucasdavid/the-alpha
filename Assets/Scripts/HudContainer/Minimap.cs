@@ -16,6 +16,12 @@ public class Minimap : MonoBehaviour {
 
     void OnMouseEnter()
     {
+        Debug.Log ("Minimap@OnMouseEnter");
+        marquee.mouseIsBeingUsedByHUD = true;
+    }
+
+    void OnMouseDown()
+    {
         marquee.mouseIsBeingUsedByHUD = true;
     }
 
@@ -29,9 +35,16 @@ public class Minimap : MonoBehaviour {
                 Camera.main.GetComponent<CameraMovement>().Move ( hit.point );
         }
     }
+
+    void OnMouseExit()
+    {
+        Debug.Log ("Minimap@OnMouseExit");
+        marquee.mouseIsBeingUsedByHUD = false;
+    }
     
     void OnMouseUp()
     {
+        Debug.Log ("Minimap@OnMouseUp");
         marquee.mouseIsBeingUsedByHUD = false;
     }
 
