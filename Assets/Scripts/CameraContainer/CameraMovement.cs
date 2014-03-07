@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CameraMovement : MonoBehaviour {
 
-    const int MIN_X = 24, MAX_X = 280, MIN_Y = 10, MAX_Y = 60, MIN_Z = -4, MAX_Z = 260;
+    const float MIN_X = 24, MAX_X = 280, MIN_Y = 10, MAX_Y = 60, MIN_Z = 3.6f, MAX_Z = 260;
     
     // speed in which the camera moves
     public float distance;
