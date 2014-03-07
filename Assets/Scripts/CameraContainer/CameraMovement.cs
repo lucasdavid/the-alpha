@@ -4,6 +4,8 @@ using System.Collections;
 public class CameraMovement : MonoBehaviour {
 
     const float MIN_X = 24, MAX_X = 280, MIN_Y = 10, MAX_Y = 60, MIN_Z = 3.6f, MAX_Z = 260;
+
+    const float MIN_ROTATION = 15, MAX_ROTATION = 60;
     
     // speed in which the camera moves
     public float distance;
@@ -67,9 +69,9 @@ public class CameraMovement : MonoBehaviour {
         {
             Vector3 rotation = transform.eulerAngles;
 
-            if ( Input.GetAxis("Mouse ScrollWheel") < 0 )
+            if ( Input.GetAxis("Mouse ScrollWheel") < 0 && rotation.x <= MAX_ROTATION )
                 rotation.x += rotationSpeed * Time.deltaTime;
-            if ( Input.GetAxis("Mouse ScrollWheel") > 0 )
+            if ( Input.GetAxis("Mouse ScrollWheel") > 0 && rotation.x >= MIN_ROTATION )
                 rotation.x -= rotationSpeed * Time.deltaTime;
 
             transform.eulerAngles = rotation;

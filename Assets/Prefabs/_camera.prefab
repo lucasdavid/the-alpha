@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: .382683486, y: 0, z: 0, w: .923879564}
-  m_LocalPosition: {x: 194.19194, y: 35, z: -4}
+  m_LocalPosition: {x: 194.19194, y: 35, z: 3.5999999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 30
-  movementSpeed: 30
+  movementSpeed: 60
   rotationSpeed: 200
   distanceMask:
     serializedVersion: 2
@@ -167,9 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0214297db6a0e98468e890e49cca16fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectedUnits: []
   marqueeGraphics: {fileID: 2800000, guid: 5b8934e9948e02948a78ade4098545a3, type: 3}
   mouseIsBeingUsedByHUD: 0
-  SelectedUnits: []
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

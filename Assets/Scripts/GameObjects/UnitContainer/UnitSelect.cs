@@ -45,7 +45,7 @@ public class UnitSelect : MonoBehaviour {
 	private void OnSelected()
 	{
 		selected = true;
-		//gameObject.GetComponentInChildren<Light>().enabled = true;
+        //gameObject.GetComponentInChildren<Light>().enabled = true;
         gameObject.GetComponentInChildren<HealthBar>().Enable();
 		//renderer.material.color = Color.red;
 	}
