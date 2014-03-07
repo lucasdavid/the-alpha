@@ -30,7 +30,7 @@ public class Minimap : MonoBehaviour {
         }
     }
     
-    void OnMouseExit()
+    void OnMouseUp()
     {
         marquee.mouseIsBeingUsedByHUD = false;
     }

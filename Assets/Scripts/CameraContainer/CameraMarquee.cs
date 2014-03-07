@@ -2,17 +2,16 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class CameraMarquee : MonoBehaviour
-{
+public class CameraMarquee : MonoBehaviour {
+
+    public List<GameObject> SelectedUnits;
     public Texture marqueeGraphics;
     public bool    mouseIsBeingUsedByHUD;
-    
-    public List<GameObject> SelectedUnits;
 
-    Rect marqueeRect;
-    Vector2 marqueeOrigin;
-    Vector2 marqueeSize;
-    Rect backupRect;
+    Rect      marqueeRect;
+    Rect      backupRect;
+    Vector2   marqueeOrigin;
+    Vector2   marqueeSize;
     LayerMask layer;
 
     void Start()
@@ -50,25 +49,30 @@ public class CameraMarquee : MonoBehaviour
     void MarqueeStart()
     {
         // clear previous selection if "shift" is not held down
-        if (!Input.GetKey (Keymap.kmSelect.Shift)) {
+        if ( ! Input.GetKey (Keymap.kmSelect.Shift) )
             UnselectUnits();
-        }
         
         // initiate selection marquee
         float _invertedY = Screen.height - Input.mousePosition.y;
-        marqueeOrigin = new Vector2(Input.mousePosition.x, _invertedY);
-        
+        marqueeOrigin    = new Vector2 ( Input.mousePosition.x, _invertedY );
+
         //Check if the player just wants to add one unit
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if ( Physics.Raycast(ray, out hit, Mathf.Infinity, ~layer) && hit.collider.CompareTag("selectable") )
+        if ( Physics.Raycast(
+                Camera.main.ScreenPointToRay(Input.mousePosition),
+                out hit, Mathf.Infinity,
+                ~layer
+            ) && hit.collider.CompareTag("selectable") )
         {
             // If selected already, unselect
             // If not selected, select
-            if (SelectedUnits.Contains(hit.collider.gameObject)) {
+            if ( SelectedUnits.Contains(hit.collider.gameObject) )
+            {
                 hit.collider.gameObject.SendMessage("OnUnselected", SendMessageOptions.DontRequireReceiver);
                 SelectedUnits.Remove(hit.collider.gameObject);
-            } else {
+            }
+            else
+            {
                 hit.transform.gameObject.SendMessage("OnSelected", SendMessageOptions.DontRequireReceiver);
                 SelectedUnits.Add(hit.collider.gameObject);
             }
@@ -80,12 +84,12 @@ public class CameraMarquee : MonoBehaviour
         float _invertedY = Screen.height - Input.mousePosition.y;
         marqueeSize = new Vector2(Input.mousePosition.x - marqueeOrigin.x, (marqueeOrigin.y - _invertedY) * -1);
 
-        if (marqueeRect.width < 0)
+        if ( marqueeRect.width < 0 )
             backupRect = new Rect(marqueeRect.x - Mathf.Abs(marqueeRect.width), marqueeRect.y, Mathf.Abs(marqueeRect.width), marqueeRect.height);
-        else if (marqueeRect.height < 0)
+        else if ( marqueeRect.height < 0 )
             backupRect = new Rect(marqueeRect.x, marqueeRect.y - Mathf.Abs(marqueeRect.height), marqueeRect.width, Mathf.Abs(marqueeRect.height));
 
-        if (marqueeRect.width < 0 && marqueeRect.height < 0)
+        if ( marqueeRect.width < 0 && marqueeRect.height < 0 )
             backupRect = new Rect(marqueeRect.x - Mathf.Abs(marqueeRect.width), marqueeRect.y - Mathf.Abs(marqueeRect.height), Mathf.Abs(marqueeRect.width), Mathf.Abs(marqueeRect.height));
     }
 
@@ -110,10 +114,10 @@ public class CameraMarquee : MonoBehaviour
         SelectUnits();
         
         //Reset the marquee so it no longer appears on the screen.
-        marqueeRect.width = 0;
+        marqueeRect.width  = 0;
         marqueeRect.height = 0;
-        backupRect.width = 0;
-        backupRect.height = 0;
+        backupRect.width   = 0;
+        backupRect.height  = 0;
         marqueeSize = Vector2.zero;
     }
 
