@@ -48,13 +48,13 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraContainer\CameraMarquee.cs" />
      <Compile Include="Assets\Scripts\CameraContainer\CameraMovement.cs" />
-     <Compile Include="Assets\Scripts\GameObjects\Base\Thing.cs" />
-     <Compile Include="Assets\Scripts\GameObjects\CharacterSpawn.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Mob\CharClass.cs" />
      <Compile Include="Assets\Scripts\GameObjects\Mob\Mob.cs" />
-     <Compile Include="Assets\Scripts\GameObjects\Obj\Obj.cs" />
-     <Compile Include="Assets\Scripts\GameObjects\ObjectPool.cs" />
-     <Compile Include="Assets\Scripts\GameObjects\Tier\Tier.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\Mob\ObjectPool.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\Objects\Graveyard.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\SpawnScripts\CharacterSpawn.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\SpawnScripts\LocationTriggers.cs" />
+     <Compile Include="Assets\Scripts\GameObjects\SpawnScripts\Tier.cs" />
      <Compile Include="Assets\Scripts\GameObjects\UnitContainer\Alpha.cs" />
      <Compile Include="Assets\Scripts\GameObjects\UnitContainer\Horde.cs" />
      <Compile Include="Assets\Scripts\GameObjects\UnitContainer\Humans.cs" />
@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\HudContainer\HudUnitSelection.cs" />
      <Compile Include="Assets\Scripts\HudContainer\Minimap.cs" />
      <Compile Include="Assets\Scripts\HudContainer\PointPlate.cs" />
+     <Compile Include="Assets\Scripts\HudContainer\Shop.cs" />
      <Compile Include="Assets\Scripts\Keymap.cs" />
      <None Include="Assets\Models\Source\Shaders\Virtualware_BumpSpec.shader" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />

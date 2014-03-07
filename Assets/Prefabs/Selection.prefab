@@ -39,7 +39,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d50296b8d4a7645219c649faa556c889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colors: []
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -61,7 +60,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 008a07798f6114b1a9dc865b7a242a29, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 01b6e53b0dcc04e4c8e915b6540e112e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

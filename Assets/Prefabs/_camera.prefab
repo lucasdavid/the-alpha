@@ -178,16 +178,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69da08ed7d7600c4fb077a4eae66c43f, type: 3}
+  m_Script: {fileID: 11500000, guid: 065a84ffdef424cde8747aeae5bbd1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombieSpawn: {fileID: 0}
-  humanSpawn: {fileID: 0}
+  zombieSpawn: {fileID: 100002, guid: 4c02fc5edb2904471bbbea4b4587f2e0, type: 2}
+  humanSpawn: {fileID: 100004, guid: 4c02fc5edb2904471bbbea4b4587f2e0, type: 2}
   characters:
   - {fileID: 11400002, guid: 813e108f54e7f46829cac8c5b54b64ca, type: 2}
   - {fileID: 11400002, guid: f9ed5d117a5ad47b0b2e4f56cbedb904, type: 2}
   - {fileID: 11400002, guid: ab279b5b7c5f547acb9238ccb5caac4a, type: 2}
   - {fileID: 11400002, guid: 8efe3b917a8c947c299585a4e5afb833, type: 2}
+  - {fileID: 11400000, guid: 16594b783963147e1a7d1c21e15aa17e, type: 2}
   maxValue: 50
 --- !u!114 &11400006
 MonoBehaviour:
