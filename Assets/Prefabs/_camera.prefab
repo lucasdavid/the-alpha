@@ -224,11 +224,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characters:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 16594b783963147e1a7d1c21e15aa17e, type: 2}
+  - {fileID: 11400000, guid: 8a7b0a81f0dc7439e9d8967715ef06bb, type: 2}
+  - {fileID: 11400004, guid: bfa8370bd0cf8417bb8e673caae313fb, type: 2}
+  - {fileID: 11400000, guid: b7560f57ff10248f1bb9c598154644b3, type: 2}
+  - {fileID: 11400000, guid: 0aa6158a5061643d0912766571601d89, type: 2}
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
