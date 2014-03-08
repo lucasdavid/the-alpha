@@ -10,7 +10,7 @@ public class Shop : MonoBehaviour {
 
     void Start ()
     {
-        open = false;
+        open    = false;
         anim    = GetComponent<Animator>();
         spawner = Camera.main.GetComponent<CharacterSpawn>();
 	}

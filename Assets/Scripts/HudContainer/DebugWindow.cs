@@ -8,6 +8,8 @@ public class DebugWindow : MonoBehaviour {
     string tlText = "0";
     int bp, tl, cv; // Brain Points, Threat Level, CurrentValue
 
+    Mob alpha;
+
 	void Start ()
     {
         open = false;
@@ -36,10 +38,10 @@ public class DebugWindow : MonoBehaviour {
 
         if ( open )
         {
-            // BRAINPOINT STUFF
             bp = Horde.BrainPoints;
 
             GUI.Box(new Rect(left, top, boxWidth, boxHeight), "Debug Menu");
+
             GUI.Label (new Rect (left + offset, top + offset + 20, boxWidth - offset, boxHeight - offset), "BP:");
             bpText = GUI.TextField(new Rect(left + offset * 7, top + offset + 20, 50, 20), bp.ToString(), 6);
             bpText = Regex.Replace(bpText, @"[^0-9]", "");
@@ -52,7 +54,7 @@ public class DebugWindow : MonoBehaviour {
             if (GUI.Button(new Rect(left + offset * 13, top + offset + 20, 20, 20), "-"))
                 Horde.BrainPoints--;
 
-            // THREAT LEVEL
+            // thread level
             tl = Horde.ThreatLevel;
             GUI.Label (new Rect (left + offset, top + offset + 40, boxWidth - offset, boxHeight - offset), "TL:");
             tlText = GUI.TextField(new Rect(left + offset * 7, top + offset + 40, 50, 20), tl.ToString(), 6);
@@ -66,12 +68,11 @@ public class DebugWindow : MonoBehaviour {
             if (GUI.Button(new Rect(left + offset * 13, top + offset + 40, 20, 20), "-"))
                 Horde.ThreatLevel--;
 
-            // CURRENT VALUE
+            // current value
             GUI.Label (new Rect (left + offset, top + offset + 60, boxWidth - offset, boxHeight - offset), "CV: " + Horde.CurrentValue);
 
-            // ENEMY VALUE
+            // enemy value
             GUI.Label (new Rect (left + offset, top + offset + 80, boxWidth - offset, boxHeight - offset), "EV: " + Humans.CurrentValue);
-            // OTHER STUFF ?
         }
     }
 }

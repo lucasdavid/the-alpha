@@ -6,8 +6,8 @@ public class Graveyard : MonoBehaviour {
 
     public float healInterval;
 
-    List<Mob> units;
     ParticleSystem effect;
+    List<Mob> units;
 
     void Start ()
     {
@@ -18,20 +18,33 @@ public class Graveyard : MonoBehaviour {
     void OnTriggerEnter(Collider _collider)
     {
         units.Add( _collider.GetComponent<Mob>() );
-        effect.enableEmission = true;
+
+        // first unit to enter the graveyard, activates the healing
+        if ( units.Count == 1 )
+        {
+            effect.enableEmission = true;
+            StartCoroutine ("Heal");
+        }
     }
 
     void OnTriggerExit(Collider _collider)
     {
         units.Remove( _collider.GetComponent<Mob>() );
-        effect.enableEmission = units.Count > 0;
+
+        // last unit to leave the graveyard, deactivates the healing
+        if ( units.Count == 0 )
+        {
+            effect.enableEmission = false;
+            StopCoroutine ("Heal");
+        }
     }
 
     IEnumerator Heal()
     {
-        yield return new WaitForSeconds(healInterval);
-
-        foreach ( Mob unit in units )
-            unit.Health++;
+        while ( true )
+        {
+            yield return new WaitForSeconds(healInterval);
+            foreach ( Mob unit in units ) unit.Health++;
+        }
     }
 }
