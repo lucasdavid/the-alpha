@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CameraMovement : MonoBehaviour {
@@ -16,7 +16,7 @@ public class CameraMovement : MonoBehaviour {
 
     Vector3 movement;
     Rect[] rectangles;
-    
+
     void Start ()
     {
         movement    = Vector3.zero;
