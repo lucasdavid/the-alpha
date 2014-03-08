@@ -16,7 +16,6 @@ public class Minimap : MonoBehaviour {
 
     void OnMouseEnter()
     {
-        Debug.Log ("Minimap@OnMouseEnter");
         marquee.mouseIsBeingUsedByHUD = true;
     }
 
