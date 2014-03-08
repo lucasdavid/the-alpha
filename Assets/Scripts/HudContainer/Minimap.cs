@@ -38,13 +38,11 @@ public class Minimap : MonoBehaviour {
 
     void OnMouseExit()
     {
-        Debug.Log ("Minimap@OnMouseExit");
         marquee.mouseIsBeingUsedByHUD = false;
     }
     
     void OnMouseUp()
     {
-        Debug.Log ("Minimap@OnMouseUp");
         marquee.mouseIsBeingUsedByHUD = false;
     }
 
