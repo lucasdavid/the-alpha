@@ -18,7 +18,6 @@ GameObject:
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400010}
-  - 114: {fileID: 11400012}
   - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: _camera
@@ -263,11 +262,11 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f025613a9fad4b24ba7c29b875ba63a4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Priority: 128
   DopplerLevel: 1
@@ -449,7 +448,8 @@ MonoBehaviour:
   - {fileID: 11400002, guid: ab279b5b7c5f547acb9238ccb5caac4a, type: 2}
   - {fileID: 11400002, guid: 8efe3b917a8c947c299585a4e5afb833, type: 2}
   - {fileID: 11400000, guid: 16594b783963147e1a7d1c21e15aa17e, type: 2}
-  maxValue: 50
+  maxSpawns: 50
+  cooldown: 2
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -489,17 +489,6 @@ MonoBehaviour:
   - {fileID: 11400004, guid: bfa8370bd0cf8417bb8e673caae313fb, type: 2}
   - {fileID: 11400000, guid: b7560f57ff10248f1bb9c598154644b3, type: 2}
   - {fileID: 11400000, guid: 0aa6158a5061643d0912766571601d89, type: 2}
---- !u!114 &11400012
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2dbee9a8c7c34bbb9ba371d24c22846, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1

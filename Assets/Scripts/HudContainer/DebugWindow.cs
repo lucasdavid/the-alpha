@@ -8,13 +8,13 @@ public class DebugWindow : MonoBehaviour {
     string tlText = "0";
     int bp, tl, cv; // Brain Points, Threat Level, CurrentValue
 
-	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         open = false;
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         // Toggle menu
 	    if (Input.GetKeyDown(KeyCode.BackQuote)) 
             open = !open;
@@ -26,14 +26,16 @@ public class DebugWindow : MonoBehaviour {
             open = false;
 	}
 
-    void OnGUI() {
+    void OnGUI()
+    {
         float left = Screen.width / 3;
         float top = Screen.height / 4;
         float boxWidth = Screen.width / 3;
         float boxHeight = Screen.height / 3;
         float offset = 10.0f;
 
-        if (open) {
+        if ( open )
+        {
             // BRAINPOINT STUFF
             bp = Horde.BrainPoints;
 
@@ -42,9 +44,8 @@ public class DebugWindow : MonoBehaviour {
             bpText = GUI.TextField(new Rect(left + offset * 7, top + offset + 20, 50, 20), bp.ToString(), 6);
             bpText = Regex.Replace(bpText, @"[^0-9]", "");
 
-            if (int.TryParse(bpText, out bp)) {
+            if (int.TryParse(bpText, out bp))
                 Horde.BrainPoints = bp;
-            }
 
             if (GUI.Button(new Rect(left + offset * 4, top + offset + 20, 20, 20), "+"))
                 Horde.BrainPoints++;
@@ -57,9 +58,8 @@ public class DebugWindow : MonoBehaviour {
             tlText = GUI.TextField(new Rect(left + offset * 7, top + offset + 40, 50, 20), tl.ToString(), 6);
             tlText = Regex.Replace(tlText, @"[^0-9]", "");
             
-            if (int.TryParse(tlText, out tl)) {
+            if (int.TryParse(tlText, out tl))
                 Horde.ThreatLevel = tl;
-            }
             
             if (GUI.Button(new Rect(left + offset * 4, top + offset + 40, 20, 20), "+"))
                 Horde.ThreatLevel++;

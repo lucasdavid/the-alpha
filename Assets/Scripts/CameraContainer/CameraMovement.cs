@@ -57,7 +57,7 @@ public class CameraMovement : MonoBehaviour {
             movement.z = 0;
 
         // if the mouse scrollwheel is moved
-        if ( ! Input.GetKey(Keymap.kmCamera.SecondFunction) )
+        if ( ! Input.GetKey(Keymap.camera.Alternative) )
         {
             if ( Input.GetAxis("Mouse ScrollWheel") < 0 && distance <= MAX_Y )
                 distance += movementSpeed * Time.deltaTime;

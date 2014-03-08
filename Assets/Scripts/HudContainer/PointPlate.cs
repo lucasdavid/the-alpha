@@ -11,7 +11,6 @@ public class PointPlate : MonoBehaviour {
     {
         previous = _points - 1;
 
-
         number[0].GetComponent<SpriteRenderer>().sprite = sprites[ _points / 10 ];
         number[1].GetComponent<SpriteRenderer>().sprite = sprites[ _points % 10 ];
 

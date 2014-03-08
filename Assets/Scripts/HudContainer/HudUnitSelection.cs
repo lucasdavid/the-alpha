@@ -5,17 +5,17 @@ using System.Collections.Generic;
 public class HudUnitSelection : MonoBehaviour {
     
     static CameraMarquee marquee;
-    static GameObject selectionLight;
+    static GameObject    selectionLight;
     
     void Start ()
     {
-        marquee = Camera.main.GetComponent<CameraMarquee>();
+        marquee        = Camera.main.GetComponent<CameraMarquee>();
         selectionLight = GameObject.Find("HUD/button-unit/light-selection");
     }
 
     void OnMouseDown()
     {
-        StopCoroutine("SignalMouseOverHUD");
+        StopCoroutine ("SignalMouseOverHUD");
         StartCoroutine("SignalMouseOverHUD");
  
         List<GameObject> selection = new List<GameObject>();

@@ -1,44 +1,41 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Shop : MonoBehaviour {
+
     public static bool open;
 
-    // This shop to be replaced with real graphics
+    Animator anim;
+    CharacterSpawn spawner;
 
-	// Use this for initialization
-	void Start () {
-        open = false;	
+    void Start ()
+    {
+        open = false;
+        anim    = GetComponent<Animator>();
+        spawner = Camera.main.GetComponent<CharacterSpawn>();
 	}
-	
-	// Update is called once per frame
-	void OnGUI () {
-        if (GUI.Button(new Rect(10, Screen.height - 110, 200, 20), "[O] Zombie Shop"))
-            open = !open;
 
-        // ACTUAL STUFF HERE
-        if (open) {
-            float left = 10.0f;
-            float top = Screen.height - 260.0f;
-            float boxWidth = 200.0f;
-            float offset = 5.0f;
-
-            GUI.Box(new Rect(left, top, boxWidth, 140.0f), "Zombie Shop");
-
-            // Clean up
-            if (GUI.Button(new Rect(left + offset, top + 20.0f, boxWidth - 2 * offset, 20), "[Q] Basic Zombie - 1BP")) {
-                GetComponent<CharacterSpawn>().Spawn(0);
-            }
-            if (GUI.Button(new Rect(left + offset, top + 50.0f, boxWidth - 2 * offset, 20), "[W] Scout Zombie - 1BP")) {
-                GetComponent<CharacterSpawn>().Spawn(1);
-            }
-            if (GUI.Button(new Rect(left + offset, top + 80.0f, boxWidth - 2 * offset, 20), "[E] Soldier Zombie - 2BP")) {
-                GetComponent<CharacterSpawn>().Spawn(2);
-            }
-            if (GUI.Button(new Rect(left + offset, top + 110.0f, boxWidth - 2 * offset, 20), "[R] Tank Zombie - 2BP")) {
-                GetComponent<CharacterSpawn>().Spawn(3);
-            }
-
+    void Update ()
+    {
+        if ( Input.GetKeyDown( Keymap.shop.Interact ) )
+        {
+            anim.SetTrigger("interact");
+            open = ! open;
         }
-	}
+
+        if ( open )
+        {
+            if (Input.GetKeyDown (Keymap.spawn.Basic))
+                spawner.Spawn ((int) CharacterSpawn.type.basic);
+            
+            if (Input.GetKeyDown (Keymap.spawn.Scout))
+                spawner.Spawn ((int) CharacterSpawn.type.scout);
+            
+            if (Input.GetKeyDown (Keymap.spawn.Soldier))
+                spawner.Spawn ((int) CharacterSpawn.type.soldier);
+            
+            if (Input.GetKeyDown (Keymap.spawn.Tank))
+                spawner.Spawn ((int) CharacterSpawn.type.tank);
+        }
+    }
 }

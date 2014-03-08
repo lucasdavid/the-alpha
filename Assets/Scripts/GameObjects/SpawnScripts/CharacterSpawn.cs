@@ -3,91 +3,68 @@ using System.Collections;
 
 public class CharacterSpawn : MonoBehaviour
 {
-    public enum type {
-        basic,
-        scout,
-        soldier,
-        tank,
-        enemy
-    };
+    public enum type { basic, scout, soldier, tank, enemy };
 
-    public GameObject zombieSpawn;          // Where zombies spawn
-    public GameObject humanSpawn;           // Where humans spawn
-
+    public GameObject zombieSpawn;          
+    public GameObject humanSpawn;
     public Mob[] characters;
+    public int maxSpawns;             // Character limit, based on unit's value
 
-    public int maxValue = 50;               // Character limit, based on unit's value
+    public float cooldown;
+    private float timeElapsed;
 
-    float cooldown = 2.0f;
+    private static Component _zombie; // For Alpha turning -- see Mob.Die()
 
-    private static Component _zombie;       // For Alpha turning -- see Mob.Die()
-
-    public static Component GetZombie() {
+    public static Component GetZombie()
+    {
         return _zombie;
     }
 
-    void Start () {
+    void Start ()
+    {
         for (int i = 0; i < characters.Length; i++)
             characters[i].CreatePool();
 
-        _zombie = characters [0];
+        timeElapsed = 0;
+        _zombie     = characters [0];
     }
 
     void Update ()
     {
-        cooldown -= Time.deltaTime;
-
-        if (Input.GetKeyDown (Keymap.kmSpawn.Shop))
-            Shop.open = !Shop.open;
-
-        if (Shop.open) {
-            // Figure out a cleaner way of doing this
-            if (Input.GetKeyDown (Keymap.kmSpawn.Basic))
-                Spawn ((int)type.basic);
-        
-            if (Input.GetKeyDown (Keymap.kmSpawn.Scout))
-                Spawn ((int)type.scout);
-
-            if (Input.GetKeyDown (Keymap.kmSpawn.Soldier))
-                Spawn ((int)type.soldier);
-
-            if (Input.GetKeyDown (Keymap.kmSpawn.Tank))
-                Spawn ((int)type.tank);
-
-            if (Input.GetKeyDown (Keymap.kmSpawn.Enemy))
-                Spawn ((int)type.enemy);
-        }
+        timeElapsed += Time.deltaTime;
     }
 
-    public void Spawn (int index) {
-        Spawn(index, zombieSpawn.transform.position, false);
-    }
-
-    public void Spawn (int index, Vector3 location, bool free)
+    public void Spawn ( int index )
     {
-        // Check cooldown
-        if (cooldown > 0)
-            return;
+        Spawn ( index, zombieSpawn.transform.position, false );
+    }
 
-        int cost = characters [index].Value;
+    public void Spawn ( int index, Vector3 location, bool free )
+    {
+        if ( timeElapsed >= cooldown )
+        {
+            timeElapsed = 0;
 
-        if (characters[index].Alliance == 0 && Horde.BrainPoints >= cost && (Horde.CurrentValue + cost) <= maxValue) {
-            if (!free)
-                Horde.BrainPoints -= cost;
+            int cost = characters [index].Value;
 
-//            Debug.Log ("BP: " + Horde.BrainPoints + ", Cost: " + cost + ", Value:" + Horde.CurrentValue + "/" + maxValue);
+            if ( characters[index].Alliance == 0 && Horde.BrainPoints >= cost && Horde.CurrentValue + cost <= maxSpawns )
+            {
+                if ( ! free ) Horde.BrainPoints -= cost;
 
-            ObjectPool.Spawn (characters [index], location);
+                ObjectPool.Spawn (characters [index], location);
 
-            Horde.CurrentValue += cost;
-            Horde.ThreatLevel += cost;
-            cooldown = 2.0f;
-        // Might move this elsewhere -- Victor
-        } else if (characters[index].Alliance != 0) {
-            ObjectPool.Spawn (characters [index], humanSpawn.transform.position);
-            Humans.CurrentValue += cost;
-        } else {
-            Debug.Log ("Cannot spawn character. BP: " + Horde.BrainPoints + ", Cost: " + cost + ", Value:" + Horde.CurrentValue + "/" + maxValue);
+                Horde.CurrentValue += cost;
+                Horde.ThreatLevel  += cost;
+            }
+            else if ( characters[index].Alliance != 0 )
+            {
+                ObjectPool.Spawn (characters [index], humanSpawn.transform.position);
+                Humans.CurrentValue += cost;
+            }
+            else
+            {
+                Debug.Log ("Cannot spawn character. BP: " + Horde.BrainPoints + ", Cost: " + cost + ", Value:" + Horde.CurrentValue + "/" + maxSpawns);
+            }
         }
     }
 }

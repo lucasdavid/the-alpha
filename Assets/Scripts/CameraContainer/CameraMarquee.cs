@@ -54,7 +54,7 @@ public class CameraMarquee : MonoBehaviour {
         HUD.CleanSelection();
 
         // clear previous selection if "shift" is not held down
-        if ( ! Input.GetKey (Keymap.kmSelect.Shift) )
+        if ( ! Input.GetKey (Keymap.select.Alternative) )
             UnselectUnits();
         
         // initiate selection marquee
