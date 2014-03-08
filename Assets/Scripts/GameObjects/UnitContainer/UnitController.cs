@@ -136,7 +136,7 @@ public class UnitController : MonoBehaviour {
         }
     }
 
-    public void Stop ( )
+    public void Stop ()
     {
         // stop current movement
         if ( state == UnitState.moving ) {

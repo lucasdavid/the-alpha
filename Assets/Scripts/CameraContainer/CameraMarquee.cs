@@ -169,12 +169,14 @@ public class CameraMarquee : MonoBehaviour {
     void SelectUnits ()
     {
         // add new selection
-        foreach ( GameObject unit in SelectedUnits ) {
+        foreach ( GameObject unit in SelectedUnits )
             unit.SendMessage("OnSelected", SendMessageOptions.DontRequireReceiver);
-        }
     }
 
-    public void AttackUnit( GameObject _target ) {
+    public void AttackUnit ( GameObject _target )
+    {
+        SelectedUnits[0].GetComponent<AudioController>().Play( (int) AudioController.DefaultSounds.charge, true );
+
         foreach ( GameObject unit in SelectedUnits )
         {
             // Force movement to override attacking
@@ -203,11 +205,13 @@ public class CameraMarquee : MonoBehaviour {
                 row ++;
             }
 
-            unit.GetComponent<UnitController>().hold = false;
+            UnitController current = unit.GetComponent<UnitController>();
+            
             // Force movement to override attacking
-            unit.GetComponent<UnitController>().SetTarget(false);
+            current.hold = false;
+            current.SetTarget(false);
             unit.GetComponent<Mob>().Target = null;
-            unit.GetComponent<UnitController>().Move( target, _overrideAttack );
+            current.Move( target, _overrideAttack );
         }
     }
 

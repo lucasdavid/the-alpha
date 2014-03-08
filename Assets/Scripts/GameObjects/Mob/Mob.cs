@@ -16,7 +16,8 @@ public class Mob : MonoBehaviour {
     public GameObject _killer;              // Who killed this unit?
 
     Animator anim;
-    //NavMeshAgent navAgent;
+    AudioController audioContr;
+
     public bool _big;
     private int _lockUnit;                  // Once a unit dies, lock it
     private static int _threatMultiplier;   // ThreatLevel Multiplier
@@ -96,55 +97,79 @@ public class Mob : MonoBehaviour {
         set { _killer = value; }
     }
 
-    void Start() {
+    void Start ()
+    {
         MaxHealth = Health;
         ThreatMultiplier = 1;
-        anim = GetComponent<Animator>();
-        //navAgent = GetComponent<NavMeshAgent>();
+
+        anim  = GetComponent<Animator>();
+        audioContr = GetComponent<AudioController>();
+
         anim.SetBool("Big", _big);   
         OnEnable();
     }
 
-    void OnEnable() {
-        Health = (int)(100 * GetComponent<CharClass>().HealthMultiplier);
+    void OnEnable ()
+    {
+        Health = ( int ) (100 * GetComponent<CharClass>().HealthMultiplier);
 
-        if (Alliance != 0 && (string.Compare(Name, "King") != 0 && (Tier.Engage || LocationTriggers.Engage))) { // Only chase if set to "Engage"
+        // Only chase if set to "Engage"
+        if ( Alliance != 0      &&
+             Name     != "King" &&
+            (Tier.Engage || LocationTriggers.Engage) )
+        { 
             GetComponent<UnitController>().SetTarget(true); // Force unit to target the Alpha
-            Target = GameObject.Find ("Alpha");
-        } else {
+            Target = Alpha.GetAlpha();
+        }
+        else
+        {
             Target = null;
         }
 
         collider.enabled = true;
         GetComponent<UnitController>().enabled = true;
-        GetComponent<NavMeshAgent>().enabled = true;
+        GetComponent<NavMeshAgent>().enabled   = true;
         Destructable = true;
 
         _lockUnit = 0;
     }
 
-    IEnumerator Die() {
-        anim.SetBool("Dead", true);                      // Trigger death animation
-        collider.enabled = false;                        // Stop enemies from moving towards it
-        GetComponent<UnitController>().enabled = false;  // Disable attacking
-        GetComponent<NavMeshAgent>().enabled = false; // disable collision if living units
-        Destructable = false;                            // Set invincible
-        Horde.ResetThreatTimer();                        // Reset ThreatLevel decrement timer
+    IEnumerator Die()
+    {
+        anim.SetBool("Dead", true);                     // Trigger death animation
+
+        try { audioContr.Play((int)AudioController.DefaultSounds.death, true); }
+        catch {  }
+        
+        collider.enabled = false;                       // Stop enemies from moving towards it
+        GetComponent<UnitController>().enabled = false; // Disable attacking
+        GetComponent<NavMeshAgent>().enabled   = false; // disable collision if living units
+        Destructable = false;                           // Set invincible
+        Horde.ResetThreatTimer();                       // Reset ThreatLevel decrement timer
+        
         // Very bad place to put this, but it works
-        if (Alliance != 0) {                // If a human dies
-            Horde.BrainPoints += Value;
+        // If a human dies
+        if (Alliance != 0)
+        {
             Horde.ThreatLevel += (Value * ThreatMultiplier);
             Humans.CurrentValue -= Value;
-        } else {                            // If a zombie dies
-            Horde.CurrentValue -= Value;
+
+            Horde.BrainPoints += Value;
+        }
+        // If a zombie dies
+        else 
+        {
             Horde.ThreatLevel -= Value;
+            Horde.CurrentValue -= Value;
         }
 
         yield return new WaitForSeconds(4.0F);
 
         // Only spawn if Humans have more value than Zombies
-        if (Killer == Alpha.GetAlpha ()) {
-            switch(Name){
+        if ( Killer == Alpha.GetAlpha() )
+        {
+            switch ( Name )
+            {
                 case "BasicHuman":
                     Camera.main.GetComponent<CharacterSpawn>().Spawn (0, transform.position, true);
                     break;
@@ -160,7 +185,7 @@ public class Mob : MonoBehaviour {
                 default:
                     Camera.main.GetComponent<CharacterSpawn>().Spawn (0, transform.position, true);
                     break;
-            }
+             }
         }
 
         this.Recycle();
