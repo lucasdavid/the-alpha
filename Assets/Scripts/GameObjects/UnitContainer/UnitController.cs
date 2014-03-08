@@ -46,7 +46,8 @@ public class UnitController : MonoBehaviour {
             Attacking();
     }
 
-    void OnEnable() {
+    void OnEnable()
+    {
         state = UnitState.idle;
     }
 
@@ -100,8 +101,6 @@ public class UnitController : MonoBehaviour {
 
     void Attacking()
     {
-        //Debug.Log ("Attacking!");
-
         // For animation
         anim.SetFloat("Speed", 0);
         anim.SetBool("Attacking", true);
@@ -111,16 +110,16 @@ public class UnitController : MonoBehaviour {
 
         state = UnitState.attacking;
 
-        if ( ( lastAttack -= Time.deltaTime ) <= 0 ) {
+        if ( ( lastAttack -= Time.deltaTime ) <= 0 )
+        {
             lastAttack = (AttackCooldown / GetComponent<CharClass>().ASpeedMultiplier);
 
             // Get UNIT->TARGET->HEALTH -- Redo this, very ugly
             mob.Target.GetComponent<Mob>().Health -= 
-                (int)(AttackDamage * GetComponent<CharClass>().ADamageMultiplier);
+                ( int ) ( AttackDamage * GetComponent<CharClass>().ADamageMultiplier );
 
-            if (mob.Target.GetComponent<Mob>().Health <= 0) {
+            if (mob.Target.GetComponent<Mob>().Health <= 0)
                 mob.Target.GetComponent<Mob>().Killer = gameObject;
-            }
         }
 
         // We only leave attacking state if target moves out of position/dies 

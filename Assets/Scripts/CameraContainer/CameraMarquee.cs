@@ -13,11 +13,13 @@ public class CameraMarquee : MonoBehaviour {
     Vector2   marqueeOrigin;
     Vector2   marqueeSize;
     LayerMask layer;
+    HudController HUD;
 
     void Start()
     {
         layer = 1 << 12; // Ignore Tier Layer
         SelectedUnits = new List<GameObject>();
+        HUD = GameObject.Find ("HUD").GetComponent<HudController>();
     }
     
     private void OnGUI()
@@ -48,6 +50,9 @@ public class CameraMarquee : MonoBehaviour {
 
     void MarqueeStart()
     {
+        // clean HUD indicador
+        HUD.CleanSelection();
+
         // clear previous selection if "shift" is not held down
         if ( ! Input.GetKey (Keymap.kmSelect.Shift) )
             UnselectUnits();
@@ -134,6 +139,7 @@ public class CameraMarquee : MonoBehaviour {
         }
         else if ( Physics.Raycast(r, out hit, Mathf.Infinity, ~layer) )
         {
+            HUD.CleanAction();
             MoveUnits( hit.point, true );
         }
     }

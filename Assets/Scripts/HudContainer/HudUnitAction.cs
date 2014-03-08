@@ -6,7 +6,8 @@ public class HudUnitAction : MonoBehaviour {
     static CameraMarquee marquee;
     static GameObject selectionLight;
 
-    void Start () {
+    void Start ()
+    {
         marquee = Camera.main.GetComponent<CameraMarquee>();
         selectionLight = GameObject.Find("HUD/button-action/light-selection");
     }
