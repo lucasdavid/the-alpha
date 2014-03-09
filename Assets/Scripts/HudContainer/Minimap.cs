@@ -14,25 +14,27 @@ public class Minimap : MonoBehaviour {
         layer = 1 << 12; // Ignore Tier Layer
     }
 
-    void OnMouseEnter()
+    void OnMouseOver()
     {
         marquee.mouseIsBeingUsedByHUD = true;
+    }
+
+    void OnMouseUp()
+    {
+        marquee.mouseIsBeingUsedByHUD = false;
     }
 
     void OnMouseDrag()
     {
         if ( marquee.mouseIsBeingUsedByHUD )
         {
-            Ray ray = mapCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if ( Physics.Raycast(ray, out hit, Mathf.Infinity, ~layer))
+            if ( Physics.Raycast(
+                mapCamera.ScreenPointToRay(Input.mousePosition),
+                out hit, Mathf.Infinity, ~layer)
+            )
                 Camera.main.GetComponent<CameraMovement>().Move ( hit.point );
         }
-    }
-
-    void OnMouseUp()
-    {
-        marquee.mouseIsBeingUsedByHUD = false;
     }
 
 }
