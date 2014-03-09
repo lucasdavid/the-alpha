@@ -19,11 +19,6 @@ public class Minimap : MonoBehaviour {
         marquee.mouseIsBeingUsedByHUD = true;
     }
 
-    void OnMouseDown()
-    {
-        marquee.mouseIsBeingUsedByHUD = true;
-    }
-
     void OnMouseDrag()
     {
         if ( marquee.mouseIsBeingUsedByHUD )
@@ -35,11 +30,6 @@ public class Minimap : MonoBehaviour {
         }
     }
 
-    void OnMouseExit()
-    {
-        marquee.mouseIsBeingUsedByHUD = false;
-    }
-    
     void OnMouseUp()
     {
         marquee.mouseIsBeingUsedByHUD = false;

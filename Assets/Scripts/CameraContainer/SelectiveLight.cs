@@ -11,7 +11,7 @@ public class SelectiveLight : MonoBehaviour {
     {
         foreach (Light light in Lights)
         {
-            light.enabled = lightsOn;
+            if (light != null) light.enabled = lightsOn;
         }
     }
 
@@ -19,7 +19,7 @@ public class SelectiveLight : MonoBehaviour {
     {
         foreach (Light light in Lights)
         {
-            light.enabled = !lightsOn;
+            if ( light != null ) light.enabled = !lightsOn;
         }
     }
 }

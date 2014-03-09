@@ -38,7 +38,12 @@ public class HudUnitAction : MonoBehaviour {
         if ( gameObject.name == "sel_stop" )
             marquee.StopUnits();
 
-        selectionLight.transform.position = gameObject.transform.position + Vector3.back;
+
+        selectionLight.transform.position = new Vector3(
+            transform.position.x,
+            selectionLight.transform.position.y,
+            selectionLight.transform.position.z
+        );
         selectionLight.GetComponent<Light>().enabled = true;
     }
 
