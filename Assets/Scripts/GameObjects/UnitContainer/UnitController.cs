@@ -55,9 +55,9 @@ public class UnitController : MonoBehaviour {
     {
         if ( mob.Target != null && mob.Target.GetComponent<Mob>().Destructable) {
             if (Vector3.Distance(transform.position, mob.Target.transform.position) > attackRange) {
-                    Move ( mob.Target.transform.position);
+                Move ( mob.Target.transform.position);
             } else {
-                Attacking();
+                Attack();
             }
         } else {
             // Detect all nearby objects within the Unit layermask
@@ -76,7 +76,7 @@ public class UnitController : MonoBehaviour {
     {
         // keep aiming until distance less than .1f
         // .1 f might be too close, temp changing to 1.0f
-        if ( Vector3.Distance(agent.destination, transform.position) < 1.0f ) {
+        if ( Vector3.Distance(agent.destination, transform.position) < 1 ) {
             anim.SetBool("Attacking", false);
             Stop ();
         }
@@ -91,7 +91,7 @@ public class UnitController : MonoBehaviour {
                 state = UnitState.idle;
             // If you're in attack range, attack!
             } else  if (Vector3.Distance(transform.position, mob.Target.transform.position) <= attackRange) {
-                Attacking();
+                Attack();
             // Keep following that target if it's in sight range
             } else {
                 Move (mob.Target.transform.position);
@@ -101,17 +101,13 @@ public class UnitController : MonoBehaviour {
 
     void Attacking()
     {
-        // For animation
-        anim.SetFloat("Speed", 0);
-        anim.SetBool("Attacking", true);
-
-        // Look at enemy
-        transform.rotation = Quaternion.LookRotation( mob.Target.transform.position - transform.position);
-
-        state = UnitState.attacking;
-
         if ( ( lastAttack -= Time.deltaTime ) <= 0 )
         {
+            if (mob.Alliance == 0)
+                GetComponent<ZombieAudioController>().Attack();
+            else
+                GetComponent<HumanAudioController>().Attack();
+            
             lastAttack = (AttackCooldown / GetComponent<CharClass>().ASpeedMultiplier);
 
             // Get UNIT->TARGET->HEALTH -- Redo this, very ugly
@@ -123,13 +119,18 @@ public class UnitController : MonoBehaviour {
         }
 
         // We only leave attacking state if target moves out of position/dies 
-        if (Vector3.Distance(transform.position, mob.Target.transform.position) > attackRange) {
+        if (Vector3.Distance(transform.position, mob.Target.transform.position) > attackRange)
+        {
             anim.SetBool("Attacking", false);
             Move ( mob.Target.transform.position);
-        } else if ( mob.Target == null) {
+        }
+        else if ( mob.Target == null)
+        {
             anim.SetBool("Attacking", false);
-            state = UnitState.idle;
-        } else if ( mob.Target.GetComponent<Mob>().Destructable == false) {
+            Stop ();
+        }
+        else if ( mob.Target.GetComponent<Mob>().Destructable == false)
+        {
             anim.SetBool("Attacking", false);
             mob.Target = null;
             state = UnitState.idle;
@@ -173,6 +174,19 @@ public class UnitController : MonoBehaviour {
             state = UnitState.moving;
         }
 	}
+
+    public void Attack()
+    {
+        // animation setting
+        anim.SetFloat("Speed", 0);
+        anim.SetBool("Attacking", true);
+
+        // Look at enemy
+        transform.rotation = Quaternion.LookRotation(mob.Target.transform.position - transform.position);
+
+        // finite-state machine setting
+        state = UnitState.attacking;
+    }
 
     public void SetTarget(bool _target) {
         target = _target;

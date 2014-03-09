@@ -131,12 +131,12 @@ public class CameraMarquee : MonoBehaviour {
         RaycastHit hit;
         Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        // Right click an enemy
+        // right click an enemy
         if ( Physics.Raycast(r, out hit, Mathf.Infinity, ~layer) && hit.collider.CompareTag("enemy"))
         {
-            Debug.Log ("Attacking " + hit.collider.gameObject);
             AttackUnit(hit.collider.gameObject);
         }
+        // right click the ground
         else if ( Physics.Raycast(r, out hit, Mathf.Infinity, ~layer) )
         {
             HUD.CleanAction();
@@ -168,6 +168,12 @@ public class CameraMarquee : MonoBehaviour {
 
     void SelectUnits ()
     {
+        // if at least on zombie is selected, make him to moan
+        if ( SelectedUnits.Count > 0 )
+            SelectedUnits[0]
+                .GetComponent<ZombieAudioController>()
+                .Moan();
+
         // add new selection
         foreach ( GameObject unit in SelectedUnits )
             unit.SendMessage("OnSelected", SendMessageOptions.DontRequireReceiver);
@@ -175,7 +181,11 @@ public class CameraMarquee : MonoBehaviour {
 
     public void AttackUnit ( GameObject _target )
     {
-        SelectedUnits[0].GetComponent<AudioController>().Play( (int) AudioController.DefaultSounds.charge, true );
+        // if at least on zombie is selected, make him scream
+        if (SelectedUnits.Count > 0)
+            SelectedUnits[0]
+                .GetComponent<ZombieAudioController>()
+                .Rage();
 
         foreach ( GameObject unit in SelectedUnits )
         {

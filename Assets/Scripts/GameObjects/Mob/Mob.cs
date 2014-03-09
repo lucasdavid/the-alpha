@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Mob : MonoBehaviour {
-    // Attributes
+
     public string _name;                    // Thing name
     public string _displayName;             // Displayed name (in GUI)
     public int _maxHealth;                  // Max Health
@@ -16,7 +16,6 @@ public class Mob : MonoBehaviour {
     public GameObject _killer;              // Who killed this unit?
 
     Animator anim;
-    AudioController audioContr;
 
     public bool _big;
     private int _lockUnit;                  // Once a unit dies, lock it
@@ -103,7 +102,6 @@ public class Mob : MonoBehaviour {
         ThreatMultiplier = 1;
 
         anim  = GetComponent<Animator>();
-        audioContr = GetComponent<AudioController>();
 
         anim.SetBool("Big", _big);   
         OnEnable();
@@ -138,9 +136,6 @@ public class Mob : MonoBehaviour {
     {
         anim.SetBool("Dead", true);                     // Trigger death animation
 
-        try { audioContr.Play((int)AudioController.DefaultSounds.death, true); }
-        catch {  }
-        
         collider.enabled = false;                       // Stop enemies from moving towards it
         GetComponent<UnitController>().enabled = false; // Disable attacking
         GetComponent<NavMeshAgent>().enabled   = false; // disable collision if living units
@@ -151,6 +146,8 @@ public class Mob : MonoBehaviour {
         // If a human dies
         if (Alliance != 0)
         {
+            GetComponent<HumanAudioController>().Hurt();
+
             Horde.ThreatLevel += (Value * ThreatMultiplier);
             Humans.CurrentValue -= Value;
 
@@ -159,6 +156,8 @@ public class Mob : MonoBehaviour {
         // If a zombie dies
         else 
         {
+            GetComponent<ZombieAudioController>().Hurt();
+
             Horde.ThreatLevel -= Value;
             Horde.CurrentValue -= Value;
         }

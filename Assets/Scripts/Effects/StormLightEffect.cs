@@ -3,13 +3,15 @@ using System.Collections;
 
 public class StormLightEffect : MonoBehaviour {
 
-    public float minLightingInterval, maxLightningInterval;
+    public float thunderDelay, minLightningInterval, maxLightningInterval;
 
-    Animator anim;
+    Animator animator;
+    StormAudioController stormAudio;
 
 	void Start()
     {
-        anim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
+        stormAudio = GetComponent<StormAudioController>();
         StartCoroutine("Thunder");
     }
 
@@ -17,10 +19,14 @@ public class StormLightEffect : MonoBehaviour {
     {
         while (true)
         {
+            // thunders occurr in an interval between minLightingInterval and maxLightningInterval
             yield return new WaitForSeconds(
-                Random.value * ( maxLightningInterval - minLightingInterval ) + minLightingInterval
+                Random.value * (maxLightningInterval - minLightningInterval) + minLightningInterval
             );
-            anim.SetTrigger("thunder");
+            animator.SetTrigger("thunder");
+
+            yield return new WaitForSeconds(thunderDelay);
+            stormAudio.Thunder();
         }
     }
 }

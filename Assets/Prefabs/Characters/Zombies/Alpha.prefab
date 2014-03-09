@@ -1635,7 +1635,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1796,15 +1796,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 100110}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6b1ecb5df0ccdf4e88306be5f34d6de, type: 3}
+  m_Script: {fileID: 11500000, guid: f6679e100d41b134595bca20c5208c83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
+  moans:
   - {fileID: 8300000, guid: c119451b54cc0c1498279ad93fd6cb9a, type: 3}
-  - {fileID: 8300000, guid: 85b4be61a28e1d546ac72613e4ed5bf6, type: 3}
+  - {fileID: 8300000, guid: 1e6ea7fe5dcb700439690ac9d4389853, type: 3}
+  - {fileID: 8300000, guid: 6675be9dabf5f0146b650d21b4ac9d7d, type: 3}
+  - {fileID: 8300000, guid: 6793bcae09fc646408c607d2b5b7acb6, type: 3}
+  attacks:
   - {fileID: 8300000, guid: 4e3c2183c07cc804dba5bfcd906ff09a, type: 3}
-  - {fileID: 8300000, guid: f126c43f034865e46ba6c84989ce7d08, type: 3}
+  - {fileID: 8300000, guid: 670979f4f0821f746af76e4a5bba626b, type: 3}
+  - {fileID: 8300000, guid: 85eca04391c40ed46a8622ec545c7dc3, type: 3}
+  - {fileID: 8300000, guid: 53fb888417a928e48a3f7db3a0b8e978, type: 3}
+  - {fileID: 8300000, guid: 231fadb1d82fade4189f8386901fb2b8, type: 3}
+  - {fileID: 8300000, guid: d729277e1fafe7448bc26c3c44a2e446, type: 3}
+  rages:
   - {fileID: 8300000, guid: 47c7aed5a35f5884da12a571858c90cb, type: 3}
+  - {fileID: 8300000, guid: 28062206fbcc8d54d9238e61a4291180, type: 3}
+  - {fileID: 8300000, guid: c0d69b8222a02c74db98446f82390e75, type: 3}
+  - {fileID: 8300000, guid: 9ee30ebe45c92b64c8d260453dbbb15c, type: 3}
+  hurts:
+  - {fileID: 8300000, guid: f126c43f034865e46ba6c84989ce7d08, type: 3}
+  - {fileID: 8300000, guid: 2dc5056ca43e44249a2d310e4efeaf73, type: 3}
+  - {fileID: 8300000, guid: 8fbc17629bdf10a4684b67ab024ebb6a, type: 3}
+  - {fileID: 8300000, guid: ef66a97a001a9a84689bcaa355b7896f, type: 3}
+  - {fileID: 8300000, guid: bbfa3e29f3b2e2e43b159556e84ac9b2, type: 3}
+  - {fileID: 8300000, guid: 7379c05d3dbb64647a4b1c6b6a8e29a4, type: 3}
+  - {fileID: 8300000, guid: b256c535a287d4649ad6a342c71bd601, type: 3}
+  - {fileID: 8300000, guid: 418f3238661ba3c4c867e20d74c5fc52, type: 3}
+  - {fileID: 8300000, guid: 1163f3d04f8c858478b8fd103f825057, type: 3}
+  - {fileID: 8300000, guid: d2584a8be74793645b83509b27cb19eb, type: 3}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
