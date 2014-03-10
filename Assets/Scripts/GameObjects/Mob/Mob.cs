@@ -162,6 +162,7 @@ public class Mob : MonoBehaviour {
             Horde.CurrentValue -= Value;
         }
 
+
         yield return new WaitForSeconds(4.0F);
 
         // Only spawn if Humans have more value than Zombies
@@ -187,7 +188,7 @@ public class Mob : MonoBehaviour {
              }
         }
 
-        this.Recycle();
-
+        if (Name != "Alpha")
+            this.Recycle();
     }
 }

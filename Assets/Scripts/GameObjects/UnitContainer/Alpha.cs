@@ -35,14 +35,17 @@ public class Alpha : MonoBehaviour {
 	}
 
     IEnumerator Wait() {
-        yield return new WaitForSeconds (2.5f);
+        Camera.main.transform.LookAt(transform.position);
+        Camera.main.transform.RotateAround(transform.position, Vector3.up, 20 * Time.deltaTime);
+
+        yield return new WaitForSeconds (10.0f);
         Time.timeScale = 0;
     }
 
     void OnGUI() {
         if (_lose) {
-            string Lose = "You Lose!";
-            GUI.Label (new Rect(Screen.width/2, Screen.height/3, 100.0f, 20.0f), Lose);
+            string Lose = "Your Alpha has died. You lose!";
+            GUI.Label (new Rect(Screen.width/2, Screen.height/3, 300.0f, 20.0f), Lose);
         }
 
     }
