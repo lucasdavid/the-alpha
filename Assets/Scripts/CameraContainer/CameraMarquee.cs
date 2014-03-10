@@ -7,7 +7,6 @@ public class CameraMarquee : MonoBehaviour {
     public List<GameObject> SelectedUnits;
     public Texture marqueeGraphics;
     public bool    mouseIsBeingUsedByHUD;
-
     Rect      marqueeRect;
     Rect      backupRect;
     Vector2   marqueeOrigin;
@@ -44,7 +43,7 @@ public class CameraMarquee : MonoBehaviour {
                 MarqueeUpdate();
 
             if ( Input.GetMouseButtonDown(1) )
-                StartCoroutine("RightMouseClick");
+                StartCoroutine("RightMouseClick", false);
         }
     }
 
@@ -126,7 +125,7 @@ public class CameraMarquee : MonoBehaviour {
         marqueeSize = Vector2.zero;
     }
 
-    void RightMouseClick()
+    void RightMouseClick(bool hud)
     {
         RaycastHit hit;
         Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);

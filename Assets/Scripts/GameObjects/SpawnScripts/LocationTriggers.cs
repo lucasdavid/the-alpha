@@ -19,18 +19,22 @@ public class LocationTriggers : MonoBehaviour {
     
     void OnTriggerEnter(Collider col) {
         Humans.SpawnPoint = spawn[0].transform.position;
-        
-        SendUnits();
-        StartCoroutine(wait());
+
+        if (Horde.CurrentValue < Humans.CurrentValue) {
+            SendUnits();
+            StartCoroutine(wait());
+        }
 
     }
     
     // Leaving a tier = going to the previous tier
     void OnTriggerExit(Collider col) {
         Humans.SpawnPoint = spawn[1].transform.position;
-        
-        SendBackup();
-        StartCoroutine(wait());
+
+        if (Horde.CurrentValue > Humans.CurrentValue) {
+            SendBackup();
+            StartCoroutine(wait());
+        }
     }
 
     IEnumerator wait() {

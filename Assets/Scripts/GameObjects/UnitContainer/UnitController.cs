@@ -159,7 +159,8 @@ public class UnitController : MonoBehaviour {
     }
 
     public void Move ( Vector3 _target, bool force )
-	{
+  	{
+        Debug.Log (_target);
         // Force character to move, so you don't get sent back to attacking state
         if ( forceMove = force )
             anim.SetBool("Attacking", false);

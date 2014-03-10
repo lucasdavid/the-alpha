@@ -548,6 +548,10 @@ MonoBehaviour:
   SelectedUnits: []
   marqueeGraphics: {fileID: 2800000, guid: 5b8934e9948e02948a78ade4098545a3, type: 3}
   mouseIsBeingUsedByHUD: 0
+  mapCamera: {fileID: 2000002, guid: 85675dcc43b5feb45badd29c7f15ae95, type: 2}
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
