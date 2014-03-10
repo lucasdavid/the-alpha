@@ -4,11 +4,11 @@ public abstract class Keymap {
 
     public abstract class select {
         public static KeyCode Alpha = KeyCode.Alpha1;
-        public static KeyCode Type0 = KeyCode.Alpha2;
-        public static KeyCode Type1 = KeyCode.Alpha3;
-        public static KeyCode Type2 = KeyCode.Alpha4;
-        public static KeyCode Type3 = KeyCode.Alpha5;
-        public static KeyCode All   = KeyCode.Alpha6;
+        public static KeyCode All   = KeyCode.Alpha2;
+        public static KeyCode Type0 = KeyCode.Alpha3;
+        public static KeyCode Type1 = KeyCode.Alpha4;
+        public static KeyCode Type2 = KeyCode.Alpha5;
+        public static KeyCode Type3 = KeyCode.Alpha6;
         public static KeyCode Alternative = KeyCode.LeftShift;
     }
 
