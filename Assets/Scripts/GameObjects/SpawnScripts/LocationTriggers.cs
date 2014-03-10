@@ -4,7 +4,9 @@ using System.Collections;
 public class LocationTriggers : MonoBehaviour {
     public GameObject[] spawn;
     public int characterType;
-    
+    public float timeLimit;     // Current time limit
+
+    private float _timeLimit;   // Max time limit
     private static bool _engage;
     
     public static bool Engage
@@ -15,23 +17,30 @@ public class LocationTriggers : MonoBehaviour {
     
     void Start () {
         Engage = false;
+        _timeLimit = timeLimit;
+    }
+
+    void Update() {
+        timeLimit -= Time.deltaTime;
     }
     
     void OnTriggerEnter(Collider col) {
-        Humans.SpawnPoint = spawn[0].transform.position;
+        if (Horde.ThreatLevel > Humans.CurrentValue && timeLimit <= 0) {
+            timeLimit = _timeLimit;
 
-        if (Horde.CurrentValue < Humans.CurrentValue) {
+            Humans.SpawnPoint = spawn[0].transform.position;
+
             SendUnits();
             StartCoroutine(wait());
         }
-
     }
     
     // Leaving a tier = going to the previous tier
     void OnTriggerExit(Collider col) {
-        Humans.SpawnPoint = spawn[1].transform.position;
+        if (Horde.ThreatLevel > Humans.CurrentValue && timeLimit <= 0) {
+            timeLimit = _timeLimit;
+            Humans.SpawnPoint = spawn[1].transform.position;
 
-        if (Horde.CurrentValue > Humans.CurrentValue) {
             SendBackup();
             StartCoroutine(wait());
         }

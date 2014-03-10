@@ -92,6 +92,20 @@ public class UnitController : MonoBehaviour {
             // If you're in attack range, attack!
             } else  if (Vector3.Distance(transform.position, mob.Target.transform.position) <= attackRange) {
                 Attack();
+            // If spawned to engage Alpha and being attacked on the way there (80 % health)
+            } else if(mob.Target == Alpha.GetAlpha() && (mob.Health/mob.MaxHealth < 0.8f )) {
+                var nearbyUnits = Physics.OverlapSphere(transform.position, sightRange, unitLayer);
+
+                if (nearbyUnits.Length == 0) {
+                    Move (mob.Target.transform.position);
+                }
+               
+                for (int i = 0; i < nearbyUnits.Length; i++) {
+                    if ( mob.Alliance != nearbyUnits[i].GetComponent<Mob>().Alliance) {
+                        mob.Target = nearbyUnits[i].gameObject;
+                        Move (nearbyUnits[i].transform.position);
+                    }
+                }
             // Keep following that target if it's in sight range
             } else {
                 Move (mob.Target.transform.position);
@@ -160,7 +174,6 @@ public class UnitController : MonoBehaviour {
 
     public void Move ( Vector3 _target, bool force )
   	{
-        Debug.Log (_target);
         // Force character to move, so you don't get sent back to attacking state
         if ( forceMove = force )
             anim.SetBool("Attacking", false);
