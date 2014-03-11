@@ -151,7 +151,8 @@ public class Mob : MonoBehaviour {
             Horde.ThreatLevel += (Value * ThreatMultiplier);
             Humans.CurrentValue -= Value;
 
-            Horde.BrainPoints += Value;
+            if (Horde.BrainPoints + Value <= 99)
+                Horde.BrainPoints += Value;
         }
         // If a zombie dies
         else 

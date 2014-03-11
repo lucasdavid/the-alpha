@@ -234,6 +234,21 @@ GameObject:
   m_Component:
   - 4: {fileID: 400030}
   m_Layer: 0
+  m_Name: CliffForest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &100032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400032}
+  m_Layer: 0
   m_Name: CastleSouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +306,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.0961685, y: 23.5257969, z: 173.203156}
+  m_LocalPosition: {x: 59.4851303, y: 23.5257969, z: 206.322754}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400012}
@@ -302,7 +317,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 147.189545, y: 12.2873449, z: 222.750214}
+  m_LocalPosition: {x: 142.642914, y: 12.2873449, z: 208.255966}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400012}
@@ -317,9 +332,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400018}
+  - {fileID: 400030}
   - {fileID: 400006}
   - {fileID: 400010}
-  - {fileID: 400030}
+  - {fileID: 400032}
   - {fileID: 400008}
   - {fileID: 400002}
   - {fileID: 400028}
@@ -426,6 +442,17 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100030}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 37.7517128, y: 23.5257969, z: 172.039398}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400012}
+--- !u!4 &400032
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 128.912857, y: 23.5257969, z: 255.925308}
   m_LocalScale: {x: 1, y: 1, z: 1}

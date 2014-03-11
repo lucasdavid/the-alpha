@@ -4,7 +4,7 @@ using System.Collections;
 public class BridgeTrigger : MonoBehaviour {
     public GameObject bridge;
     public GameObject bridgeObstacle;
-	
+    public GameObject topLeft;
     // Use this for initialization
 	void Start () {
 	
@@ -17,5 +17,7 @@ public class BridgeTrigger : MonoBehaviour {
         bridge.transform.eulerAngles = targetAngle;//Vector3.Lerp (bridge.transform.eulerAngles, targetAngle, Time.deltaTime);
 
         Destroy(bridgeObstacle);
+
+        topLeft.GetComponent<LocationTriggers>().enabled = true;
     }
 }

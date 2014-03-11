@@ -4,6 +4,8 @@ using System.Collections;
 public class LocationTriggers : MonoBehaviour {
     public GameObject[] spawn;
     public int characterType;
+
+    public bool alwaysTrigger;  // Always trigger the spawn
     public float timeLimit;     // Current time limit
 
     private float _timeLimit;   // Max time limit
@@ -25,7 +27,7 @@ public class LocationTriggers : MonoBehaviour {
     }
     
     void OnTriggerEnter(Collider col) {
-        if (Horde.ThreatLevel > Humans.CurrentValue && timeLimit <= 0) {
+        if (((alwaysTrigger) || (Horde.ThreatLevel > Humans.CurrentValue)) && timeLimit <= 0) {
             timeLimit = _timeLimit;
 
             Humans.SpawnPoint = spawn[0].transform.position;
@@ -37,7 +39,7 @@ public class LocationTriggers : MonoBehaviour {
     
     // Leaving a tier = going to the previous tier
     void OnTriggerExit(Collider col) {
-        if (Horde.ThreatLevel > Humans.CurrentValue && timeLimit <= 0) {
+        if (((alwaysTrigger) || (Horde.ThreatLevel > Humans.CurrentValue)) && timeLimit <= 0) {
             timeLimit = _timeLimit;
             Humans.SpawnPoint = spawn[1].transform.position;
 

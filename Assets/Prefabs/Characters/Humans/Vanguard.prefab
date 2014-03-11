@@ -2241,7 +2241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Vanguard
   _healthMultiplier: 3
-  _movementMultiplier: 2
+  _movementMultiplier: 1.75
   _aDamageMultiplier: 2
   _aSpeedMultiplier: 2
 --- !u!114 &11400008
