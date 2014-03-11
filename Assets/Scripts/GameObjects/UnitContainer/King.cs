@@ -3,12 +3,11 @@ using System.Collections;
 
 public class King : MonoBehaviour {
     bool _win;
-	// Use this for initialization
+	
 	void Start () {
 	
 	}
 	
-	// Update is called once per frame
 	void Update () {
         // If the King dies, you win!
         if (GetComponent<Mob> ().Health <= 0) {
@@ -24,6 +23,7 @@ public class King : MonoBehaviour {
         
         yield return new WaitForSeconds (10.0f);
         Time.timeScale = 0;
+        Application.LoadLevel("credits");
     }
     
     void OnGUI() {
