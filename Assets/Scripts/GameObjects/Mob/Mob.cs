@@ -14,7 +14,7 @@ public class Mob : MonoBehaviour {
     public int _attackRange;                // Attack range
     public int _alliance;                   // Unit's allegiance, 0 = Zombie, 1 = Human
     public GameObject _killer;              // Who killed this unit?
-
+    int tutorial;
     Animator anim;
 
     public bool _big;
@@ -105,6 +105,8 @@ public class Mob : MonoBehaviour {
 
         anim.SetBool("Big", _big);   
         OnEnable();
+
+        tutorial = 0;
     }
 
     void OnEnable ()
@@ -134,6 +136,10 @@ public class Mob : MonoBehaviour {
 
     IEnumerator Die()
     {
+        if (tutorial == 0) {
+            Camera.main.GetComponent<HintController>().Add("Your Alpha has now killed the human...");
+        }
+
         anim.SetBool("Dead", true);                     // Trigger death animation
 
         collider.enabled = false;                       // Stop enemies from moving towards it
@@ -191,5 +197,8 @@ public class Mob : MonoBehaviour {
 
         if (Name != "Alpha")
             this.Recycle();
+
+        Camera.main.GetComponent<HintController>().Add("... and has risen a new zombie!");
+        Camera.main.GetComponent<HintController>().EndTutorial();
     }
 }

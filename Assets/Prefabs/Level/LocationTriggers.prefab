@@ -233,7 +233,7 @@ MonoBehaviour:
   - {fileID: 100030, guid: aa36837d1afec4afeb5e744fcc1d27ea, type: 2}
   characterType: 4
   alwaysTrigger: 0
-  timeLimit: 2
+  timeLimit: 3
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -249,8 +249,8 @@ MonoBehaviour:
   - {fileID: 100026, guid: aa36837d1afec4afeb5e744fcc1d27ea, type: 2}
   - {fileID: 100024, guid: aa36837d1afec4afeb5e744fcc1d27ea, type: 2}
   characterType: 0
-  alwaysTrigger: 1
-  timeLimit: 5
+  alwaysTrigger: 0
+  timeLimit: 15
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -283,7 +283,7 @@ MonoBehaviour:
   - {fileID: 100008, guid: aa36837d1afec4afeb5e744fcc1d27ea, type: 2}
   - {fileID: 100030, guid: aa36837d1afec4afeb5e744fcc1d27ea, type: 2}
   characterType: 2
-  alwaysTrigger: 1
+  alwaysTrigger: 0
   timeLimit: 2
 --- !u!114 &11400010
 MonoBehaviour:
