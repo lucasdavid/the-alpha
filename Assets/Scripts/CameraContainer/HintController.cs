@@ -33,7 +33,8 @@ public class HintController : MonoBehaviour {
         StartCoroutine(End());
     }
 
-    IEnumerator End() {
+    IEnumerator End()
+    {
         yield return new WaitForSeconds(4.0f);
         Camera.main.GetComponent<HintController>().Add("Only the Alpha Zombie has this special ability.");
         yield return new WaitForSeconds(4.0f);
@@ -42,7 +43,6 @@ public class HintController : MonoBehaviour {
         Camera.main.GetComponent<HintController>().Add("This allows you to spawn even more zombies at the graveyard.");
         yield return new WaitForSeconds(4.0f);
         Camera.main.GetComponent<HintController>().Add("Go kill some more humans!");
-
     }
 
 	IEnumerator Begin() {

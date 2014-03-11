@@ -14,12 +14,14 @@ public class Mob : MonoBehaviour {
     public int _attackRange;                // Attack range
     public int _alliance;                   // Unit's allegiance, 0 = Zombie, 1 = Human
     public GameObject _killer;              // Who killed this unit?
-    int tutorial;
+    
     Animator anim;
 
     public bool _big;
     private int _lockUnit;                  // Once a unit dies, lock it
     private static int _threatMultiplier;   // ThreatLevel Multiplier
+
+    static int tutorial = 0;
 
     public static int ThreatMultiplier {
         get { return _threatMultiplier; }
@@ -103,10 +105,8 @@ public class Mob : MonoBehaviour {
 
         anim  = GetComponent<Animator>();
 
-        anim.SetBool("Big", _big);   
+        anim.SetBool("Big", _big);
         OnEnable();
-
-        tutorial = 0;
     }
 
     void OnEnable ()
@@ -198,7 +198,11 @@ public class Mob : MonoBehaviour {
         if (Name != "Alpha")
             this.Recycle();
 
-        Camera.main.GetComponent<HintController>().Add("... and has risen a new zombie!");
-        Camera.main.GetComponent<HintController>().EndTutorial();
+        if (tutorial == 0)
+        {
+            Camera.main.GetComponent<HintController>().Add("... and has risen a new zombie!");
+            Camera.main.GetComponent<HintController>().EndTutorial();
+            tutorial++;
+        }
     }
 }
