@@ -38,4 +38,10 @@ public class Shop : MonoBehaviour {
                 spawner.Spawn ((int) CharacterSpawn.type.tank);
         }
     }
+
+    void OnMouseDown() {
+        if (Input.GetMouseButtonDown(0)) {
+            Camera.main.GetComponent<HintController>().Add ("Use keys 1-4 to purchase units.");
+        }
+    }
 }

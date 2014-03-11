@@ -609,6 +609,9 @@ MonoBehaviour:
   marqueeGraphics: {fileID: 2800000, guid: 5b8934e9948e02948a78ade4098545a3, type: 3}
   movementRing: {fileID: 0}
   attackRing: {fileID: 0}
+  marqueeLayer:
+    serializedVersion: 2
+    m_Bits: 2304
   mouseIsBeingUsedByHUD: 0
 --- !u!114 &11400004
 MonoBehaviour:

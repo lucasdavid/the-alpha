@@ -41,8 +41,8 @@ public class CharacterSpawn : MonoBehaviour
 
     public void Spawn ( int index, Vector3 location, bool free )
     {
-        //if ( timeElapsed >= cooldown )
-        //{
+        if ( timeElapsed >= cooldown )
+        {
             timeElapsed = 0;
 
             int cost = characters [index].Value;
@@ -61,10 +61,12 @@ public class CharacterSpawn : MonoBehaviour
                 ObjectPool.Spawn (characters [index], humanSpawn.transform.position);
                 Humans.CurrentValue += cost;
             }
-            else
+            else if ( characters[index].Alliance == 0 && Horde.BrainPoints >= cost && Horde.CurrentValue + cost >= maxSpawns)
             {
-                Debug.Log ("Cannot spawn character. BP: " + Horde.BrainPoints + ", Cost: " + cost + ", Value:" + Horde.CurrentValue + "/" + maxSpawns);
+                Camera.main.GetComponent<HintController>().Add("You have reached the maximum amount of units!");
+            } else {
+                Camera.main.GetComponent<HintController>().Add("Not enough Brain Points!");
             }
-        //}
+        }
     }
 }

@@ -6,6 +6,8 @@ public class Alpha : MonoBehaviour {
     float _healTimer;               // Heal timer
     static GameObject theAlpha;
 
+    int tutorial;
+
     public static GameObject GetAlpha() {
         return theAlpha;
     }
@@ -14,6 +16,7 @@ public class Alpha : MonoBehaviour {
 	void Start () {
         _healTimer = 0;
         theAlpha = gameObject;
+        tutorial = 0;
 	}
 
 	// Update is called once per frame
@@ -32,7 +35,18 @@ public class Alpha : MonoBehaviour {
             _lose = true;
             StartCoroutine(Wait());
         }
+
+        if (tutorial == 1 && GetComponent<Mob>().Health <= 600) {
+            StartCoroutine(HealTutorial());
+            tutorial++;
+        }
 	}
+
+    IEnumerator HealTutorial() {
+        Camera.main.GetComponent<HintController>().Add("Looks like your Alpha is a bit hurt...");
+        yield return new WaitForSeconds(4.0f);
+        Camera.main.GetComponent<HintController>().Add("Send units back to the Graveyard to heal faster!");
+    }
 
     IEnumerator Wait() {
         Camera.main.transform.LookAt(transform.position);
@@ -47,6 +61,12 @@ public class Alpha : MonoBehaviour {
             string Lose = "Your Alpha has died. You lose!";
             GUI.Label (new Rect(Screen.width/2, Screen.height/3, 300.0f, 20.0f), Lose);
         }
+    }
 
+    void OnMouseDown() {
+        if (Input.GetMouseButtonDown(0) && tutorial == 0) {
+            tutorial++;
+            Camera.main.GetComponent<HintController>().Add("Now, find the nearest human and right click on him.");
+        }
     }
 }
