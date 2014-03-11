@@ -41,8 +41,8 @@ public class CharacterSpawn : MonoBehaviour
 
     public void Spawn ( int index, Vector3 location, bool free )
     {
-        if ( timeElapsed >= cooldown )
-        {
+        //if ( timeElapsed >= cooldown )
+        //{
             timeElapsed = 0;
 
             int cost = characters [index].Value;
@@ -65,6 +65,6 @@ public class CharacterSpawn : MonoBehaviour
             {
                 Debug.Log ("Cannot spawn character. BP: " + Horde.BrainPoints + ", Cost: " + cost + ", Value:" + Horde.CurrentValue + "/" + maxSpawns);
             }
-        }
+        //}
     }
 }

@@ -1580,7 +1580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Tank
   _healthMultiplier: 1.5
-  _movementMultiplier: .5
+  _movementMultiplier: .649999976
   _aDamageMultiplier: 1
   _aSpeedMultiplier: 1
 --- !u!114 &11400002

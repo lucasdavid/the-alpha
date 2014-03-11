@@ -3424,6 +3424,7 @@ MonoBehaviour:
   bridge: {fileID: 100070}
   bridgeObstacle: {fileID: 100052}
   topLeft: {fileID: 100010, guid: 104c1841d8c7a4f33a74600f7a6b2ffc, type: 2}
+  bridgeSpawn: {fileID: 100008, guid: 104c1841d8c7a4f33a74600f7a6b2ffc, type: 2}
 --- !u!208 &20800000
 NavMeshObstacle:
   m_ObjectHideFlags: 1

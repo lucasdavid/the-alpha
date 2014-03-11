@@ -1580,7 +1580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Scout
   _healthMultiplier: .5
-  _movementMultiplier: 1.5
+  _movementMultiplier: 1.64999998
   _aDamageMultiplier: 1
   _aSpeedMultiplier: 1
 --- !u!114 &11400002

@@ -4,7 +4,9 @@ using System.Collections;
 public class BridgeTrigger : MonoBehaviour {
     public GameObject bridge;
     public GameObject bridgeObstacle;
-    public GameObject topLeft;
+    public GameObject topLeft; // Enable
+    public GameObject bridgeSpawn; // Disable
+
     // Use this for initialization
 	void Start () {
 	
@@ -19,5 +21,7 @@ public class BridgeTrigger : MonoBehaviour {
         Destroy(bridgeObstacle);
 
         topLeft.GetComponent<LocationTriggers>().enabled = true;
+        bridgeSpawn.GetComponent<LocationTriggers>().enabled = false;
+
     }
 }
