@@ -15,14 +15,12 @@ public class MenuController : MonoBehaviour {
         if (Input.anyKeyDown)
         {
             animator.SetTrigger("exit");
-            StartCoroutine("StartGame");
         }
     }
 
-    IEnumerator StartGame()
+    public void StartGame()
     {
-        yield return new WaitForSeconds(2f);
-        Application.LoadLevelAsync("final-game-scene");
+        Application.LoadLevel("final-game-scene");
     }
 
 }
