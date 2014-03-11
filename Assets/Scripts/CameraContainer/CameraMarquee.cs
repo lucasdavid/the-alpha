@@ -6,6 +6,10 @@ public class CameraMarquee : MonoBehaviour {
 
     public List<GameObject> SelectedUnits;
     public Texture marqueeGraphics;
+    
+    public GameObject movementRing;
+    public GameObject attackRing;
+
     public bool    mouseIsBeingUsedByHUD;
     Rect      marqueeRect;
     Rect      backupRect;
@@ -133,12 +137,15 @@ public class CameraMarquee : MonoBehaviour {
         // right click an enemy
         if ( Physics.Raycast(r, out hit, Mathf.Infinity, ~layer) && hit.collider.CompareTag("enemy"))
         {
+            AttackRing(hit.collider.transform.position);
+
             AttackUnit(hit.collider.gameObject);
         }
         // right click the ground
         else if ( Physics.Raycast(r, out hit, Mathf.Infinity, ~layer) )
         {
-            HUD.CleanAction();
+            MovementRing(hit.point);
+
             MoveUnits( hit.point, true );
         }
     }
@@ -150,6 +157,11 @@ public class CameraMarquee : MonoBehaviour {
 
     public void UnselectUnits ()
     {
+        HUD.CleanAction();
+
+        AttackRing(false);
+        MovementRing(false);
+
         // remove previous selection
         foreach ( GameObject unit in SelectedUnits )
             unit.SendMessage("OnUnselected", SendMessageOptions.DontRequireReceiver);
@@ -168,10 +180,19 @@ public class CameraMarquee : MonoBehaviour {
     void SelectUnits ()
     {
         // if at least on zombie is selected, make him to moan
-        if ( SelectedUnits.Count > 0 )
+        if (SelectedUnits.Count > 0)
+        {
             SelectedUnits[0]
                 .GetComponent<ZombieAudioController>()
                 .Moan();
+
+            // if zombie selected is moving, show its destination
+            if (SelectedUnits[0].GetComponent<UnitController>().State() == UnitState.moving)
+                MovementRing(SelectedUnits[0].GetComponent<NavMeshAgent>().destination);
+            // hide MovementRing otherwise
+            else
+                MovementRing(false);
+        }
 
         // add new selection
         foreach ( GameObject unit in SelectedUnits )
@@ -182,9 +203,13 @@ public class CameraMarquee : MonoBehaviour {
     {
         // if at least on zombie is selected, make him scream
         if (SelectedUnits.Count > 0)
+        {
             SelectedUnits[0]
                 .GetComponent<ZombieAudioController>()
                 .Rage();
+
+            AttackRing(_target);
+        }
 
         foreach ( GameObject unit in SelectedUnits )
         {
@@ -226,7 +251,6 @@ public class CameraMarquee : MonoBehaviour {
 
     public void HoldUnits ()
     {
-
         foreach ( GameObject unit in SelectedUnits )
             unit.GetComponent<UnitController>().hold = true;
     }
@@ -240,13 +264,56 @@ public class CameraMarquee : MonoBehaviour {
     public void StopUnits ()
     {
         foreach ( GameObject unit in SelectedUnits )
-            unit.GetComponent<UnitController>().Stop();
+            unit
+                .GetComponent<UnitController>()
+                .Stop();
     }
 
     public void ResumeUnits ( )
     {
         foreach ( GameObject unit in SelectedUnits )
-            unit.GetComponent<UnitController>().Resume();
+            unit
+                .GetComponent<UnitController>()
+                .Resume();
+    }
+
+    public void MovementRing( bool _active )
+    {
+        movementRing.SetActive(_active);
+    }
+
+    public void MovementRing(Vector3 _position)
+    {
+        AttackRing(false);
+
+        movementRing.transform.position = _position + Vector3.up;
+        movementRing.SetActive(true);
+    }
+
+    public IEnumerator AttackRing(bool _active)
+    {
+        yield return new WaitForSeconds(2.5f);
+
+        if (_active)
+        {
+            attackRing.SetActive(true);
+            attackRing.GetComponent<Animator>().SetTrigger("active");
+        }
+        else
+        {
+            attackRing.SetActive(false);
+        }
+    }
+
+    public void AttackRing(Vector3 _position)
+    {
+        MovementRing(false);
+
+        attackRing.transform.position = _position + Vector3.up;
+        attackRing.SetActive(true);
+        attackRing.GetComponent<Animator>().SetTrigger("active");
+
+        StartCoroutine(AttackRing(false));
     }
 
 }

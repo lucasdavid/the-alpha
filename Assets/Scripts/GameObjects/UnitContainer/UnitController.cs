@@ -10,9 +10,9 @@ public class UnitController : MonoBehaviour {
 
     public LayerMask unitLayer = 1 << 8;    // Unit layer
 
-	NavMeshAgent agent;         // Unit's navmesh agent
-    float lastAttack;           // Counter for attack cooldown
     UnitState state;            // Unit FSM, can be either idle, attacking, or moving
+    NavMeshAgent agent;         // Unit's navmesh agent
+    float lastAttack;           // Counter for attack cooldown
     int sightRange;             // Unit's sight range that will make it engage
     int attackRange;            // Range that the unit will actually hit
     bool forceMove;             // Force character to move
@@ -204,6 +204,11 @@ public class UnitController : MonoBehaviour {
 
     public void SetTarget(bool _target) {
         target = _target;
+    }
+
+    public UnitState State()
+    {
+        return state;
     }
 
 }

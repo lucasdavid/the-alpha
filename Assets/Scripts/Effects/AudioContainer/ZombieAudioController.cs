@@ -22,7 +22,9 @@ public class ZombieAudioController : AudioController {
 
     public void Attack()
     {
-        if (Random.value > .25f)
+        // this motherfucking sound of the zombie attack is fucking annoyng,
+        // only plays it 25% of the time.
+        if (Random.value > .75f)
         {
             sounds = attacks;
             PlayRandom();
