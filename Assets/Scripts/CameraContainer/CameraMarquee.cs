@@ -6,21 +6,20 @@ public class CameraMarquee : MonoBehaviour {
 
     public List<GameObject> SelectedUnits;
     public Texture marqueeGraphics;
-    
     public GameObject movementRing;
     public GameObject attackRing;
+    public LayerMask marqueeLayer;
+    public bool mouseIsBeingUsedByHUD;
 
-    public bool    mouseIsBeingUsedByHUD;
+    bool      marqueeStarted;
     Rect      marqueeRect;
     Rect      backupRect;
     Vector2   marqueeOrigin;
     Vector2   marqueeSize;
-    LayerMask layer;
     HudController HUD;
 
     void Start()
     {
-        layer = 1 << 12; // Ignore Tier Layer
         SelectedUnits = new List<GameObject>();
         HUD = GameObject.Find ("HUD").GetComponent<HudController>();
     }
@@ -35,27 +34,29 @@ public class CameraMarquee : MonoBehaviour {
     void Update()
     {
         // ignore all actions performed by the mouse when it is over the HUD
-        if ( ! mouseIsBeingUsedByHUD )
+        if (!mouseIsBeingUsedByHUD)
         {
-            if ( Input.GetMouseButtonDown(0) )
+            if (Input.GetMouseButtonDown(0))
                 MarqueeStart();
 
-            if ( Input.GetMouseButtonUp(0) )
+            if (Input.GetMouseButtonUp(0))
                 MarqueeFinish();
 
-            if ( Input.GetMouseButton(0) )
+            if (Input.GetMouseButton(0))
                 MarqueeUpdate();
 
-            if ( Input.GetMouseButtonDown(1) )
-                StartCoroutine("RightMouseClick", false);
+            if (Input.GetMouseButtonDown(1))
+                RightMouseClick();
         }
     }
 
     void MarqueeStart()
     {
+        marqueeStarted = true;
+
         // clean HUD indicador
         HUD.CleanSelection();
-
+        
         // clear previous selection if "shift" is not held down
         if ( ! Input.GetKey (Keymap.select.Alternative) )
             UnselectUnits();
@@ -69,7 +70,7 @@ public class CameraMarquee : MonoBehaviour {
         if ( Physics.Raycast(
                 Camera.main.ScreenPointToRay(Input.mousePosition),
                 out hit, Mathf.Infinity,
-                ~layer
+                marqueeLayer
             ) && hit.collider.CompareTag("selectable") )
         {
             // If selected already, unselect
@@ -89,16 +90,19 @@ public class CameraMarquee : MonoBehaviour {
 
     void MarqueeUpdate()
     {
-        float _invertedY = Screen.height - Input.mousePosition.y;
-        marqueeSize = new Vector2(Input.mousePosition.x - marqueeOrigin.x, (marqueeOrigin.y - _invertedY) * -1);
+        if (marqueeStarted)
+        {
+            float _invertedY = Screen.height - Input.mousePosition.y;
+            marqueeSize = new Vector2(Input.mousePosition.x - marqueeOrigin.x, (marqueeOrigin.y - _invertedY) * -1);
 
-        if ( marqueeRect.width < 0 )
-            backupRect = new Rect(marqueeRect.x - Mathf.Abs(marqueeRect.width), marqueeRect.y, Mathf.Abs(marqueeRect.width), marqueeRect.height);
-        else if ( marqueeRect.height < 0 )
-            backupRect = new Rect(marqueeRect.x, marqueeRect.y - Mathf.Abs(marqueeRect.height), marqueeRect.width, Mathf.Abs(marqueeRect.height));
+            if (marqueeRect.width < 0)
+                backupRect = new Rect(marqueeRect.x - Mathf.Abs(marqueeRect.width), marqueeRect.y, Mathf.Abs(marqueeRect.width), marqueeRect.height);
+            else if (marqueeRect.height < 0)
+                backupRect = new Rect(marqueeRect.x, marqueeRect.y - Mathf.Abs(marqueeRect.height), marqueeRect.width, Mathf.Abs(marqueeRect.height));
 
-        if ( marqueeRect.width < 0 && marqueeRect.height < 0 )
-            backupRect = new Rect(marqueeRect.x - Mathf.Abs(marqueeRect.width), marqueeRect.y - Mathf.Abs(marqueeRect.height), Mathf.Abs(marqueeRect.width), Mathf.Abs(marqueeRect.height));
+            if (marqueeRect.width < 0 && marqueeRect.height < 0)
+                backupRect = new Rect(marqueeRect.x - Mathf.Abs(marqueeRect.width), marqueeRect.y - Mathf.Abs(marqueeRect.height), Mathf.Abs(marqueeRect.width), Mathf.Abs(marqueeRect.height));
+        }
     }
 
     void MarqueeFinish()
@@ -122,6 +126,7 @@ public class CameraMarquee : MonoBehaviour {
         SelectUnits();
         
         //Reset the marquee so it no longer appears on the screen.
+        marqueeStarted = false;
         marqueeRect.width  = 0;
         marqueeRect.height = 0;
         backupRect.width   = 0;
@@ -129,24 +134,29 @@ public class CameraMarquee : MonoBehaviour {
         marqueeSize = Vector2.zero;
     }
 
-    void RightMouseClick(bool hud)
+    void RightMouseClick()
     {
         RaycastHit hit;
-        Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        // right click an enemy
-        if ( Physics.Raycast(r, out hit, Mathf.Infinity, ~layer) && hit.collider.CompareTag("enemy"))
+        if (Physics.Raycast(
+            Camera.main.ScreenPointToRay(Input.mousePosition),
+            out hit,
+            Mathf.Infinity,
+            marqueeLayer
+        ))
         {
-            AttackRing(hit.collider.transform.position);
-
-            AttackUnit(hit.collider.gameObject);
-        }
-        // right click the ground
-        else if ( Physics.Raycast(r, out hit, Mathf.Infinity, ~layer) )
-        {
-            MovementRing(hit.point);
-
-            MoveUnits( hit.point, true );
+            // right click over an enemy unit
+            if (hit.collider.CompareTag("enemy"))
+            {
+                AttackRing(hit.collider.transform.position);
+                AttackUnit(hit.collider.gameObject);
+            }
+            // right click over the ground
+            else
+            {
+                MovementRing(hit.point);
+                MoveUnits(hit.point, true);
+            }
         }
     }
 
