@@ -300,8 +300,8 @@ MonoBehaviour:
   - {fileID: 100010, guid: aa36837d1afec4afeb5e744fcc1d27ea, type: 2}
   - {fileID: 100028, guid: aa36837d1afec4afeb5e744fcc1d27ea, type: 2}
   characterType: 0
-  alwaysTrigger: 1
-  timeLimit: 4
+  alwaysTrigger: 0
+  timeLimit: 5
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
