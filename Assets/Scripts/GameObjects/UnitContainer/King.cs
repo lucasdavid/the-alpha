@@ -22,7 +22,6 @@ public class King : MonoBehaviour {
         Camera.main.transform.RotateAround(transform.position, Vector3.up, 20 * Time.deltaTime);
         
         yield return new WaitForSeconds (10.0f);
-        Time.timeScale = 0;
         Application.LoadLevel("credits");
     }
     

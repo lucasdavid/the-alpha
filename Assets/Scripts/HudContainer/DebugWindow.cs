@@ -9,10 +9,12 @@ public class DebugWindow : MonoBehaviour {
     int bp, tl, cv; // Brain Points, Threat Level, CurrentValue
 
     Mob alpha;
+    GameObject hudCamera;
 
 	void Start ()
     {
         open = false;
+        hudCamera = GameObject.Find("_camera-hud");
 	}
 	
 	void Update ()
@@ -73,6 +75,9 @@ public class DebugWindow : MonoBehaviour {
 
             // enemy value
             GUI.Label (new Rect (left + offset, top + offset + 80, boxWidth - offset, boxHeight - offset), "EV: " + Humans.CurrentValue);
+
+            if ( GUI.Button(new Rect(left + offset, top + offset + 100, 120, 20), "Enable/disable HUD"))
+                hudCamera.SetActive( !hudCamera.activeInHierarchy );
         }
     }
 }
