@@ -9,6 +9,7 @@ public abstract class Keymap {
         public static KeyCode Type1 = KeyCode.Alpha4;
         public static KeyCode Type2 = KeyCode.Alpha5;
         public static KeyCode Type3 = KeyCode.Alpha6;
+        public static KeyCode AllOfAKind = KeyCode.LeftControl;
         public static KeyCode Alternative = KeyCode.LeftShift;
     }
 

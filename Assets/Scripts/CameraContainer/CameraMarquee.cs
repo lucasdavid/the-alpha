@@ -73,16 +73,16 @@ public class CameraMarquee : MonoBehaviour {
                 marqueeLayer
             ) && hit.collider.CompareTag("selectable") )
         {
-            // If selected already, unselect
-            // If not selected, select
-            if ( SelectedUnits.Contains(hit.collider.gameObject) )
+            marqueeStarted = false;
+
+            if (SelectedUnits.Contains(hit.collider.gameObject))
             {
-                hit.collider.gameObject.SendMessage("OnUnselected", SendMessageOptions.DontRequireReceiver);
+                hit.transform.gameObject.SendMessage("OnUnselected");
                 SelectedUnits.Remove(hit.collider.gameObject);
             }
             else
             {
-                hit.transform.gameObject.SendMessage("OnSelected", SendMessageOptions.DontRequireReceiver);
+                hit.transform.gameObject.SendMessage("OnSelected");
                 SelectedUnits.Add(hit.collider.gameObject);
             }
         }
@@ -107,23 +107,26 @@ public class CameraMarquee : MonoBehaviour {
 
     void MarqueeFinish()
     {
-        //Poppulate the selectableUnits array with all the selectable units that exist
-        foreach (GameObject unit in FindSelectableUnits())
+        if (marqueeStarted)
         {
-            // ignore caracter if he was selected in the first click
-            if ( SelectedUnits.Count > 0 && unit.GetInstanceID() == SelectedUnits[0].GetInstanceID() )
-                continue;
-            
-            //Convert the world position of the unit to a screen position and then to a GUI point
-            Vector3 _screenPos = Camera.main.WorldToScreenPoint(unit.transform.position);
-            Vector2 _screenPoint = new Vector2(_screenPos.x, Screen.height - _screenPos.y);
-            
-            //Ensure that any units not within the marquee are currently unselected
-            if (marqueeRect.Contains(_screenPoint) || backupRect.Contains(_screenPoint))
-                SelectedUnits.Add (unit);
-        }
+            //Poppulate the selectableUnits array with all the selectable units that exist
+            foreach (GameObject unit in FindSelectableUnits())
+            {
+                // ignore caracter if he was selected in the first click
+                if (SelectedUnits.Count > 0 && unit.GetInstanceID() == SelectedUnits[0].GetInstanceID())
+                    continue;
 
-        SelectUnits();
+                //Convert the world position of the unit to a screen position and then to a GUI point
+                Vector3 _screenPos = Camera.main.WorldToScreenPoint(unit.transform.position);
+                Vector2 _screenPoint = new Vector2(_screenPos.x, Screen.height - _screenPos.y);
+
+                //Ensure that any units not within the marquee are currently unselected
+                if (marqueeRect.Contains(_screenPoint) || backupRect.Contains(_screenPoint))
+                    SelectedUnits.Add(unit);
+            }
+
+            SelectUnits();
+        }
         
         //Reset the marquee so it no longer appears on the screen.
         marqueeStarted = false;
