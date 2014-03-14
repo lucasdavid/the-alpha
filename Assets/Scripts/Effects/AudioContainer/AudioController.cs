@@ -25,6 +25,11 @@ public class AudioController : MonoBehaviour {
         Play(sound, _force);
     }
 
+    public void Stop()
+    {
+        source.Stop();
+    }
+
     protected void Play ( int _index )
     {
         Play ( _index, false );

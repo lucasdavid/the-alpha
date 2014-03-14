@@ -1,3 +1,3 @@
 ﻿public enum UnitState {
-    idle, moving, attacking
+    idle, moving, chasing, attacking
 }

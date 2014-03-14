@@ -155,7 +155,7 @@ public class CameraMarquee : MonoBehaviour {
             else
             {
                 MovementRing(hit.point);
-                MoveUnits(hit.point, true);
+                MoveUnits(hit.point);
             }
         }
     }
@@ -222,21 +222,18 @@ public class CameraMarquee : MonoBehaviour {
         }
 
         foreach ( GameObject unit in SelectedUnits )
-        {
-            // Force movement to override attacking
-            unit.GetComponent<UnitController>().SetTarget(true);
-            unit.GetComponent<Mob>().Target = _target;
-        }
+            unit
+                .GetComponent<UnitController>()
+                .MoveAndAttack(_target);
     }
 
-    public void MoveUnits ( Vector3 _target, bool _overrideAttack )
+    public void MoveUnits ( Vector3 _target )
     {
         int row    = 0;
         int column = 0;
 
         foreach ( GameObject unit in SelectedUnits )
         {
-
             // offset from _target of units, when they move towards it
             Vector3 target = _target;
 
@@ -253,9 +250,8 @@ public class CameraMarquee : MonoBehaviour {
             
             // Force movement to override attacking
             current.hold = false;
-            current.SetTarget(false);
             unit.GetComponent<Mob>().Target = null;
-            current.Move( target, _overrideAttack );
+            current.Move( target );
         }
     }
 

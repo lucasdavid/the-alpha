@@ -117,15 +117,10 @@ public class Mob : MonoBehaviour {
         if ( Alliance != 0      &&
              Name     != "King" &&
             (Tier.Engage || LocationTriggers.Engage) )
-        { 
-            GetComponent<UnitController>().SetTarget(true); // Force unit to target the Alpha
             Target = Alpha.GetAlpha();
-        }
         else
-        {
             Target = null;
-        }
-
+        
         collider.enabled = true;
         GetComponent<UnitController>().enabled = true;
         GetComponent<NavMeshAgent>().enabled   = true;
