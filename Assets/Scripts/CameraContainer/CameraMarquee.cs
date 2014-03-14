@@ -52,39 +52,33 @@ public class CameraMarquee : MonoBehaviour {
 
     void MarqueeStart()
     {
-        marqueeStarted = true;
-
-        // clean HUD indicador
-        HUD.CleanSelection();
-        
         // clear previous selection if "shift" is not held down
-        if ( ! Input.GetKey (Keymap.select.Alternative) )
+        if (!Input.GetKey(Keymap.select.Alternative))
             UnselectUnits();
-        
-        // initiate selection marquee
-        float _invertedY = Screen.height - Input.mousePosition.y;
-        marqueeOrigin    = new Vector2 ( Input.mousePosition.x, _invertedY );
 
-        //Check if the player just wants to add one unit
+        //Check if the player just wants to add/remove an unit
         RaycastHit hit;
-        if ( Physics.Raycast(
-                Camera.main.ScreenPointToRay(Input.mousePosition),
-                out hit, Mathf.Infinity,
-                marqueeLayer
-            ) && hit.collider.CompareTag("selectable") )
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, marqueeLayer) &&
+                hit.collider.CompareTag("selectable"))
         {
             marqueeStarted = false;
 
-            if (SelectedUnits.Contains(hit.collider.gameObject))
-            {
-                hit.transform.gameObject.SendMessage("OnUnselected");
-                SelectedUnits.Remove(hit.collider.gameObject);
-            }
+            if (Input.GetKey(Keymap.select.AllOfAKind))
+                SelectedUnits.AddRange(FindSelectableUnits(hit.collider.name));
             else
-            {
-                hit.transform.gameObject.SendMessage("OnSelected");
                 SelectedUnits.Add(hit.collider.gameObject);
-            }
+
+            SelectUnits();
+        }
+        else
+        {
+            marqueeStarted = true;
+            // clean HUD indicador
+            HUD.CleanSelection();
+
+            // initiate selection marquee
+            float _invertedY = Screen.height - Input.mousePosition.y;
+            marqueeOrigin = new Vector2(Input.mousePosition.x, _invertedY);
         }
     }
 
@@ -112,10 +106,6 @@ public class CameraMarquee : MonoBehaviour {
             //Poppulate the selectableUnits array with all the selectable units that exist
             foreach (GameObject unit in FindSelectableUnits())
             {
-                // ignore caracter if he was selected in the first click
-                if (SelectedUnits.Count > 0 && unit.GetInstanceID() == SelectedUnits[0].GetInstanceID())
-                    continue;
-
                 //Convert the world position of the unit to a screen position and then to a GUI point
                 Vector3 _screenPos = Camera.main.WorldToScreenPoint(unit.transform.position);
                 Vector2 _screenPoint = new Vector2(_screenPos.x, Screen.height - _screenPos.y);
@@ -163,9 +153,25 @@ public class CameraMarquee : MonoBehaviour {
         }
     }
 
-    GameObject[] FindSelectableUnits()
+    List<GameObject> FindSelectableUnits(string name)
     {
-        return GameObject.FindGameObjectsWithTag("selectable");
+        List<GameObject> selectable = FindSelectableUnits();
+
+        for (int i = 0; i < selectable.Count; i++)
+            if (selectable[i].name != name)
+            {
+                selectable.RemoveAt(i);
+                i--;
+            }
+
+        return selectable;
+    }
+    
+    List<GameObject> FindSelectableUnits()
+    {
+        return new List<GameObject>(
+            GameObject.FindGameObjectsWithTag("selectable")
+        );
     }
 
     public void UnselectUnits ()
@@ -182,7 +188,7 @@ public class CameraMarquee : MonoBehaviour {
         SelectedUnits.Clear();
     }
 
-    public void SelectUnits ( GameObject[] units )
+    public void SelectUnits ( List<GameObject> units )
     {
         UnselectUnits();
         SelectedUnits.AddRange(units);
@@ -286,12 +292,12 @@ public class CameraMarquee : MonoBehaviour {
                 .Resume();
     }
 
-    public void MovementRing( bool _active )
+    void MovementRing( bool _active )
     {
         movementRing.SetActive(_active);
     }
 
-    public void MovementRing(Vector3 _position)
+    void MovementRing(Vector3 _position)
     {
         AttackRing(false);
 
@@ -299,7 +305,18 @@ public class CameraMarquee : MonoBehaviour {
         movementRing.SetActive(true);
     }
 
-    public IEnumerator AttackRing(bool _active)
+    void AttackRing(Vector3 _position)
+    {
+        MovementRing(false);
+
+        attackRing.transform.position = _position + Vector3.up;
+        attackRing.SetActive(true);
+        attackRing.GetComponent<Animator>().SetTrigger("active");
+
+        StartCoroutine(AttackRing(false));
+    }
+
+    IEnumerator AttackRing(bool _active)
     {
         yield return new WaitForSeconds(2.5f);
 
@@ -312,17 +329,6 @@ public class CameraMarquee : MonoBehaviour {
         {
             attackRing.SetActive(false);
         }
-    }
-
-    public void AttackRing(Vector3 _position)
-    {
-        MovementRing(false);
-
-        attackRing.transform.position = _position + Vector3.up;
-        attackRing.SetActive(true);
-        attackRing.GetComponent<Animator>().SetTrigger("active");
-
-        StartCoroutine(AttackRing(false));
     }
 
 }
