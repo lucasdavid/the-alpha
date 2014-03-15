@@ -1,6 +1,6 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class CameraMarquee : MonoBehaviour {
 
@@ -53,7 +53,7 @@ public class CameraMarquee : MonoBehaviour {
     void MarqueeStart()
     {
         // clear previous selection if "shift" is not held down
-        if (!Input.GetKey(Keymap.select.Alternative))
+        if (!Input.GetKey(Keymap.select.Inclusive))
             UnselectUnits();
 
         //Check if the player just wants to add/remove an unit
@@ -63,7 +63,7 @@ public class CameraMarquee : MonoBehaviour {
         {
             marqueeStarted = false;
 
-            if (Input.GetKey(Keymap.select.AllOfAKind))
+            if (Input.GetKey(Keymap.select.Alternative))
                 SelectedUnits.AddRange(FindSelectableUnits(hit.collider.name));
             else
                 SelectedUnits.Add(hit.collider.gameObject);
@@ -188,12 +188,24 @@ public class CameraMarquee : MonoBehaviour {
         SelectedUnits.Clear();
     }
 
-    public void SelectUnits ( List<GameObject> units )
+    public void SelectUnits (GameObject unit)
     {
-        UnselectUnits();
-        SelectedUnits.AddRange(units);
+        List<GameObject> units = new List<GameObject>();
+        units.Add(unit);
 
-        SelectUnits();
+        SelectUnits(units);
+    }
+
+    public void SelectUnits ( List<GameObject> _units )
+    {
+        if (_units != null && _units.Count > 0)
+        {
+            if (!Input.GetKey(Keymap.select.Inclusive))
+                UnselectUnits();
+
+            SelectedUnits.AddRange(_units);
+            SelectUnits();
+        }
     }
 
     void SelectUnits ()
