@@ -73,8 +73,6 @@ public class CameraMarquee : MonoBehaviour {
         else
         {
             marqueeStarted = true;
-            // clean HUD indicador
-            HUD.CleanSelection();
 
             // initiate selection marquee
             float _invertedY = Screen.height - Input.mousePosition.y;

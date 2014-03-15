@@ -7,20 +7,21 @@ public class HudController : MonoBehaviour {
 
     public static GameObject main;
 
-    public GameObject UnitSelectionIconPrefab;
-    public int CustomSelectionsCount;
+    public GameObject[] UnitSelectionIcons;
 
     CameraMarquee marquee;
-    Light selectionLight, action;
+    Light actionLight;
 
     List<GameObject>[] selectionsAvailable;
 
     void Start()
     {
-        main      = gameObject;
-        marquee   = Camera.main.GetComponent<CameraMarquee>();
-        selectionLight = transform.FindChild("button-unit/light-selection").GetComponent<Light>();
-        action    = transform.FindChild("button-action/light-selection").GetComponent<Light>();
+        main    = gameObject;
+        marquee = Camera.main.GetComponent<CameraMarquee>();
+
+        actionLight    = transform
+            .FindChild("light-action")
+            .GetComponent<Light>();
 
         selectionsAvailable = new List<GameObject>[7];
     }
@@ -56,19 +57,19 @@ public class HudController : MonoBehaviour {
             // player wants to record a selection
             else
             {
-                if (Input.GetKey(Keymap.select.custom1))
+                if (Input.GetKeyDown(Keymap.select.custom1))
                     CreateCustomSelection(0);
-                else if (Input.GetKey(Keymap.select.custom2))
+                else if (Input.GetKeyDown(Keymap.select.custom2))
                     CreateCustomSelection(1);
-                else if (Input.GetKey(Keymap.select.custom3))
+                else if (Input.GetKeyDown(Keymap.select.custom3))
                     CreateCustomSelection(2);
-                else if (Input.GetKey(Keymap.select.custom4))
+                else if (Input.GetKeyDown(Keymap.select.custom4))
                     CreateCustomSelection(3);
-                else if (Input.GetKey(Keymap.select.custom5))
+                else if (Input.GetKeyDown(Keymap.select.custom5))
                     CreateCustomSelection(4);
-                else if (Input.GetKey(Keymap.select.custom6))
+                else if (Input.GetKeyDown(Keymap.select.custom6))
                     CreateCustomSelection(5);
-                else if (Input.GetKey(Keymap.select.custom7))
+                else if (Input.GetKeyDown(Keymap.select.custom7))
                     CreateCustomSelection(6);
             }
         }
@@ -90,12 +91,7 @@ public class HudController : MonoBehaviour {
 
 	public void CleanAction()
     {
-        action.enabled = false;
-    }
-
-    public void CleanSelection()
-    {
-        selectionLight.enabled = false;
+        actionLight.enabled = false;
     }
     
     public void SelectUnitAlpha()
@@ -110,15 +106,12 @@ public class HudController : MonoBehaviour {
 
     public void SelectUnitCustom(int _id)
     {
-        Debug.Log("HudController@SeleectUnitCustom : " + selectionsAvailable[_id]);
         marquee.SelectUnits(selectionsAvailable[_id]);
     }
 
     void CreateCustomSelection(int _id)
     {
-        Debug.Log("CreateCustomSelection");
         selectionsAvailable[_id] = new List<GameObject>(marquee.SelectedUnits);
-        
     }
     
     /**

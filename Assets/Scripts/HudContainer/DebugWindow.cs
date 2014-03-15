@@ -78,6 +78,9 @@ public class DebugWindow : MonoBehaviour {
 
             if ( GUI.Button(new Rect(left + offset, top + offset + 100, 120, 20), "Enable/disable HUD"))
                 hudCamera.SetActive( !hudCamera.activeInHierarchy );
+
+            if (GUI.Button(new Rect(left + offset, top + offset + 120, 120, 20), "Kill king"))
+                GameObject.Find("King").GetComponent<Mob>().Health = 0;
         }
     }
 }

@@ -4,10 +4,6 @@ using System.Collections;
 public class King : MonoBehaviour {
     bool _win;
 	
-	void Start () {
-	
-	}
-	
 	void Update () {
         // If the King dies, you win!
         if (GetComponent<Mob> ().Health <= 0) {
@@ -22,6 +18,7 @@ public class King : MonoBehaviour {
         Camera.main.transform.RotateAround(transform.position, Vector3.up, 20 * Time.deltaTime);
         
         yield return new WaitForSeconds (10.0f);
+
         Application.LoadLevel("credits");
     }
     

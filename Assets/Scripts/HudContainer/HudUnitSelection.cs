@@ -10,7 +10,8 @@ public class HudUnitSelection : MonoBehaviour {
     
     void Start()
     {
-        if ( controller == null ) controller = HudController.main.GetComponent<HudController>();
+        if ( controller == null )
+            controller = GameObject.Find("HUD").GetComponent<HudController>();
     }
 
     public void OnMouseDown()
