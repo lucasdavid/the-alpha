@@ -34,6 +34,17 @@ public class CharacterSpawn : MonoBehaviour
         timeElapsed += Time.deltaTime;
     }
 
+    public void SpawnAfter(int _index, Vector3 _location, bool _free, float _time)
+    {
+        StartCoroutine(WaitForSpawn(_index, _location, _free, _time));
+    }
+
+    IEnumerator WaitForSpawn(int _index, Vector3 _location, bool _free, float _time)
+    {
+        yield return new WaitForSeconds(_time);
+        Spawn(_index, _location, _free);
+    }
+
     public void Spawn ( int index )
     {
         Spawn ( index, zombieSpawn.transform.position, false );

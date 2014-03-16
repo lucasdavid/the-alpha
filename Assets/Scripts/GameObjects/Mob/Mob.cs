@@ -145,27 +145,6 @@ public class Mob : MonoBehaviour {
         Destructable = false;                           // Set invincible
         Horde.ResetThreatTimer();                       // Reset ThreatLevel decrement timer
         
-        // Very bad place to put this, but it works
-        // If a human dies
-        if (Alliance != 0)
-        {
-            GetComponent<HumanAudioController>().Hurt();
-
-            Horde.ThreatLevel += (Value * ThreatMultiplier);
-            Humans.CurrentValue -= Value;
-
-            if (Horde.BrainPoints + Value <= 99)
-                Horde.BrainPoints += Value;
-        }
-        // If a zombie dies
-        else 
-        {
-            GetComponent<ZombieAudioController>().Hurt();
-
-            Horde.ThreatLevel -= Value;
-            Horde.CurrentValue -= Value;
-        }
-
         if (Name == "Alpha" || Name == "King")
         {
             Camera
@@ -197,36 +176,55 @@ public class Mob : MonoBehaviour {
         }
         else
         {
-            yield return new WaitForSeconds(4.0F);
-
             // Only spawn if Humans have more value than Zombies
             if (Killer == Alpha.GetAlpha())
             {
-                switch (Name)
-                {
-                    case "BasicHuman":
-                        Camera.main.GetComponent<CharacterSpawn>().Spawn(0, transform.position, true);
-                        break;
-                    case "ScoutHuman":
-                        Camera.main.GetComponent<CharacterSpawn>().Spawn(1, transform.position, true);
-                        break;
-                    case "SoldierHuman":
-                        Camera.main.GetComponent<CharacterSpawn>().Spawn(2, transform.position, true);
-                        break;
-                    case "TankHuman":
-                        Camera.main.GetComponent<CharacterSpawn>().Spawn(3, transform.position, true);
-                        break;
-                    default:
-                        Camera.main.GetComponent<CharacterSpawn>().Spawn(0, transform.position, true);
-                        break;
-                }
+                int type;
+
+                if (name == "BasicHuman")
+                    type = 0;
+                else if (name == "ScoutHuman")
+                    type = 1;
+                else if (name == "SoldierHuman")
+                    type = 2;
+                else if (name == "TankHuman")
+                    type = 3;
+                else
+                    type = 0;
+
+                Camera.main.GetComponent<CharacterSpawn>().Spawn(type, transform.position, true);
             }
 
             if (tutorial == 0)
             {
-                Camera.main.GetComponent<HintController>().Add("... and has risen a new zombie!");
+                Camera.main.GetComponent<HintController>().Add("... and a new zombie will rise!");
                 Camera.main.GetComponent<HintController>().EndTutorial();
                 tutorial++;
+            }
+
+            // If a human dies
+            if (Alliance != 0)
+            {
+                GetComponent<HumanAudioController>().Hurt();
+
+                Horde.ThreatLevel += (Value * ThreatMultiplier);
+                Humans.CurrentValue -= Value;
+
+                if (Horde.BrainPoints + Value <= 99)
+                    Horde.BrainPoints += Value;
+            }
+            // If a zombie dies
+            else
+            {
+                GetComponent<ZombieAudioController>().Hurt();
+
+                Horde.ThreatLevel -= Value;
+                Horde.CurrentValue -= Value;
+
+                HudController
+                    .main
+                    .GetComponent<HudController>()
+                    .SignalUnitDied(gameObject);
             }
 
             this.Recycle();

@@ -75,6 +75,36 @@ public class HudController : MonoBehaviour {
         }
     }
 
+    public void SignalUnitDied(GameObject _unit)
+    {
+        // for all selections in which that unit could possibly be
+        for (int i = 0; i < selectionsAvailable.Length; i++)
+        {
+            // if it is not a valid selection, continue
+            if (selectionsAvailable[i] == null)
+                continue;
+
+            // remove unit, if it is there
+            selectionsAvailable[i].Remove(_unit);
+
+            // if that was the last unit in the selection, make it invalid
+            if (selectionsAvailable[i].Count == 0)
+            {
+                UnitSelectionIcons[i]
+                    .GetComponent<Animator>()
+                    .SetTrigger("unset");
+
+                selectionsAvailable[i] = null;
+            }
+
+            // update unit count, otherwise
+            else
+                UnitSelectionIcons[i]
+                    .GetComponentInChildren<TextMesh>()
+                    .text = selectionsAvailable[i].Count.ToString();
+        }
+    }
+
     public void OnInnerButtonPressed( int _id )
     {
         StopCoroutine("SignalMouseOverHUD");
@@ -112,6 +142,14 @@ public class HudController : MonoBehaviour {
     void CreateCustomSelection(int _id)
     {
         selectionsAvailable[_id] = new List<GameObject>(marquee.SelectedUnits);
+
+        UnitSelectionIcons[_id]
+            .GetComponentInChildren<TextMesh>()
+            .text = selectionsAvailable[_id].Count.ToString();
+
+        UnitSelectionIcons[_id]
+            .GetComponent<Animator>()
+            .SetTrigger("set");
     }
     
     /**
