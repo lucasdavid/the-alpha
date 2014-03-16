@@ -131,9 +131,11 @@ public class Mob : MonoBehaviour {
 
     IEnumerator Die()
     {
-        if (tutorial == 0) {
-            Camera.main.GetComponent<HintController>().Add("Your Alpha has now killed the human...");
-        }
+        if (tutorial == 0 && Killer == Alpha.GetAlpha())
+            Camera
+                .main
+                .GetComponent<HintController>()
+                .Add("Your Alpha has now killed the human...");
 
         anim.SetBool("Dead", true);                     // Trigger death animation
 
@@ -164,40 +166,70 @@ public class Mob : MonoBehaviour {
             Horde.CurrentValue -= Value;
         }
 
-
-        yield return new WaitForSeconds(4.0F);
-
-        // Only spawn if Humans have more value than Zombies
-        if ( Killer == Alpha.GetAlpha() )
+        if (Name == "Alpha" || Name == "King")
         {
-            switch ( Name )
-            {
-                case "BasicHuman":
-                    Camera.main.GetComponent<CharacterSpawn>().Spawn (0, transform.position, true);
-                    break;
-                case "ScoutHuman":
-                    Camera.main.GetComponent<CharacterSpawn>().Spawn (1, transform.position, true);
-                    break;
-                case "SoldierHuman":
-                    Camera.main.GetComponent<CharacterSpawn>().Spawn (2, transform.position, true);
-                    break;
-                case "TankHuman":
-                    Camera.main.GetComponent<CharacterSpawn>().Spawn (3, transform.position, true);
-                    break;
-                default:
-                    Camera.main.GetComponent<CharacterSpawn>().Spawn (0, transform.position, true);
-                    break;
-             }
+            Camera
+                .main
+                .GetComponent<HintController>()
+                .Flush()
+                .Add(
+                    Name == "Alpha"
+                    ? "Your Alpha has died. You lose!"
+                    : "You have defeated the King. You win!"
+                );
+
+            Camera
+                .main
+                .GetComponent<CameraMovement>()
+                .Move(transform.position + 30 * Vector3.down, true);
+            Camera
+                .main
+                .transform
+                .LookAt(transform.position);
+            Camera
+                .main
+                .transform
+                .RotateAround(transform.position, Vector3.up, 20 * Time.deltaTime);
+
+            yield return new WaitForSeconds(10.0f);
+
+            Application.LoadLevel("credits");
         }
-
-        if (Name != "Alpha")
-            this.Recycle();
-
-        if (tutorial == 0)
+        else
         {
-            Camera.main.GetComponent<HintController>().Add("... and has risen a new zombie!");
-            Camera.main.GetComponent<HintController>().EndTutorial();
-            tutorial++;
+            yield return new WaitForSeconds(4.0F);
+
+            // Only spawn if Humans have more value than Zombies
+            if (Killer == Alpha.GetAlpha())
+            {
+                switch (Name)
+                {
+                    case "BasicHuman":
+                        Camera.main.GetComponent<CharacterSpawn>().Spawn(0, transform.position, true);
+                        break;
+                    case "ScoutHuman":
+                        Camera.main.GetComponent<CharacterSpawn>().Spawn(1, transform.position, true);
+                        break;
+                    case "SoldierHuman":
+                        Camera.main.GetComponent<CharacterSpawn>().Spawn(2, transform.position, true);
+                        break;
+                    case "TankHuman":
+                        Camera.main.GetComponent<CharacterSpawn>().Spawn(3, transform.position, true);
+                        break;
+                    default:
+                        Camera.main.GetComponent<CharacterSpawn>().Spawn(0, transform.position, true);
+                        break;
+                }
+            }
+
+            if (tutorial == 0)
+            {
+                Camera.main.GetComponent<HintController>().Add("... and has risen a new zombie!");
+                Camera.main.GetComponent<HintController>().EndTutorial();
+                tutorial++;
+            }
+
+            this.Recycle();
         }
     }
 }

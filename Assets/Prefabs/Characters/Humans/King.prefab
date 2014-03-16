@@ -92,7 +92,6 @@ GameObject:
   - 136: {fileID: 13600000}
   - 82: {fileID: 8200000}
   - 114: {fileID: 11400008}
-  - 114: {fileID: 11400010}
   m_Layer: 8
   m_Name: King
   m_TagString: Untagged
@@ -2291,7 +2290,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -2323,17 +2321,6 @@ MonoBehaviour:
   hurts:
   - {fileID: 8300000, guid: 071812abde165544a92dd77bbf1da81f, type: 3}
   - {fileID: 8300000, guid: ff87cf42affc38b4484f17cb5dc8ae60, type: 3}
---- !u!114 &11400010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee8b2cac36bf242f6b8a64349607fb70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

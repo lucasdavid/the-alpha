@@ -98,10 +98,15 @@ public class CameraMovement : MonoBehaviour {
         }
     }
 
-    public void Move ( Vector3 _pos )
+    public void Move(Vector3 _pos)
+    {
+        Move(_pos, false);
+    }
+
+    public void Move (Vector3 _pos, bool _force)
     {
         // verify if new position is valid
-        if ( _pos.x >= MIN_X && _pos.x <= MAX_X && _pos.z >= MIN_Z && _pos.z <= MAX_Z )
+        if ( _force || _pos.x >= MIN_X && _pos.x <= MAX_X && _pos.z >= MIN_Z && _pos.z <= MAX_Z )
             transform.position = new Vector3(
                 _pos.x,
                 transform.position.y,

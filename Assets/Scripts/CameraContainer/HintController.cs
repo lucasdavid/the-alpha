@@ -58,10 +58,19 @@ public class HintController : MonoBehaviour {
         messages.RemoveFirst();
     }
 
-    public void Add(string _message)
+    public HintController Add(string _message)
     {
         messages.AddLast(_message);
         source.Play();
         StartCoroutine(Fade());
+
+        return this;
+    }
+
+    public HintController Flush()
+    {
+        messages.Clear();
+
+        return this;
     }
 }
