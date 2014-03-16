@@ -13,6 +13,8 @@ public class Graveyard : MonoBehaviour {
     {
         units = new List<Mob>();
         effect = GetComponentInChildren<ParticleSystem>();
+        
+        effect.enableEmission = false;
 	}
 
     void OnTriggerEnter(Collider _collider)
