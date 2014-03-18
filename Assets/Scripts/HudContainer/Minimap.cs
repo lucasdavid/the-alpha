@@ -24,6 +24,19 @@ public class Minimap : MonoBehaviour {
         marquee.mouseIsBeingUsedByHUD = false;
     }
 
+    void OnMouseDown() 
+    {
+        if ( marquee.mouseIsBeingUsedByHUD )
+        {
+            RaycastHit hit;
+            if ( Physics.Raycast(
+                mapCamera.ScreenPointToRay(Input.mousePosition),
+                out hit, Mathf.Infinity, ~layer)
+                )
+                Camera.main.GetComponent<CameraMovement>().Move ( hit.point );
+        }
+    }
+
     void OnMouseDrag()
     {
         if ( marquee.mouseIsBeingUsedByHUD )

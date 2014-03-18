@@ -116,9 +116,10 @@ public class Mob : MonoBehaviour {
         // Only chase if set to "Engage"
         if ( Alliance != 0      &&
              Name     != "King" &&
-            (Tier.Engage || LocationTriggers.Engage) )
+            (Tier.Engage || LocationTriggers.Engage) ) {
             Target = Alpha.GetAlpha();
-        else
+            UnitController.SetChase();
+        } else
             Target = null;
         
         collider.enabled = true;
@@ -131,11 +132,14 @@ public class Mob : MonoBehaviour {
 
     IEnumerator Die()
     {
-        if (tutorial == 0 && Killer == Alpha.GetAlpha())
+        yield return new WaitForSeconds(0.1f);
+
+        if (tutorial == 0 && Killer == Alpha.GetAlpha())  {
             Camera
                 .main
                 .GetComponent<HintController>()
                 .Add("Your Alpha has now killed the human...");
+        }
 
         anim.SetBool("Dead", true);                     // Trigger death animation
 
@@ -176,6 +180,34 @@ public class Mob : MonoBehaviour {
         }
         else
         {
+            // If a human dies
+            if (Alliance != 0)
+            {
+                GetComponent<HumanAudioController>().Hurt();
+                
+                Horde.ThreatLevel += (Value * ThreatMultiplier);
+                Humans.CurrentValue -= Value;
+                
+                if (Horde.BrainPoints + Value <= 99)
+                    Horde.BrainPoints += Value;
+            }
+
+            // If a zombie dies
+            else
+            {
+                GetComponent<ZombieAudioController>().Hurt();
+                
+                Horde.ThreatLevel -= Value;
+                Horde.CurrentValue -= Value;
+                
+                HudController
+                    .main
+                        .GetComponent<HudController>()
+                        .SignalUnitDied(gameObject);
+            }
+            
+            yield return new WaitForSeconds(4.0f);
+
             // Only spawn if Humans have more value than Zombies
             if (Killer == Alpha.GetAlpha())
             {
@@ -200,31 +232,6 @@ public class Mob : MonoBehaviour {
                 Camera.main.GetComponent<HintController>().Add("... and a new zombie will rise!");
                 Camera.main.GetComponent<HintController>().EndTutorial();
                 tutorial++;
-            }
-
-            // If a human dies
-            if (Alliance != 0)
-            {
-                GetComponent<HumanAudioController>().Hurt();
-
-                Horde.ThreatLevel += (Value * ThreatMultiplier);
-                Humans.CurrentValue -= Value;
-
-                if (Horde.BrainPoints + Value <= 99)
-                    Horde.BrainPoints += Value;
-            }
-            // If a zombie dies
-            else
-            {
-                GetComponent<ZombieAudioController>().Hurt();
-
-                Horde.ThreatLevel -= Value;
-                Horde.CurrentValue -= Value;
-
-                HudController
-                    .main
-                    .GetComponent<HudController>()
-                    .SignalUnitDied(gameObject);
             }
 
             this.Recycle();

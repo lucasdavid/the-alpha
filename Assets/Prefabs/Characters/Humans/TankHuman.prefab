@@ -2212,7 +2212,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -2240,8 +2239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: 
-  _healthMultiplier: 1.5
-  _movementMultiplier: .5
+  _healthMultiplier: 1.75
+  _movementMultiplier: .75
   _aDamageMultiplier: 1
   _aSpeedMultiplier: 1
 --- !u!114 &11400008

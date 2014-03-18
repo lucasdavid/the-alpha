@@ -999,7 +999,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100030}
-  m_LocalRotation: {x: .503794074, y: -.60119307, z: -.260843337, w: -.562778234}
+  m_LocalRotation: {x: .503794014, y: -.601193011, z: -.260843307, w: -.562778175}
   m_LocalPosition: {x: -.03973547, y: -.00831897277, z: .033008635}
   m_LocalScale: {x: 1, y: 1.00000012, z: .99999994}
   m_Children:
@@ -1761,7 +1761,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256

@@ -60,6 +60,7 @@ public class CharacterSpawn : MonoBehaviour
 
             if ( characters[index].Alliance == 0 && Horde.BrainPoints >= cost && Horde.CurrentValue + cost <= maxSpawns )
             {
+
                 if ( ! free ) Horde.BrainPoints -= cost;
 
                 ObjectPool.Spawn (characters [index], location);

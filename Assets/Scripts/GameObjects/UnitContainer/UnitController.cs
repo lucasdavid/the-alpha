@@ -15,7 +15,9 @@ public class UnitController : MonoBehaviour {
     
     Animator anim;              // Unit's animator
     Mob mob;
-    
+
+    static bool chase;
+
 	void Start()
 	{
         state = UnitState.idle;
@@ -23,7 +25,13 @@ public class UnitController : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
         anim  = GetComponent<Animator>();
         mob   = GetComponent<Mob>();
+
+        chase = false;
 	}
+
+    public static void SetChase() {
+        chase = true;
+    }
 
 	void Update ()
 	{
@@ -53,6 +61,10 @@ public class UnitController : MonoBehaviour {
                 Attack(nearbyUnits[i].gameObject);
                 break;
             }
+
+        if (mob.Target != null) {
+            Attack(mob.Target);
+        }
     }
 
     void Attacking()
@@ -76,8 +88,9 @@ public class UnitController : MonoBehaviour {
                 else
                     GetComponent<HumanAudioController>().Attack();
 
-                if ((mob.Target.GetComponent<Mob>().Health -= (int)(AttackDamage * GetComponent<CharClass>().ADamageMultiplier)) <= 0)
+                if ((mob.Target.GetComponent<Mob>().Health -= (int)(AttackDamage * GetComponent<CharClass>().ADamageMultiplier)) <= 0) {
                     mob.Target.GetComponent<Mob>().Killer = gameObject;
+                }
             }
         }
     }
@@ -85,10 +98,11 @@ public class UnitController : MonoBehaviour {
     void Chasing()
     {
         // if the target unit is not valid, it's dead or it's too far, stop chasing
-        if (hold ||
+        if ((!chase) && 
+            (hold ||
             mob.Target == null ||
             !IsInSightRange()  ||
-            mob.Target.GetComponent<Mob>().Health <= 0)
+            mob.Target.GetComponent<Mob>().Health <= 0))
             Stop();
 
         else if (IsInAttackRange())

@@ -120846,7 +120846,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -120896,7 +120895,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -121016,7 +121014,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -121066,7 +121063,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -121151,7 +121147,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -121271,7 +121266,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -121321,7 +121315,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -121406,7 +121399,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -121526,7 +121518,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -121576,7 +121567,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -121696,7 +121686,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -121746,7 +121735,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -121866,7 +121854,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -121916,7 +121903,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -122036,7 +122022,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -122086,7 +122071,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -122171,7 +122155,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -122256,7 +122239,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -122341,7 +122323,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -122426,7 +122407,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -122511,7 +122491,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -122631,7 +122610,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -122681,7 +122659,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -122766,7 +122743,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -122890,7 +122866,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -122975,7 +122950,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -123037,7 +123011,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -123122,7 +123095,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -123207,7 +123179,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -123292,7 +123263,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -123377,7 +123347,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -123462,7 +123431,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -123547,7 +123515,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -123632,7 +123599,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -123717,7 +123683,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -123802,7 +123767,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -123887,7 +123851,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -123972,7 +123935,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -124057,7 +124019,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -124142,7 +124103,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -124227,7 +124187,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -124312,7 +124271,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -124397,7 +124355,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -124482,7 +124439,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -124567,7 +124523,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -124652,7 +124607,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -124740,7 +124694,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -124822,7 +124775,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -124907,7 +124859,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -124992,7 +124943,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -125080,7 +125030,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -125165,7 +125114,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -125250,7 +125198,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -125332,7 +125279,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -125417,7 +125363,6 @@ MonoBehaviour:
   AttackCooldown: 1
   AttackDamage: 20
   hold: 0
-  target: 0
   unitLayer:
     serializedVersion: 2
     m_Bits: 256

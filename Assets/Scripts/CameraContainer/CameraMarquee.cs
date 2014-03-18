@@ -10,6 +10,7 @@ public class CameraMarquee : MonoBehaviour {
     public GameObject attackRing;
     public LayerMask marqueeLayer;
     public bool mouseIsBeingUsedByHUD;
+    public Camera minimapCam;
 
     bool      marqueeStarted;
     Rect      marqueeRect;
@@ -44,10 +45,12 @@ public class CameraMarquee : MonoBehaviour {
 
             if (Input.GetMouseButton(0))
                 MarqueeUpdate();
+        } 
 
-            if (Input.GetMouseButtonDown(1))
-                RightMouseClick();
-        }
+        // Can use this without ignoring HUD
+        if (Input.GetMouseButtonDown(1))
+            RightMouseClick();
+
     }
 
     void MarqueeStart()
@@ -125,28 +128,48 @@ public class CameraMarquee : MonoBehaviour {
         marqueeSize = Vector2.zero;
     }
 
-    void RightMouseClick()
+    void RightMouseClick ()
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(
-            Camera.main.ScreenPointToRay(Input.mousePosition),
+        // Clicking on NOT the HUD
+        if (!mouseIsBeingUsedByHUD) {
+            if (Physics.Raycast (
+            Camera.main.ScreenPointToRay (Input.mousePosition),
             out hit,
             Mathf.Infinity,
             marqueeLayer
-        ))
-        {
-            // right click over an enemy unit
-            if (hit.collider.CompareTag("enemy"))
-            {
-                AttackRing(hit.collider.transform.position);
-                AttackUnit(hit.collider.gameObject);
-            }
+            )) {
+                // right click over an enemy unit
+                if (hit.collider.CompareTag ("enemy")) {
+                    AttackRing (hit.collider.transform.position);
+                    AttackUnit (hit.collider.gameObject);
+                }
             // right click over the ground
-            else
-            {
-                MovementRing(hit.point);
-                MoveUnits(hit.point);
+            else {
+                    MovementRing (hit.point);
+                    MoveUnits (hit.point);
+                }
+            }
+           
+        // Clicking on the HUD
+        } else {
+            if (Physics.Raycast (
+            minimapCam.ScreenPointToRay (Input.mousePosition),
+            out hit,
+            Mathf.Infinity,
+            marqueeLayer
+            )) {
+                // right click over an enemy unit
+                if (hit.collider.CompareTag ("enemy")) {
+                    AttackRing (hit.collider.transform.position);
+                    AttackUnit (hit.collider.gameObject);
+                }
+                // right click over the ground
+                else {
+                    MovementRing (hit.point);
+                    MoveUnits (hit.point);
+                }
             }
         }
     }

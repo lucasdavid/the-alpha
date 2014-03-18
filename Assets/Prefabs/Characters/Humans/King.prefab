@@ -2250,7 +2250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: King
   _healthMultiplier: 10
-  _movementMultiplier: 1.75
+  _movementMultiplier: 1.85000002
   _aDamageMultiplier: 2
   _aSpeedMultiplier: 2
 --- !u!114 &11400002
