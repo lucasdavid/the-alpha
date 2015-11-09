@@ -8,8 +8,8 @@ The Alpha game, made for CS 345 class. This game was developed using [Unity3D](h
  * Michael Resh
  * Victor Khou
 
- This game is an RTS-style zombie infection game where you must conquer the enemy kingdom of humans while protecting the Alpha Zombie.
- The Alpha is a distinct zombie capable of killing the enemy, as well as calling for reinforcements.
+This game is an RTS-style zombie infection game where you must conquer the enemy kingdom of humans while protecting the Alpha Zombie.
+The Alpha is a distinct zombie capable of killing the enemy, as well as calling for reinforcements.
 
  You are the Alpha Zombie. It is your duty to amass the horde and overthrow the ruler of the land.
  But be warned, the greater the horde becomes, the greater the threat to your un-life.
